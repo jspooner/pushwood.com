@@ -1,0 +1,56 @@
+<% content_for :head do %>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<% end %>
+
+
+<div id="map_canvas"></div>
+
+<h1>Tricks</h1>
+
+<table>
+  <tr>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tricks.each do |trick| %>
+  <tr>
+    <td><%= image_tag trick.image.url(:thumb) %></td>
+		<td><%= trick.lat %></td>
+    <td><%= link_to 'Show', trick %></td>
+    <td><%= link_to 'Edit', edit_trick_path(trick) %></td>
+    <td><%= link_to 'Destroy', trick, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trick', new_trick_path %>
+
+
+
+
+
+
+
+<% content_for :script do %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var carmelvalley = new google.maps.LatLng(32.94803512647807, -117.23739940536501); 
+			var map;
+			var marker;
+		  var myOptions = {
+		    zoom: 12,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+		  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			map.setCenter(carmelvalley);
+			<% @tricks.each do |trick| %>
+				new google.maps.Marker({ map: map,	draggable: true, position: new google.maps.LatLng(<%= trick.lat %>, <%= trick.lng %>) });
+			<% end %>
+		});
+	</script>
+<% end %>

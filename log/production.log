@@ -1,0 +1,276 @@
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2011-02-19 05:16:19 -0800
+  Processing by LocationsController#new as HTML
+  [1m[36mTrick Load (42.3ms)[0m  [1mSELECT `tricks`.* FROM `tricks`[0m
+Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 154ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/locations_controller.rb:33:in `new'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (263.2ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (273.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-02-19 05:42:37 -0800
+  Processing by WelcomeController#index as HTML
+Rendered welcome/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 65ms (Views: 64.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/stylesheets/960.css?1298107983" for 127.0.0.1 at 2011-02-19 05:42:37 -0800
+
+ActionController::RoutingError (No route matches "/stylesheets/960.css"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/javascripts/rails.js?1298107773" for 127.0.0.1 at 2011-02-19 05:42:38 -0800
+
+ActionController::RoutingError (No route matches "/javascripts/rails.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/javascripts/jquery.min.js?1298109086" for 127.0.0.1 at 2011-02-19 05:42:38 -0800
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.min.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/javascripts/jquery-ui.min.js?1298109100" for 127.0.0.1 at 2011-02-19 05:42:38 -0800
+
+ActionController::RoutingError (No route matches "/javascripts/jquery-ui.min.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/javascripts/application.js?1297909558" for 127.0.0.1 at 2011-02-19 05:42:38 -0800
+
+ActionController::RoutingError (No route matches "/javascripts/application.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/stylesheets/styles.css?1298119933" for 127.0.0.1 at 2011-02-19 05:42:38 -0800
+
+ActionController::RoutingError (No route matches "/stylesheets/styles.css"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:36:25 -0800
+  Processing by TricksController#index as HTML
+  [1m[36mTrick Load (384.7ms)[0m  [1mSELECT `tricks`.* FROM `tricks`[0m
+Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 448ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (270.6ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (281.7ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:37:07 -0800
+  Processing by TricksController#index as HTML
+  [1m[35mTrick Load (371.6ms)[0m  SELECT `tricks`.* FROM `tricks`
+Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 373ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (258.0ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (265.9ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:37:20 -0800
+  Processing by TricksController#index as HTML
+  [1m[36mTrick Load (199.8ms)[0m  [1mSELECT `tricks`.* FROM `tricks`[0m
+Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 201ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (261.9ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (270.4ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:37:24 -0800
+  Processing by TricksController#index as HTML
+  [1m[35mTrick Load (170.3ms)[0m  SELECT `tricks`.* FROM `tricks`
+Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 171ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (278.6ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (286.7ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:37:39 -0800
+  Processing by TricksController#index as HTML
+Rendered tricks/index.html.erb within layouts/application (54.4ms)
+Completed   in 92ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    15:     <th></th>
+    16:   </tr>
+    17: 
+    18: <% @tricks.each do |trick| %>
+    19:   <tr>
+    20:     <td><%= image_tag trick.image.url(:thumb) %></td>
+    21: 		<td><%= trick.lat %></td>
+  app/views/tricks/index.html.erb:18:in `_app_views_tricks_index_html_erb___3431565523318350696_2171653800__1668094398226554040'
+  app/controllers/tricks_controller.rb:7:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (280.1ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (332.1ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 06:37:49 -0800
+  Processing by TricksController#index as HTML
+Rendered tricks/index.html.erb within layouts/application (0.4ms)
+Completed   in 1ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    15:     <th></th>
+    16:   </tr>
+    17: 
+    18: <% @tricks.each do |trick| %>
+    19:   <tr>
+    20:     <td><%= image_tag trick.image.url(:thumb) %></td>
+    21: 		<td><%= trick.lat %></td>
+  app/views/tricks/index.html.erb:18:in `_app_views_tricks_index_html_erb___3431565523318350696_2171653800__1668094398226554040'
+  app/controllers/tricks_controller.rb:7:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (257.1ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (303.4ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at Sat Feb 19 06:52:34 -0800 2011
+  Processing by TricksController#index as HTML
+  [1m[36mTrick Load (87.4ms)[0m  [1mSELECT `tricks`.* FROM `tricks`[0m
+Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 105ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(51 != 18(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1101.9ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (1114.9ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at Sat Feb 19 06:52:36 -0800 2011
+
+ActionController::RoutingError (No route matches "/favicon.ico"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at Sat Feb 19 06:54:09 -0800 2011
+  Processing by TricksController#index as HTML
+  [1m[36mTrick Load (162.5ms)[0m  [1mSELECT `tricks`.* FROM `tricks`[0m
+Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`
+Completed   in 179ms
+
+ActiveRecord::StatementInvalid (Mysql::ProtocolError: invalid packet: sequence number mismatch(103 != 29(expected)): SELECT `tricks`.* FROM `tricks`):
+  app/controllers/tricks_controller.rb:5:in `index'
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (624.3ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (636.2ms)
+
+
+Started GET "/" for 127.0.0.1 at Sat Feb 19 06:55:00 -0800 2011
+  Processing by WelcomeController#index as HTML
+Rendered welcome/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 22ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/rails.js?1298107773" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/rails.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/javascripts/jquery.min.js?1298109086" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.min.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/stylesheets/960.css?1298107983" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/stylesheets/960.css"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/javascripts/jquery-ui.min.js?1298109100" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/jquery-ui.min.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/stylesheets/styles.css?1298119933" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/stylesheets/styles.css"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/javascripts/application.js?1297909558" for 127.0.0.1 at Sat Feb 19 06:55:01 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/application.js"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at Sat Feb 19 06:57:30 -0800 2011
+
+Mysql::ProtocolError (invalid packet: f1="\017À\000\000\000\000\000\000\000\000\000\000"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.8ms)
+Rendered /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.7ms)
+
+
+Started GET "/tricks" for 127.0.0.1 at 2011-02-19 07:03:34 -0800
+
+Mysql::ProtocolError (invalid packet: f1="\x0F\xC0\x15\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"):
+  
+
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (27.7ms)
+Rendered /Users/jspooner/.rvm/gems/ruby-1.9.2-rc2/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (36.6ms)

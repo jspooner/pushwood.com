@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Pushwood" %></title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <%= stylesheet_link_tag "reset-fonts", "960", "styles" %>    
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>" >
+	<div class="container_12">
+		<div class="grid_12">
+			<%= link_to 'home', root_path %>			|
+			<%= link_to 'tricks', tricks_path %>			|
+			<%= link_to 'spots', locations_path %> |
+		<% if current_user %>
+			<%= link_to 'logout', destroy_user_session_path %> | 
+			<%= link_to 'invite', new_user_invitation_path %> |
+			<%= link_to 'tricks', tricks_path %> |
+			<%= link_to 'spots', locations_path %> |
+			<%= link_to 'new image', new_trick_path %> 
+		<% else %>
+			<%= link_to 'login', new_user_session_path %> 
+		<% end %>			
+		</div>
+		<div class="grid_12">
+
+				<%= yield %>
+
+		</div>
+	</div>
+		<%= yield(:script) %>
+  </body>
+</html>

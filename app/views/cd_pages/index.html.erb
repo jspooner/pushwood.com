@@ -1,0 +1,32 @@
+<h1>Listing cd_pages</h1>
+
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Data</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cd_pages.each do |cd_page| %>
+  <tr>
+    <td><%= link_to cd_page.data[:title], cd_page.url %></td>
+    <td>
+			<p>
+				<%= cd_page.data[:street] %><br/>
+				<%= cd_page.data[:city] %>
+				<%= cd_page.data[:state] %>
+			</p>
+			<%# debug cd_page.data %>
+		</td>
+    <td><%= link_to 'Show', cd_page %></td>
+    <td><%= link_to 'Edit', edit_cd_page_path(cd_page) %></td>
+    <td><%= link_to 'Destroy', cd_page, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cd page', new_cd_page_path %>
