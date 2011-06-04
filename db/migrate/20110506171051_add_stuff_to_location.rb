@@ -3,12 +3,12 @@ class AddStuffToLocation < ActiveRecord::Migration
     add_column :locations, :lat, :string
     add_column :locations, :lng, :string
     add_column :locations, :phone, :string
-    add_column :locations, :has_lights, :boolean, :default => 0
-    add_column :locations, :is_free, :boolean, :default => 0
-    add_column :locations, :is_outdoors, :boolean, :default => 0
-    add_column :locations, :are_pads_required, :boolean, :default => 0
-    add_column :locations, :has_concrete, :boolean, :default => 0
-    add_column :locations, :has_wood, :boolean, :default => 0
+    add_column :locations, :has_lights, :boolean, :default => false
+    add_column :locations, :is_free, :boolean, :default => false
+    add_column :locations, :is_outdoors, :boolean, :default => false
+    add_column :locations, :are_pads_required, :boolean, :default => false
+    add_column :locations, :has_concrete, :boolean, :default => false
+    add_column :locations, :has_wood, :boolean, :default => false
   end
 
   def self.down
