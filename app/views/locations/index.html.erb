@@ -1,25 +1,102 @@
-<h1>Listing locations</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Bounding box</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @locations.each do |location| %>
-  <tr>
-    <td><%= location.name %></td>
-    <td><%# location.bounding_box %></td>
-    <td><%= link_to 'Show', location %></td>
-    <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% content_for :head do %>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <% end %>
-</table>
 
-<br />
+<%= form_tag(api_v1_locations_path(:format => :json), {:id=>"search_form", :remote => true}) do |f| -%>
+	<%= text_field_tag "search", "", {:type => "search", :placeholder => "Search"} %>
+<% end -%>
+
+
+<div id="map_canvas"></div>
+<ul id="location_list"><li>Loading</li></ul>
 
 <%= link_to 'New Location', new_location_path %>
+
+<% content_for :script do %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			var carmelvalley = new google.maps.LatLng(32.94803512647807, -117.23739940536501); 
+			var map;
+			var marker;
+			var markersArray = [];
+		  var myOptions = {
+		    zoom: 12,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+		  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			map.setCenter(carmelvalley);
+			
+						
+			
+			google.maps.event.addListener(map, 'idle', function() {
+				var bounds = map.getBounds();
+				$.getJSON('/api/v1/locations.json?bounding_box='+bounds.toUrlValue(), function(data) {
+					// remove
+				  $("#location_list").empty();
+				  if (markersArray) {
+				    for (i in markersArray) {
+				      markersArray[i].setMap(null);
+				    }
+				    markersArray.length = 0;
+				  }
+					
+					// add
+					for (var i=0; i < data.length; i++) {
+ 						markersArray.push(new google.maps.Marker({ map: map,	draggable: true, title:data[i]['location']['name'], position: new google.maps.LatLng(data[i]['location']['lat'], data[i]['location']['lng']) }));
+						$("#location_list").append('<li id="' + i + '">' + data[i]['location']['name'] + '</li>');
+					};
+									
+				});
+				
+		  });
+			
+			// Try W3C Geolocation (Preferred)
+		  if(navigator.geolocation) {
+		    browserSupportFlag = true;
+		    navigator.geolocation.getCurrentPosition(function(position) {
+		      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		      map.setCenter(initialLocation);
+		    }, function() {
+		      handleNoGeolocation(browserSupportFlag);
+		    });
+		  // Try Google Gears Geolocation
+		  } else if (google.gears) {
+		    browserSupportFlag = true;
+		    var geo = google.gears.factory.create('beta.geolocation');
+		    geo.getCurrentPosition(function(position) {
+		      initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+		      map.setCenter(initialLocation);
+		    }, function() {
+		      handleNoGeoLocation(browserSupportFlag);
+		    });
+		  // Browser doesn't support Geolocation
+		  } else {
+		    browserSupportFlag = false;
+		    handleNoGeolocation(browserSupportFlag);
+		  };
+			
+			function handleNoGeolocation(errorFlag) {
+		    if (errorFlag == true) {
+		      alert("Geolocation service failed.");
+		      initialLocation = carmelvalley;
+		    } else {
+		      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+		      initialLocation = carmelvalley;
+		    }
+		    map.setCenter(initialLocation);
+		  }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// end doc ready
+		});
+	</script>
+<% end %>

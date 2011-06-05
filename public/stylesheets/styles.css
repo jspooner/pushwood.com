@@ -14,11 +14,20 @@ fieldset{border:1px solid #000;padding:10px;}
 
 
 
+input[type="search"] { -webkit-appearance: searchfield; box-sizing: border-box; }
+input[type="search"]::-webkit-search-cancel-button {
+-webkit-appearance: searchfield-cancel-button;
+display: inline-block;
+}
+input::-webkit-input-placeholder, isindex::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+color: darkGray;
+}
 
 
 
-
-
+/********************************************* location */
+/*.location .index */
+#search_form {float:right;margin:0 0 10px 0;}
 /********************************************* new location */
 #vote_widget {margin:50px;}
 .img_bottom {float:left;background:url(/images/imgbkg_tl.png) no-repeat top left;padding-left:10px;}
@@ -32,7 +41,7 @@ a#image_a, a#image_b {background:url(/images/push-it.png) no-repeat top left;dis
 /********************************************* new location */
 body.locations.new #map_canvas {width:500px;height:500px;}
 /********************************************* new trick */
-#map_canvas {width:960px;height:600px;}
+#map_canvas {width:960px;height:600px;display:block;}
 /********************************************* rails */
 #flash_notice,#flash_error,#flash_alert{padding:5px 8px;margin-bottom:10px;width:320px;}
 #flash_notice{background-color:#CFC;border:solid 1px #6C6;}

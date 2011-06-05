@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517141820) do
+ActiveRecord::Schema.define(:version => 20110605170326) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -50,6 +50,65 @@ ActiveRecord::Schema.define(:version => 20110517141820) do
     t.integer  "has_wood",          :limit => 1, :default => 0
     t.integer  "cd_page_id"
   end
+
+  create_table "locations_bak", :force => true do |t|
+    t.string   "name"
+    t.string   "bounding_box"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "street"
+    t.string   "postal"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.text     "description"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "phone"
+    t.integer  "has_lights",        :limit => 1, :default => 0
+    t.integer  "is_free",           :limit => 1, :default => 0
+    t.integer  "is_outdoors",       :limit => 1, :default => 0
+    t.integer  "are_pads_required", :limit => 1, :default => 0
+    t.integer  "has_concrete",      :limit => 1, :default => 0
+    t.integer  "has_wood",          :limit => 1, :default => 0
+    t.integer  "cd_page_id"
+  end
+
+  create_table "locations_bing", :force => true do |t|
+    t.string   "name"
+    t.string   "bounding_box"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "street"
+    t.string   "postal"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.text     "description"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "phone"
+    t.integer  "has_lights",        :limit => 1, :default => 0
+    t.integer  "is_free",           :limit => 1, :default => 0
+    t.integer  "is_outdoors",       :limit => 1, :default => 0
+    t.integer  "are_pads_required", :limit => 1, :default => 0
+    t.integer  "has_concrete",      :limit => 1, :default => 0
+    t.integer  "has_wood",          :limit => 1, :default => 0
+    t.integer  "cd_page_id"
+  end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "tricks", :force => true do |t|
     t.integer  "user_id"

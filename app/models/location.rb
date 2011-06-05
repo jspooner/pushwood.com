@@ -9,7 +9,8 @@ class Location < ActiveRecord::Base
   
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
-      obj.street  = geo.address
+      puts geo.inspect
+      obj.street  = geo.address(:street) #_components_of_type(:street_number)
       obj.state    = geo.state
       obj.city    = geo.city
       obj.postal  = geo.postal_code
@@ -22,8 +23,19 @@ class Location < ActiveRecord::Base
     [street, city, state, country].compact.join(', ')
   end
   
-  def within(bounding_box)
-    where("lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", bounding_box['sw']['lat'], bounding_box['ne']['lat'], bounding_box['ne']['lng'], bounding_box['sw']['lng'])
+  # def within(bounding_box)
+  #   where("lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", bounding_box['sw']['lat'], bounding_box['ne']['lat'], bounding_box['ne']['lng'], bounding_box['sw']['lng'])
+  # end
+  
+  # a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, 
+  # where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
+  def self.in_bounds(bounds)
+    _bounds = bounds.split(",")
+    lat_lo = _bounds[0]
+    lng_lo = _bounds[1]
+    lat_hi = _bounds[2]
+    lng_hi = _bounds[3]
+    where("lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", lat_lo, lat_hi, lng_lo, lng_hi )
   end
   
   

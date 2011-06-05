@@ -39,30 +39,33 @@ class Api::V1::LocationsController < ApplicationController
     end    
   end
   
-  # GET /locations
-  # GET /locations.xml
+  # GET /api/v1/locations.json?radius=20&limit=10&point=32,-112
+  # radius in miles
+  # limit
+  # point [ lat, lng ]
+  # OR
+  # bounds   "lat_lo,lng_lo,lat_hi,lng_hi"
+  # for this bounds, where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
   def index
-    # @locations = Location.limit(20).where("state = ?", "CA").all
+
 
     radius = params[:radius] || 200
-    limit = 100
-    if params[:point]
+    limit = params[:limit] || 100
+    if params[:point] # use the geo gem that doesn't support AReL ;(
       @locations = Location.near(params[:point], radius, { :limit => limit})
     else
       @locations = Location.limit(limit)
       @locations.where("city = ?", params[:city]) if params[:city]
-      @locations.all
+      @locations = @locations.in_bounds(params[:bounding_box]) if params[:bounding_box]
+      # @locations = Location.in_bounds(params[:bounding_box]) if params[:bounding_box]
     end
 
-
-    # @locations = Location.near("San Marcos, CA, USA")
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @locations }
       format.json  { render :text => Location.build_json(@locations) }
     end
   end
-
+  
+  
   def region
     render :text => "foo"
   end

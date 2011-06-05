@@ -37,14 +37,13 @@ class LocationsController < ApplicationController
     # @locations = Location.limit(20).where("state = ?", "CA").all
 
     radius = params[:radius] || 200
-    limit = 100
-    if params[:point]
-      @locations = Location.near(params[:point], radius, { :limit => limit})
-    else
+    limit = 50
+    # if params[:point]
+    #   @locations = Location.near(params[:point], radius, { :limit => limit})
+    # else
       @locations = Location.limit(limit)
-      @locations.where("city = ?", params[:city]) if params[:city]
-      @locations.all
-    end
+      # @locations.where("city = ?", params[:city]) if params[:city]
+    # end
 
     
     # @locations = Location.near("San Marcos, CA, USA")
@@ -66,8 +65,8 @@ class LocationsController < ApplicationController
     
     # @json = @location.bounding_box 
     # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @json['sw']['lat'], @json['ne']['lat'], @json['ne']['lng'], @json['sw']['lng'] ]
-    @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @location.bounding_box['sw']['lat'], @location.bounding_box['ne']['lat'], @location.bounding_box['ne']['lng'], @location.bounding_box['sw']['lng'] ]
-    
+    # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @location.bounding_box['sw']['lat'], @location.bounding_box['ne']['lat'], @location.bounding_box['ne']['lng'], @location.bounding_box['sw']['lng'] ]
+    @tricks = []
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @location }

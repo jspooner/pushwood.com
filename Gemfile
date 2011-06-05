@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -15,6 +15,8 @@ gem "paperclip", "~> 2.3"
 
 gem 'hpricot'
 gem 'geocoder'
+
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -38,6 +40,9 @@ gem 'geocoder'
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "factory_girl_rails", ">= 1.0.0", :group => :test
-gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
-gem "rspec-rails", ">= 2.2.1", :group => [:development, :test]
+group :test do
+  gem "factory_girl_rails", ">= 1.0.0", :group => :test
+  gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
+  gem "rspec-rails", ">= 2.2.1", :group => [:development, :test]
+end
+

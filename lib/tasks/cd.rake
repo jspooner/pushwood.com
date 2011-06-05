@@ -9,11 +9,22 @@ namespace :import do
         CdPage.parse_remote(x)
       end      
     end
+
+    desc "Save pages to location table"
+    task :fixstreet => :environment do
+      Location.find_each do |loc|
+        a = loc.street.split(",") || []
+        if a.length == 2
+          loc.street = a.first
+          loc.save
+        end
+      end
+    end
     
     # todo Add URL and Email
     desc "Save pages to location table"
     task :save => :environment do
-      CdPage.all().each do |cd|
+      CdPage.find_each do |cd|
         
         street = cd.data[:street] || ""
         street.gsub!("Address:","")

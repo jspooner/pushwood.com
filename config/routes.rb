@@ -23,9 +23,6 @@ Woodhack::Application.routes.draw do
       end
     end
   end
-
-
-
   
 
   resources :locations do
