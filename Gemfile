@@ -17,9 +17,6 @@ gem 'hpricot'
 gem 'geocoder',    :git => 'git://github.com/jspooner/geocoder.git'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
 # Deploy with Capistrano
 # gem 'capistrano'
 
