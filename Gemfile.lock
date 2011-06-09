@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/jspooner/geocoder.git
+  revision: 970e57cafcaac92f06a3ef342ad748886a7848f5
+  specs:
+    geocoder (1.0.1)
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: e8cf863ee1ab75902bd444cc271972f86380c63b
   specs:
@@ -6,12 +12,6 @@ GIT
       builder (~> 2.1.0)
       fastercsv
       rails (~> 3.0.7)
-
-GIT
-  remote: git@github.com:jspooner/geocoder.git
-  revision: 970e57cafcaac92f06a3ef342ad748886a7848f5
-  specs:
-    geocoder (1.0.1)
 
 GEM
   remote: http://rubygems.org/
