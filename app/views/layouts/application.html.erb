@@ -13,14 +13,10 @@
 	<div class="container_12">
 		<div class="grid_12">
 			<%= link_to 'home', root_path %>			|
-			<%= link_to 'tricks', tricks_path %>			|
-			<%= link_to 'spots', locations_path %> |
+			<%= link_to 'locations', locations_path %> |
 		<% if current_user %>
 			<%= link_to 'logout', destroy_user_session_path %> | 
 			<%= link_to 'invite', new_user_invitation_path %> |
-			<%= link_to 'tricks', tricks_path %> |
-			<%= link_to 'spots', locations_path %> |
-			<%= link_to 'new image', new_trick_path %> 
 		<% else %>
 			<%= link_to 'login', new_user_session_path %> 
 		<% end %>			

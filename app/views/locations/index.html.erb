@@ -8,14 +8,37 @@
 
 
 <div id="map_canvas"></div>
-<ul id="location_list"><li>Loading</li></ul>
+<div id="location_list"></div>
 
 <%= link_to 'New Location', new_location_path %>
 
 <% content_for :script do %>
 	<script type="text/javascript">
+	
+
+		
 		$(document).ready(function() {
 			
+			function listItem(markerImg, name, address, phone, url) {
+				var div = $("<div></div>");
+				var a = $("<a>"+name+"</a>");
+				a.attr("href", url);
+				div.append($("<h2 style='display:inline'></h2>").append($('<img src="'+markerImg+'" />')).append(a) );
+				<% if current_user %>
+				div.append( $('<a style="color:red;" href="'+url+'/edit">edit</a>'));
+				<% end %>
+				
+				div.append($("<p>"+address+"</p>"));
+				div.append($("<p>"+phone+"</p>"));
+				return div;
+			}
+			
+			function iconFor(i) {
+				var alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"];
+				
+				return '/images/markers/blue_Marker'+alpha[i]+'.png';
+			}
+						
 			var carmelvalley = new google.maps.LatLng(32.94803512647807, -117.23739940536501); 
 			var map;
 			var marker;
@@ -30,6 +53,7 @@
 						
 			
 			google.maps.event.addListener(map, 'idle', function() {
+				
 				var bounds = map.getBounds();
 				$.getJSON('/api/v1/locations.json?bounding_box='+bounds.toUrlValue(), function(data) {
 					// remove
@@ -43,8 +67,35 @@
 					
 					// add
 					for (var i=0; i < data.length; i++) {
- 						markersArray.push(new google.maps.Marker({ map: map,	draggable: true, title:data[i]['location']['name'], position: new google.maps.LatLng(data[i]['location']['lat'], data[i]['location']['lng']) }));
-						$("#location_list").append('<li id="' + i + '">' + data[i]['location']['name'] + '</li>');
+						var marker = new google.maps.Marker({ map: map,	draggable: true, title:data[i]['location']['name'], position: new google.maps.LatLng(data[i]['location']['lat'], data[i]['location']['lng']) });
+						marker.setIcon( iconFor(i) );
+						
+						function foo(map,marker,location) {
+							var contentString = '<div id="content">'+
+							    '<div id="siteNotice">'+
+							    '</div>'+
+							    '<h1 id="firstHeading" class="firstHeading">'+location['name']+'</h1>'+
+							    '<div id="bodyContent">'+
+							    '<p>' + location['street'] +
+							    '</p>'+
+							    '</div>'+
+							    '</div>';
+							var infowindow = new google.maps.InfoWindow({content:contentString, disableAutoPan:true});
+							google.maps.event.addListener(marker, 'click', function() {
+							  infowindow.open(map,marker);
+							});
+						}
+						foo(map,marker,data[i]['location']);
+						
+						markersArray.push(marker);
+						$("#location_list").append( 
+							listItem(
+								iconFor(i),
+								data[i]['location']['name'], 
+								data[i]['location']['street'], 
+								data[i]['location']['phone'],
+								"locations/" + data[i]['location']['id']
+							 ) );
 					};
 									
 				});

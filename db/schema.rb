@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605170326) do
+ActiveRecord::Schema.define(:version => 20110608141153) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(:version => 20110605170326) do
     t.string   "lat"
     t.string   "lng"
     t.string   "phone"
-    t.integer  "has_lights",        :limit => 1, :default => 0
-    t.integer  "is_free",           :limit => 1, :default => 0
-    t.integer  "is_outdoors",       :limit => 1, :default => 0
-    t.integer  "are_pads_required", :limit => 1, :default => 0
-    t.integer  "has_concrete",      :limit => 1, :default => 0
-    t.integer  "has_wood",          :limit => 1, :default => 0
+    t.integer  "has_lights",    :limit => 1, :default => 0
+    t.integer  "is_free",       :limit => 1, :default => 0
+    t.integer  "is_outdoors",   :limit => 1, :default => 0
+    t.integer  "pads_required", :limit => 1, :default => 0
+    t.integer  "has_concrete",  :limit => 1, :default => 0
+    t.integer  "has_wood",      :limit => 1, :default => 0
     t.integer  "cd_page_id"
   end
 

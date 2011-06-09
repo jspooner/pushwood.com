@@ -52,7 +52,7 @@ class Api::V1::LocationsController < ApplicationController
     radius = params[:radius] || 200
     limit = params[:limit] || 100
     if params[:point] # use the geo gem that doesn't support AReL ;(
-      @locations = Location.near(params[:point], radius, { :limit => limit})
+      @locations = Location.near(params[:point], radius, { :limit => limit })
     else
       @locations = Location.limit(limit)
       @locations.where("city = ?", params[:city]) if params[:city]

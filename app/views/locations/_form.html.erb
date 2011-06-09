@@ -16,19 +16,72 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :bounding_box %><br />
-    <%= f.text_field :bounding_box %>
-  </div>
-  <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :cols => 100 %>
   </div>
   <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </div>
 
+
+  <div class="field">
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %><br />
+    <%= f.label :lng %><br />
+    <%= f.text_field :lng %><br />
+  </div>
+	
+	<div id="edit_map"></div>
+	
+	<fieldset id="address" class="">
+		<legend>Address</legend>
+
+    <%= f.label :street %><br />
+    <%= f.text_field :street %><br />
+
+    <%= f.label :city %><br />
+    <%= f.text_field :city %><br />
+
+    <%= f.label :state %><br />
+    <%= f.text_field :state %><br />
+
+    <%= f.label :postal %><br />
+    <%= f.text_field :postal %><br />
+
+    <%= f.label :country %><br />
+    <%= f.text_field :country %><br />
+
+	  
+		
+	</fieldset>
+
+	<fieldset id="address" class="">
+		<legend>Amenities</legend>
+		<%= f.label :has_lights, "Lights:" %>
+    <%= f.check_box :has_lights %><br />
+
+		<%= f.label :is_free, "Free:" %>
+    <%= f.check_box :is_free %><br />
+
+		<%= f.label :is_outdoors, "Outdoors:" %>
+    <%= f.check_box :is_outdoors %><br />
+
+		<%= f.label :has_wood, "Wood:" %>
+    <%= f.check_box :has_wood %><br />
+
+		<%= f.label :has_concrete, "Concrete:" %>
+    <%= f.check_box :has_concrete %><br />
+
+		<%= f.label :pads_required, "Pads:" %>
+    <%= f.check_box :pads_required %><br />
+
+    
+	</fieldset>
+
+	
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

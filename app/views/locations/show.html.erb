@@ -15,31 +15,15 @@
   <%= link_to @location.googlemapurl, @location.googlemapurl %>
 </p>
 
-<%= debug @json %>
-<% @tricks.each do |trick| %>
-<%= image_tag trick.image.url(:mobile_thumb) %>
-<%= image_tag trick.image.url(:mobile) %>
-<br/>
-<% end %>
-<table>
-  <tr>
-    <th>Image</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<img border="0" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=18&size=400x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="Three Brooklyn Zipcodes">
 
-<% @tricks.each do |trick| %>
-  <tr>
-    <td><%= image_tag trick.image.url(:mobile) %></td>
-		<td><%= trick.lat %></td>
-    <td><%= link_to 'Show', trick %></td>
-    <td><%= link_to 'Edit', edit_trick_path(trick) %></td>
-    <td><%= link_to 'Destroy', trick, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
+
+<p>
+	<%= @location.street %><br/>
+	<%= @location.city %> <%= @location.state %>, <%= @location.postal %><br/>
+	<%= @location.country %>
+</p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

@@ -1,3 +1,6 @@
+[!512] ~/Dropbox/woodhack$ env ARCHFLAGS="-arch x86_64" gem install --no-rdoc --no-ri mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+
+
 Heroku
 ssh key is id_rsa-shrelp-keypair.pub
 

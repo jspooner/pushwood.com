@@ -38,19 +38,15 @@ class LocationsController < ApplicationController
 
     radius = params[:radius] || 200
     limit = 50
-    # if params[:point]
-    #   @locations = Location.near(params[:point], radius, { :limit => limit})
-    # else
-      @locations = Location.limit(limit)
-      # @locations.where("city = ?", params[:city]) if params[:city]
-    # end
+    @locations = Location.limit(limit)
+    @locations = @locations.in_bounds(params[:bounding_box]) if params[:bounding_box]
 
     
     # @locations = Location.near("San Marcos, CA, USA")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @locations }
-      format.json  { render :text => Location.build_json(@locations) }
+      format.js
     end
   end
   
