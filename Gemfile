@@ -14,7 +14,7 @@ gem 'omniauth'
 gem "paperclip", "~> 2.3"
 
 gem 'hpricot'
-gem 'geocoder', :git => 'git@github.com:jspooner/geocoder.git'
+gem 'geocoder', :git => 'git://github.com/jspooner/geocoder.git'
 
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
