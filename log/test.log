@@ -1,0 +1,554 @@
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (297.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.9ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (104.8ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to Users (20110217030317)
+  [1m[35mSQL (131.2ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `password_salt` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `remember_token` varchar(255), `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `failed_attempts` int(11) DEFAULT 0, `unlock_token` varchar(255), `locked_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[35mSQL (224.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[35mSQL (221.5ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110217030317')[0m
+Migrating to CreateAuthentications (20110217033932)
+  [1m[35mSQL (124.2ms)[0m  CREATE TABLE `authentications` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `provider` varchar(255), `uid` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (2.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110217033932')[0m
+Migrating to DeviseInvitableAddToUsers (20110218033818)
+  [1m[35mSQL (137.5ms)[0m  ALTER TABLE `users` ADD `invitation_token` varchar(20)
+  [1m[36mSQL (119.2ms)[0m  [1mALTER TABLE `users` ADD `invitation_sent_at` datetime[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `users`
+  [1m[36mSQL (129.4ms)[0m  [1mCREATE INDEX `index_users_on_invitation_token` ON `users` (`invitation_token`)[0m
+  [1m[35mSQL (134.3ms)[0m  ALTER TABLE `users` CHANGE `encrypted_password` `encrypted_password` varchar(255) DEFAULT ''
+  [1m[36mSQL (142.6ms)[0m  [1mALTER TABLE `users` CHANGE `password_salt` `password_salt` varchar(255) DEFAULT ''[0m
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218033818')
+Migrating to CreateTricks (20110219074302)
+  [1m[36mSQL (119.3ms)[0m  [1mCREATE TABLE `tricks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `image_file_name` varchar(255), `image_content_type` varchar(255), `image_file_size` int(11), `image_updated_at` datetime, `lat` varchar(255), `lng` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110219074302')
+Migrating to CreateLocations (20110219123533)
+  [1m[36mSQL (139.7ms)[0m  [1mCREATE TABLE `locations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `bounding_box` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (3.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110219123533')
+Migrating to AddCityToLocation (20110430014321)
+  [1m[36mSQL (145.8ms)[0m  [1mALTER TABLE `locations` ADD `street` varchar(255)[0m
+  [1m[35mSQL (123.7ms)[0m  ALTER TABLE `locations` ADD `postal` varchar(255)
+  [1m[36mSQL (127.5ms)[0m  [1mALTER TABLE `locations` ADD `city` varchar(255)[0m
+  [1m[35mSQL (127.1ms)[0m  ALTER TABLE `locations` ADD `state` varchar(255)
+  [1m[36mSQL (138.7ms)[0m  [1mALTER TABLE `locations` ADD `country` varchar(255)[0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110430014321')
+Migrating to AddDesc (20110503144447)
+  [1m[36mSQL (126.9ms)[0m  [1mALTER TABLE `locations` ADD `description` text[0m
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110503144447')
+Migrating to AddStuffToLocation (20110506171051)
+  [1m[36mSQL (133.0ms)[0m  [1mALTER TABLE `locations` ADD `lat` varchar(255)[0m
+  [1m[35mSQL (128.8ms)[0m  ALTER TABLE `locations` ADD `lng` varchar(255)
+  [1m[36mSQL (148.4ms)[0m  [1mALTER TABLE `locations` ADD `phone` varchar(255)[0m
+  [1m[35mSQL (131.7ms)[0m  ALTER TABLE `locations` ADD `has_lights` tinyint(1) DEFAULT 0
+  [1m[36mSQL (140.7ms)[0m  [1mALTER TABLE `locations` ADD `is_free` tinyint(1) DEFAULT 0[0m
+  [1m[35mSQL (129.9ms)[0m  ALTER TABLE `locations` ADD `is_outdoors` tinyint(1) DEFAULT 0
+  [1m[36mSQL (141.8ms)[0m  [1mALTER TABLE `locations` ADD `are_pads_required` tinyint(1) DEFAULT 0[0m
+  [1m[35mSQL (121.8ms)[0m  ALTER TABLE `locations` ADD `has_concrete` tinyint(1) DEFAULT 0
+  [1m[36mSQL (149.1ms)[0m  [1mALTER TABLE `locations` ADD `has_wood` tinyint(1) DEFAULT 0[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110506171051')
+Migrating to CreateCdPages (20110515234024)
+  [1m[36mSQL (124.9ms)[0m  [1mCREATE TABLE `cd_pages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `guid` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110515234024')
+Migrating to AddDataCol (20110515235739)
+  [1m[36mSQL (131.8ms)[0m  [1mALTER TABLE `cd_pages` ADD `data` text[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110515235739')
+Migrating to AddRelationShipToCdPage (20110517141820)
+  [1m[36mSQL (146.0ms)[0m  [1mALTER TABLE `locations` ADD `cd_page_id` int(11)[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110517141820')
+Migrating to CreateHistoriesTable (20110605170325)
+  [1m[36mSQL (123.4ms)[0m  [1mCREATE TABLE `histories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `message` varchar(255), `username` varchar(255), `item` int(11), `table` varchar(255), `month` smallint, `year` bigint, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `histories`
+  [1m[36mSQL (126.3ms)[0m  [1mCREATE INDEX `index_histories_on_item_and_table_and_month_and_year` ON `histories` (`item`, `table`, `month`, `year`)[0m
+  [1m[35mSQL (4.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110605170325')
+Migrating to RenameHistoriesToRailsAdminHistories (20110605170326)
+  [1m[36mSQL (1.6ms)[0m  [1mRENAME TABLE `histories` TO `rails_admin_histories`[0m
+  [1m[35mSQL (2.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110605170326')
+Migrating to UpdateLocation (20110608141153)
+  [1m[36mSQL (2.1ms)[0m  [1mSHOW COLUMNS FROM `locations` LIKE 'are_pads_required'[0m
+  [1m[35mSQL (111.3ms)[0m  ALTER TABLE `locations` CHANGE `are_pads_required` `pads_required` tinyint(1) DEFAULT 0
+  [1m[36mSQL (4.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110608141153')[0m
+  [1m[35mSQL (1.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.9ms)[0m  SHOW TABLES
+  [1m[36mSQL (3.1ms)[0m  [1mdescribe `authentications`[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `authentications`
+  [1m[36mSQL (37.7ms)[0m  [1mdescribe `cd_pages`[0m
+  [1m[35mSQL (7.0ms)[0m  SHOW KEYS FROM `cd_pages`
+  [1m[36mSQL (12.7ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mSQL (44.0ms)[0m  SHOW KEYS FROM `locations`
+  [1m[36mSQL (25.8ms)[0m  [1mdescribe `rails_admin_histories`[0m
+  [1m[35mSQL (25.7ms)[0m  SHOW KEYS FROM `rails_admin_histories`
+  [1m[36mSQL (15.5ms)[0m  [1mdescribe `tricks`[0m
+  [1m[35mSQL (10.7ms)[0m  SHOW KEYS FROM `tricks`
+  [1m[36mSQL (17.4ms)[0m  [1mdescribe `users`[0m
+  [1m[35mSQL (34.1ms)[0m  SHOW KEYS FROM `users`
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (15.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`pads_required`, `lat`, `is_free`, `has_concrete`, `has_wood`, `cd_page_id`, `postal`, `description`, `lng`, `is_outdoors`, `name`, `phone`, `bounding_box`, `updated_at`, `state`, `street`, `has_lights`, `city`, `created_at`, `country`) VALUES (0, 33.140862, 0, 0, 0, NULL, '92069', NULL, -117.158827, 0, 'San Marcos', NULL, NULL, '2011-06-10 15:55:25', 'California', '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0, 'San Marcos', '2011-06-10 15:55:25', 'United States')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (18.7ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`created_at`, `pads_required`, `state`, `street`, `description`, `is_outdoors`, `has_concrete`, `name`, `city`, `phone`, `cd_page_id`, `country`, `updated_at`, `lat`, `has_wood`, `has_lights`, `lng`, `is_free`, `postal`, `bounding_box`) VALUES ('2011-06-10 15:55:47', 0, 'California', '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', NULL, 0, 0, 'San Marcos', 'San Marcos', NULL, NULL, 'United States', '2011-06-10 15:55:47', 33.140862, 0, 0, -117.158827, 0, '92069', NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.8ms)[0m  ROLLBACK
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (18.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_wood`, `is_outdoors`, `bounding_box`, `state`, `has_lights`, `updated_at`, `postal`, `cd_page_id`, `pads_required`, `description`, `street`, `country`, `has_concrete`, `lng`, `city`, `is_free`, `lat`, `phone`, `created_at`, `name`) VALUES (0, 0, NULL, 'California', 0, '2011-06-10 15:57:42', '92069', NULL, 0, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 'United States', 0, -117.158827, 'San Marcos', 0, 33.140862, NULL, '2011-06-10 15:57:42', 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (21.9ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`street`, `bounding_box`, `country`, `name`, `description`, `pads_required`, `lat`, `has_concrete`, `updated_at`, `lng`, `created_at`, `city`, `has_lights`, `is_free`, `is_outdoors`, `state`, `cd_page_id`, `postal`, `has_wood`, `phone`) VALUES ('12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', NULL, 'United States', 'San Marcos', NULL, 0, 33.140862, 0, '2011-06-10 15:58:28', -117.158827, '2011-06-10 15:58:28', 'San Marcos', 0, 0, 0, 'California', NULL, '92069', 0, NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_wood`, `phone`, `has_concrete`, `has_lights`, `postal`, `cd_page_id`, `lat`, `is_free`, `updated_at`, `name`, `country`, `city`, `description`, `lng`, `pads_required`, `created_at`, `bounding_box`, `state`, `street`, `is_outdoors`) VALUES (0, NULL, 0, 0, '92069', NULL, 33.140862, 0, '2011-06-10 16:00:22', 'San Marcos', 'United States', 'San Marcos', NULL, -117.158827, 0, '2011-06-10 16:00:22', NULL, 'California', '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (15.9ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO `locations` (`updated_at`, `cd_page_id`, `has_concrete`, `lng`, `state`, `created_at`, `postal`, `description`, `city`, `lat`, `has_wood`, `has_lights`, `bounding_box`, `street`, `is_free`, `phone`, `pads_required`, `name`, `is_outdoors`, `country`) VALUES ('2011-06-10 16:02:47', NULL, 0, -117.158827, 'California', '2011-06-10 16:02:47', '92069', NULL, 'San Marcos', 33.140862, 0, 0, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0, NULL, 0, 'San Marcos', 0, 'United States')
+  [1m[36mSQL (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`updated_at`, `cd_page_id`, `has_concrete`, `lng`, `state`, `created_at`, `postal`, `description`, `city`, `lat`, `has_wood`, `has_lights`, `bounding_box`, `street`, `is_free`, `phone`, `pads_required`, `name`, `is_outdoors`, `country`) VALUES ('2011-06-10 16:02:48', NULL, 0, -117.158827, 'California', '2011-06-10 16:02:48', '92069', NULL, 'San Marcos', 33.140862, 0, 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, NULL, 0, NULL, 0, 'US')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (35.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.3ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`name`, `has_wood`, `country`, `pads_required`, `cd_page_id`, `postal`, `created_at`, `is_outdoors`, `city`, `is_free`, `state`, `lat`, `description`, `has_lights`, `bounding_box`, `lng`, `has_concrete`, `phone`, `street`, `updated_at`) VALUES ('San Marcos', 0, 'United States', 0, NULL, '92069', '2011-06-10 16:38:43', 0, 'San Marcos', 0, 'California', 33.140862, NULL, 0, NULL, -117.158827, 0, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', '2011-06-10 16:38:43')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (52.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`name`, `has_wood`, `country`, `pads_required`, `cd_page_id`, `postal`, `created_at`, `is_outdoors`, `city`, `is_free`, `state`, `lat`, `description`, `has_lights`, `bounding_box`, `lng`, `has_concrete`, `phone`, `street`, `updated_at`) VALUES (NULL, 0, 'US', 0, NULL, '92069', '2011-06-10 16:38:43', 0, 'San Marcos', 0, 'California', 33.140862, NULL, 0, NULL, -117.158827, 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', '2011-06-10 16:38:43')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`name`, `has_wood`, `country`, `pads_required`, `cd_page_id`, `postal`, `created_at`, `is_outdoors`, `city`, `is_free`, `state`, `lat`, `description`, `has_lights`, `bounding_box`, `lng`, `has_concrete`, `phone`, `street`, `updated_at`) VALUES ('San Marcos', 0, 'United States', 0, NULL, '92069', '2011-06-10 16:39:29', 0, 'San Marcos', 0, 'California', 33.140862, NULL, 0, NULL, -117.158827, 0, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', '2011-06-10 16:39:29')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.7ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`name`, `has_wood`, `country`, `pads_required`, `cd_page_id`, `postal`, `created_at`, `is_outdoors`, `city`, `is_free`, `state`, `lat`, `description`, `has_lights`, `bounding_box`, `lng`, `has_concrete`, `phone`, `street`, `updated_at`) VALUES (NULL, 0, 'US', 0, NULL, '92069', '2011-06-10 16:39:29', 0, 'San Marcos', 0, 'California', 33.140862, NULL, 0, NULL, -117.158827, 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', '2011-06-10 16:39:29')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (1.1ms)[0m  INSERT INTO `locations` (`has_wood`, `bounding_box`, `street`, `updated_at`, `is_free`, `has_concrete`, `cd_page_id`, `city`, `is_outdoors`, `created_at`, `pads_required`, `name`, `state`, `country`, `lat`, `description`, `phone`, `has_lights`, `lng`, `postal`) VALUES (0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', '2011-06-10 16:39:39', 0, 0, NULL, 'San Marcos', 0, '2011-06-10 16:39:39', 0, NULL, 'California', 'US', 33.140862, NULL, NULL, 0, -117.158827, '92069')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mSQL (7.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.3ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (1.9ms)[0m  INSERT INTO `locations` (`postal`, `street`, `name`, `lat`, `lng`, `state`, `phone`, `cd_page_id`, `created_at`, `country`, `city`, `description`, `has_lights`, `is_outdoors`, `has_concrete`, `pads_required`, `has_wood`, `updated_at`, `bounding_box`, `is_free`) VALUES ('92069', '50 Civic Center Dr, San Marcos, CA 92069, United States', NULL, 33.140862, -117.158827, 'California', NULL, NULL, '2011-06-10 16:43:18', 'US', 'San Marcos', NULL, 0, 0, 0, 0, 0, '2011-06-10 16:43:18', NULL, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (9.8ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (19.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`pads_required`, `name`, `lat`, `lng`, `created_at`, `city`, `bounding_box`, `country`, `description`, `has_concrete`, `is_free`, `updated_at`, `has_lights`, `phone`, `street`, `has_wood`, `postal`, `state`, `cd_page_id`, `is_outdoors`) VALUES (0, 'San Marcos', 33.140862, -117.158827, '2011-06-10 16:43:41', 'San Marcos', NULL, 'United States', NULL, 0, 0, '2011-06-10 16:43:41', 0, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0, '92069', 'California', NULL, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.6ms)[0m  INSERT INTO `locations` (`pads_required`, `name`, `lat`, `lng`, `created_at`, `city`, `bounding_box`, `country`, `description`, `has_concrete`, `is_free`, `updated_at`, `has_lights`, `phone`, `street`, `has_wood`, `postal`, `state`, `cd_page_id`, `is_outdoors`) VALUES (0, NULL, 33.140862, -117.158827, '2011-06-10 16:43:41', 'San Marcos', NULL, 'US', NULL, 0, 0, '2011-06-10 16:43:41', 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, '92069', 'California', NULL, 0)
+  [1m[36mSQL (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.0ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_lights`, `postal`, `state`, `has_wood`, `bounding_box`, `name`, `cd_page_id`, `country`, `pads_required`, `phone`, `lng`, `updated_at`, `is_outdoors`, `city`, `lat`, `created_at`, `description`, `street`, `is_free`, `has_concrete`) VALUES (0, '92069', 'California', 0, NULL, 'San Marcos', NULL, 'United States', 0, NULL, -117.158827, '2011-06-10 16:44:00', 0, 'San Marcos', 33.140862, '2011-06-10 16:44:00', NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`has_lights`, `postal`, `state`, `has_wood`, `bounding_box`, `name`, `cd_page_id`, `country`, `pads_required`, `phone`, `lng`, `updated_at`, `is_outdoors`, `city`, `lat`, `created_at`, `description`, `street`, `is_free`, `has_concrete`) VALUES (0, '92069', 'California', 0, NULL, NULL, NULL, 'US', 0, NULL, -117.158827, '2011-06-10 16:44:01', 0, 'San Marcos', 33.140862, '2011-06-10 16:44:01', NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.8ms)[0m  INSERT INTO `locations` (`lat`, `bounding_box`, `description`, `is_free`, `is_outdoors`, `has_concrete`, `state`, `created_at`, `city`, `name`, `has_wood`, `street`, `updated_at`, `pads_required`, `country`, `lng`, `cd_page_id`, `has_lights`, `phone`, `postal`) VALUES (33.140862, NULL, NULL, 0, 0, 0, 'California', '2011-06-10 16:44:25', 'San Marcos', NULL, 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', '2011-06-10 16:44:25', 0, 'US', -117.158827, NULL, 0, NULL, '92069')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.6ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`is_free`, `updated_at`, `name`, `bounding_box`, `postal`, `pads_required`, `state`, `has_lights`, `country`, `city`, `has_wood`, `lng`, `description`, `has_concrete`, `created_at`, `phone`, `street`, `cd_page_id`, `lat`, `is_outdoors`) VALUES (0, '2011-06-10 16:44:43', 'San Marcos', NULL, '92069', 0, 'California', 0, 'United States', 'San Marcos', 0, -117.158827, NULL, 0, '2011-06-10 16:44:43', NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', NULL, 33.140862, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (34.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`is_free`, `updated_at`, `name`, `bounding_box`, `postal`, `pads_required`, `state`, `has_lights`, `country`, `city`, `has_wood`, `lng`, `description`, `has_concrete`, `created_at`, `phone`, `street`, `cd_page_id`, `lat`, `is_outdoors`) VALUES (0, '2011-06-10 16:44:43', NULL, NULL, '92069', 0, 'California', 0, 'US', 'San Marcos', 0, -117.158827, NULL, 0, '2011-06-10 16:44:43', NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', NULL, 33.140862, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`city`, `is_free`, `cd_page_id`, `bounding_box`, `postal`, `state`, `lat`, `has_concrete`, `description`, `updated_at`, `country`, `created_at`, `has_wood`, `street`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `phone`, `lng`) VALUES ('San Marcos', 0, NULL, NULL, '92069', 'California', 33.140862, 0, NULL, '2011-06-10 16:47:01', 'United States', '2011-06-10 16:47:01', 0, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0, 0, 'San Marcos', 0, NULL, -117.158827)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.6ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`city`, `is_free`, `cd_page_id`, `bounding_box`, `postal`, `state`, `lat`, `has_concrete`, `description`, `updated_at`, `country`, `created_at`, `has_wood`, `street`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `phone`, `lng`) VALUES ('San Marcos', 0, NULL, NULL, '92069', 'California', 33.140862, 0, NULL, '2011-06-10 16:47:01', 'US', '2011-06-10 16:47:01', 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, 0, NULL, 0, NULL, -117.158827)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`postal`, `created_at`, `lng`, `updated_at`, `is_outdoors`, `is_free`, `has_wood`, `has_lights`, `has_concrete`, `pads_required`, `state`, `bounding_box`, `phone`, `lat`, `description`, `street`, `country`, `city`, `cd_page_id`, `name`) VALUES ('92069', '2011-06-10 16:50:41', -117.158827, '2011-06-10 16:50:41', 0, 0, 0, 0, 0, 0, 'California', NULL, NULL, 33.140862, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 'United States', 'San Marcos', NULL, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`postal`, `created_at`, `lng`, `updated_at`, `is_outdoors`, `is_free`, `has_wood`, `has_lights`, `has_concrete`, `pads_required`, `state`, `bounding_box`, `phone`, `lat`, `description`, `street`, `country`, `city`, `cd_page_id`, `name`) VALUES ('92069', '2011-06-10 16:50:41', -117.158827, '2011-06-10 16:50:41', 0, 0, 0, 0, 0, 0, 'California', NULL, NULL, 33.140862, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 'US', 'San Marcos', NULL, NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (40.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (1.1ms)[0m  INSERT INTO `locations` (`postal`, `created_at`, `lng`, `updated_at`, `is_outdoors`, `is_free`, `has_wood`, `has_lights`, `has_concrete`, `pads_required`, `state`, `bounding_box`, `phone`, `lat`, `description`, `street`, `country`, `city`, `cd_page_id`, `name`) VALUES ('92069', '2011-06-10 17:49:47', -117.158827, '2011-06-10 17:49:47', 0, 0, 0, 0, 0, 0, 'California', NULL, NULL, 33.140862, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 'United States', 'San Marcos', NULL, 'San Marcos')
+  [1m[36mSQL (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.5ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`postal`, `created_at`, `lng`, `updated_at`, `is_outdoors`, `is_free`, `has_wood`, `has_lights`, `has_concrete`, `pads_required`, `state`, `bounding_box`, `phone`, `lat`, `description`, `street`, `country`, `city`, `cd_page_id`, `name`) VALUES ('92069', '2011-06-10 17:49:48', -117.158827, '2011-06-10 17:49:48', 0, 0, 0, 0, 0, 0, 'California', NULL, NULL, 33.140862, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 'US', 'San Marcos', NULL, NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (18.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`bounding_box`, `updated_at`, `postal`, `lat`, `description`, `phone`, `street`, `country`, `created_at`, `has_wood`, `lng`, `has_concrete`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `is_free`, `cd_page_id`, `state`, `city`) VALUES (NULL, '2011-06-10 17:57:53', '92069', 33.140862, NULL, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 'United States', '2011-06-10 17:57:53', 0, -117.158827, 0, 0, 0, 'San Marcos', 0, 0, NULL, 'California', 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`bounding_box`, `updated_at`, `postal`, `lat`, `description`, `phone`, `street`, `country`, `created_at`, `has_wood`, `lng`, `has_concrete`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `is_free`, `cd_page_id`, `state`, `city`) VALUES (NULL, '2011-06-10 17:57:53', '92069', 33.140862, NULL, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 'US', '2011-06-10 17:57:53', 0, -117.158827, 0, 0, 0, NULL, 0, 0, NULL, 'California', 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (17.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`bounding_box`, `updated_at`, `postal`, `lat`, `description`, `phone`, `street`, `country`, `created_at`, `has_wood`, `lng`, `has_concrete`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `is_free`, `cd_page_id`, `state`, `city`) VALUES (NULL, '2011-06-10 17:58:08', '92069', 33.140862, NULL, NULL, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 'United States', '2011-06-10 17:58:08', 0, -117.158827, 0, 0, 0, 'San Marcos', 0, 0, NULL, 'California', 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`bounding_box`, `updated_at`, `postal`, `lat`, `description`, `phone`, `street`, `country`, `created_at`, `has_wood`, `lng`, `has_concrete`, `is_outdoors`, `pads_required`, `name`, `has_lights`, `is_free`, `cd_page_id`, `state`, `city`) VALUES (NULL, '2011-06-10 17:58:08', '92069', 33.140862, NULL, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 'US', '2011-06-10 17:58:08', 0, -117.158827, 0, 0, 0, NULL, 0, 0, NULL, 'California', 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (10.7ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (11.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO `locations` (`bounding_box`, `lng`, `city`, `postal`, `pads_required`, `has_lights`, `updated_at`, `state`, `description`, `is_free`, `has_concrete`, `country`, `name`, `phone`, `created_at`, `lat`, `cd_page_id`, `has_wood`, `street`, `is_outdoors`) VALUES (NULL, -117.145567, 'San Marcos', '92069', 0, 0, '2011-06-10 18:02:05', 'California', NULL, 0, 0, 'United States', 'San Marcos', NULL, '2011-06-10 18:02:05', 33.145316, NULL, 0, '12 E Mission Hills Ct', 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (8.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`bounding_box`, `lng`, `city`, `postal`, `pads_required`, `has_lights`, `updated_at`, `state`, `description`, `is_free`, `has_concrete`, `country`, `name`, `phone`, `created_at`, `lat`, `cd_page_id`, `has_wood`, `street`, `is_outdoors`) VALUES (NULL, -117.158827, 'San Marcos', '92069', 0, 0, '2011-06-10 18:02:06', 'California', NULL, 0, 0, 'US', NULL, NULL, '2011-06-10 18:02:06', 33.140862, NULL, 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`bounding_box`, `lng`, `city`, `postal`, `pads_required`, `has_lights`, `updated_at`, `state`, `description`, `is_free`, `has_concrete`, `country`, `name`, `phone`, `created_at`, `lat`, `cd_page_id`, `has_wood`, `street`, `is_outdoors`) VALUES (NULL, -117.158827, 'San Marcos', '92069', 0, 0, '2011-06-10 18:02:06', 'California', NULL, 0, 0, 'United States', 'San Marcos', NULL, '2011-06-10 18:02:06', 33.140862, NULL, 0, '12 E Mission Hills Ct, San Marcos, CA 92069-1965, United States', 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (6.0ms)[0m  SHOW TABLES
+  [1m[36mSQL (3.1ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.145316, NULL, 0, NULL, NULL, -117.145567, 0, 0, 'San Marcos', 0, '92069', '2011-06-10 18:08:12', 0, '12 E Mission Hills Ct', 0, '2011-06-10 18:08:12', 'United States', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.7ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.140862, NULL, 0, NULL, NULL, -117.158827, 0, 0, NULL, 0, '92069', '2011-06-10 18:08:13', 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, '2011-06-10 18:08:13', 'US', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (23.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.145316, NULL, 0, NULL, NULL, -117.145567, 0, 0, 'San Marcos', 0, '92069', '2011-06-10 18:08:13', 0, '12 E Mission Hills Ct', 0, '2011-06-10 18:08:13', 'United States', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 36) LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  UPDATE `locations` SET `lat` = 37.73082, `lng` = -88.930049, `postal` = '62959', `street` = 'Herrin Lake Rd, Marion, IL 62959, United States', `updated_at` = '2011-06-10 18:08:14', `country` = 'US', `state` = 'Illinois', `city` = 'Marion' WHERE `locations`.`id` = 36
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (24.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.4ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.145316, NULL, 0, NULL, NULL, -117.145567, 0, 0, 'San Marcos', 0, '92069', '2011-06-10 18:12:43', 0, '12 E Mission Hills Ct', 0, '2011-06-10 18:12:43', 'United States', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (47.3ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.140862, NULL, 0, NULL, NULL, -117.158827, 0, 0, NULL, 0, '92069', '2011-06-10 18:12:44', 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, '2011-06-10 18:12:44', 'US', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lat`, `cd_page_id`, `has_wood`, `phone`, `bounding_box`, `lng`, `has_concrete`, `has_lights`, `name`, `is_outdoors`, `postal`, `created_at`, `pads_required`, `street`, `is_free`, `updated_at`, `country`, `state`, `description`, `city`) VALUES (33.145316, NULL, 0, NULL, NULL, -117.145567, 0, 0, 'San Marcos', 0, '92069', '2011-06-10 18:12:44', 0, '12 E Mission Hills Ct', 0, '2011-06-10 18:12:44', 'United States', 'California', NULL, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 39) LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  UPDATE `locations` SET `lat` = 37.73082, `lng` = -88.930049, `postal` = '62959', `street` = 'Herrin Lake Rd, Marion, IL 62959, United States', `updated_at` = '2011-06-10 18:12:44', `country` = 'US', `state` = 'Illinois', `city` = 'Marion' WHERE `locations`.`id` = 39
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (12.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`description`, `has_lights`, `street`, `has_concrete`, `lat`, `has_wood`, `phone`, `country`, `state`, `is_free`, `updated_at`, `is_outdoors`, `created_at`, `pads_required`, `lng`, `postal`, `city`, `cd_page_id`, `name`, `bounding_box`) VALUES (NULL, 0, '12 E Mission Hills Ct', 0, 33.145316, 0, NULL, 'United States', 'California', 0, '2011-06-10 18:16:13', 0, '2011-06-10 18:16:13', 0, -117.145567, '92069', 'San Marcos', NULL, 'San Marcos', NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO `locations` (`description`, `has_lights`, `street`, `has_concrete`, `lat`, `has_wood`, `phone`, `country`, `state`, `is_free`, `updated_at`, `is_outdoors`, `created_at`, `pads_required`, `lng`, `postal`, `city`, `cd_page_id`, `name`, `bounding_box`) VALUES (NULL, 0, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, 33.140862, 0, NULL, 'US', 'California', 0, '2011-06-10 18:16:14', 0, '2011-06-10 18:16:14', 0, -117.158827, '92069', 'San Marcos', NULL, NULL, NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`description`, `has_lights`, `street`, `has_concrete`, `lat`, `has_wood`, `phone`, `country`, `state`, `is_free`, `updated_at`, `is_outdoors`, `created_at`, `pads_required`, `lng`, `postal`, `city`, `cd_page_id`, `name`, `bounding_box`) VALUES (NULL, 0, '12 E Mission Hills Ct', 0, 33.145316, 0, NULL, 'United States', 'California', 0, '2011-06-10 18:16:14', 0, '2011-06-10 18:16:14', 0, -117.145567, '92069', 'San Marcos', NULL, 'San Marcos', NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 42) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lat` = 37.6360874401032, `updated_at` = '2011-06-10 18:16:14', `lng` = -89.0127259807095 WHERE `locations`.`id` = 42
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lng`, `is_outdoors`, `postal`, `bounding_box`, `cd_page_id`, `has_lights`, `updated_at`, `phone`, `street`, `name`, `state`, `lat`, `country`, `created_at`, `has_wood`, `description`, `has_concrete`, `city`, `is_free`, `pads_required`) VALUES (-117.145567, 0, '92069', NULL, NULL, 0, '2011-06-10 18:25:37', NULL, '12 E Mission Hills Ct', 'San Marcos', 'California', 33.145316, 'United States', '2011-06-10 18:25:37', 0, NULL, 0, 'San Marcos', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 43) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lng` = -117.266277425384, `postal` = '', `updated_at` = '2011-06-10 18:25:37', `street` = '', `state` = '', `lat` = 33.1369993365273, `country` = '', `city` = '' WHERE `locations`.`id` = 43
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (22.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_lights`, `name`, `is_outdoors`, `phone`, `lng`, `updated_at`, `postal`, `has_wood`, `has_concrete`, `lat`, `state`, `created_at`, `city`, `bounding_box`, `is_free`, `description`, `street`, `cd_page_id`, `pads_required`, `country`) VALUES (0, 'San Marcos', 0, NULL, -117.145567, '2011-06-10 18:31:52', '92069', 0, 0, 33.145316, 'California', '2011-06-10 18:31:52', 'San Marcos', NULL, 0, NULL, '12 E Mission Hills Ct', NULL, 0, 'United States')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_lights`, `name`, `is_outdoors`, `phone`, `lng`, `updated_at`, `postal`, `has_wood`, `has_concrete`, `lat`, `state`, `created_at`, `city`, `bounding_box`, `is_free`, `description`, `street`, `cd_page_id`, `pads_required`, `country`) VALUES (0, NULL, 0, NULL, -117.158827, '2011-06-10 18:31:53', '92069', 0, 0, 33.140862, 'California', '2011-06-10 18:31:53', 'San Marcos', NULL, 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', NULL, 0, 'US')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_lights`, `name`, `is_outdoors`, `phone`, `lng`, `updated_at`, `postal`, `has_wood`, `has_concrete`, `lat`, `state`, `created_at`, `city`, `bounding_box`, `is_free`, `description`, `street`, `cd_page_id`, `pads_required`, `country`) VALUES (0, 'San Marcos', 0, NULL, -117.145567, '2011-06-10 18:31:53', '92069', 0, 0, 33.145316, 'California', '2011-06-10 18:31:53', 'San Marcos', NULL, 0, NULL, '12 E Mission Hills Ct', NULL, 0, 'United States')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 46) LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  UPDATE `locations` SET `lng` = -89.0127259807095, `updated_at` = '2011-06-10 18:31:53', `lat` = 37.6360874401032 WHERE `locations`.`id` = 46
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`has_lights`, `name`, `is_outdoors`, `phone`, `lng`, `updated_at`, `postal`, `has_wood`, `has_concrete`, `lat`, `state`, `created_at`, `city`, `bounding_box`, `is_free`, `description`, `street`, `cd_page_id`, `pads_required`, `country`) VALUES (0, 'San Marcos', 0, NULL, -117.145567, '2011-06-10 18:31:53', '92069', 0, 0, 33.145316, 'California', '2011-06-10 18:31:53', 'San Marcos', NULL, 0, NULL, '12 E Mission Hills Ct', NULL, 0, 'United States')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 47) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE `locations` SET `lng` = -117.266277425384, `updated_at` = '2011-06-10 18:31:53', `postal` = '', `lat` = 33.1369993365273, `state` = '', `city` = '', `street` = '', `country` = '' WHERE `locations`.`id` = 47
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (13.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (14.6ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lat`, `created_at`, `pads_required`, `description`, `cd_page_id`, `updated_at`, `city`, `has_lights`, `is_free`, `has_concrete`, `country`, `has_wood`, `phone`, `lng`, `postal`, `street`, `state`, `bounding_box`, `is_outdoors`, `name`) VALUES (33.145316, '2011-06-10 18:34:20', 0, NULL, NULL, '2011-06-10 18:34:20', 'San Marcos', 0, 0, 0, 'United States', 0, NULL, -117.145567, '92069', '12 E Mission Hills Ct', 'California', NULL, 0, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.6ms)[0m  INSERT INTO `locations` (`lat`, `created_at`, `pads_required`, `description`, `cd_page_id`, `updated_at`, `city`, `has_lights`, `is_free`, `has_concrete`, `country`, `has_wood`, `phone`, `lng`, `postal`, `street`, `state`, `bounding_box`, `is_outdoors`, `name`) VALUES (33.140862, '2011-06-10 18:34:20', 0, NULL, NULL, '2011-06-10 18:34:20', 'San Marcos', 0, 0, 0, 'US', 0, NULL, -117.158827, '92069', '50 Civic Center Dr, San Marcos, CA 92069, United States', 'California', NULL, 0, NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO `locations` (`lat`, `created_at`, `pads_required`, `description`, `cd_page_id`, `updated_at`, `city`, `has_lights`, `is_free`, `has_concrete`, `country`, `has_wood`, `phone`, `lng`, `postal`, `street`, `state`, `bounding_box`, `is_outdoors`, `name`) VALUES (33.145316, '2011-06-10 18:34:20', 0, NULL, NULL, '2011-06-10 18:34:20', 'San Marcos', 0, 0, 0, 'United States', 0, NULL, -117.145567, '92069', '12 E Mission Hills Ct', 'California', NULL, 0, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 50) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lat` = 37.6360874401032, `updated_at` = '2011-06-10 18:34:20', `lng` = -89.0127259807095 WHERE `locations`.`id` = 50
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`lat`, `created_at`, `pads_required`, `description`, `cd_page_id`, `updated_at`, `city`, `has_lights`, `is_free`, `has_concrete`, `country`, `has_wood`, `phone`, `lng`, `postal`, `street`, `state`, `bounding_box`, `is_outdoors`, `name`) VALUES (33.145316, '2011-06-10 18:34:20', 0, NULL, NULL, '2011-06-10 18:34:20', 'San Marcos', 0, 0, 0, 'United States', 0, NULL, -117.145567, '92069', '12 E Mission Hills Ct', 'California', NULL, 0, 'San Marcos')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 51) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lat` = 33.1369993365273, `updated_at` = '2011-06-10 18:34:20', `city` = '', `country` = '', `lng` = -117.266277425384, `postal` = '', `street` = '', `state` = '' WHERE `locations`.`id` = 51
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`cd_page_id`, `state`, `has_lights`, `name`, `bounding_box`, `is_outdoors`, `city`, `lat`, `description`, `updated_at`, `created_at`, `has_wood`, `phone`, `street`, `country`, `lng`, `has_concrete`, `postal`, `is_free`, `pads_required`) VALUES (NULL, 'California', 0, 'San Marcos', NULL, 0, 'San Marcos', 33.145316, NULL, '2011-06-10 18:36:12', '2011-06-10 18:36:12', 0, NULL, '12 E Mission Hills Ct', 'United States', -117.145567, 0, '92069', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`cd_page_id`, `state`, `has_lights`, `name`, `bounding_box`, `is_outdoors`, `city`, `lat`, `description`, `updated_at`, `created_at`, `has_wood`, `phone`, `street`, `country`, `lng`, `has_concrete`, `postal`, `is_free`, `pads_required`) VALUES (NULL, 'California', 0, NULL, NULL, 0, 'San Marcos', 33.140862, NULL, '2011-06-10 18:36:12', '2011-06-10 18:36:12', 0, NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 'US', -117.158827, 0, '92069', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (9.5ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`cd_page_id`, `state`, `has_lights`, `name`, `bounding_box`, `is_outdoors`, `city`, `lat`, `description`, `updated_at`, `created_at`, `has_wood`, `phone`, `street`, `country`, `lng`, `has_concrete`, `postal`, `is_free`, `pads_required`) VALUES (NULL, 'California', 0, 'San Marcos', NULL, 0, 'San Marcos', 33.145316, NULL, '2011-06-10 18:36:12', '2011-06-10 18:36:12', 0, NULL, '12 E Mission Hills Ct', 'United States', -117.145567, 0, '92069', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 54) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lat` = 37.6360874401032, `updated_at` = '2011-06-10 18:36:12', `lng` = -89.0127259807095 WHERE `locations`.`id` = 54
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`cd_page_id`, `state`, `has_lights`, `name`, `bounding_box`, `is_outdoors`, `city`, `lat`, `description`, `updated_at`, `created_at`, `has_wood`, `phone`, `street`, `country`, `lng`, `has_concrete`, `postal`, `is_free`, `pads_required`) VALUES (NULL, 'California', 0, 'San Marcos', NULL, 0, 'San Marcos', 33.145316, NULL, '2011-06-10 18:36:13', '2011-06-10 18:36:13', 0, NULL, '12 E Mission Hills Ct', 'United States', -117.145567, 0, '92069', 0, 0)
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 55) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE `locations` SET `city` = 'Carlsbad', `lat` = 33.1369993365273, `updated_at` = '2011-06-10 18:36:13', `street` = '2524 Orion Way, Carlsbad, CA 92010-7240, United States', `country` = 'US', `lng` = -117.266277425384, `postal` = '92010-7240' WHERE `locations`.`id` = 55
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (16.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `locations`[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`phone`, `street`, `pads_required`, `has_lights`, `cd_page_id`, `is_free`, `country`, `state`, `description`, `city`, `has_wood`, `lng`, `has_concrete`, `created_at`, `lat`, `bounding_box`, `is_outdoors`, `postal`, `name`, `updated_at`) VALUES (NULL, '12 E Mission Hills Ct', 0, 0, NULL, 0, 'United States', 'California', NULL, 'San Marcos', 0, -117.145567, 0, '2011-06-10 18:36:55', 33.145316, NULL, 0, '92069', 'San Marcos', '2011-06-10 18:36:55')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` IS NULL) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`phone`, `street`, `pads_required`, `has_lights`, `cd_page_id`, `is_free`, `country`, `state`, `description`, `city`, `has_wood`, `lng`, `has_concrete`, `created_at`, `lat`, `bounding_box`, `is_outdoors`, `postal`, `name`, `updated_at`) VALUES (NULL, '50 Civic Center Dr, San Marcos, CA 92069, United States', 0, 0, NULL, 0, 'US', 'California', NULL, 'San Marcos', 0, -117.158827, 0, '2011-06-10 18:36:55', 33.140862, NULL, 0, '92069', NULL, '2011-06-10 18:36:55')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`phone`, `street`, `pads_required`, `has_lights`, `cd_page_id`, `is_free`, `country`, `state`, `description`, `city`, `has_wood`, `lng`, `has_concrete`, `created_at`, `lat`, `bounding_box`, `is_outdoors`, `postal`, `name`, `updated_at`) VALUES (NULL, '12 E Mission Hills Ct', 0, 0, NULL, 0, 'United States', 'California', NULL, 'San Marcos', 0, -117.145567, 0, '2011-06-10 18:36:55', 33.145316, NULL, 0, '92069', 'San Marcos', '2011-06-10 18:36:55')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 58) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE `locations` SET `lng` = -89.0127259807095, `lat` = 37.6360874401032, `updated_at` = '2011-06-10 18:36:55' WHERE `locations`.`id` = 58
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (15.3ms)[0m  ROLLBACK
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO `locations` (`phone`, `street`, `pads_required`, `has_lights`, `cd_page_id`, `is_free`, `country`, `state`, `description`, `city`, `has_wood`, `lng`, `has_concrete`, `created_at`, `lat`, `bounding_box`, `is_outdoors`, `postal`, `name`, `updated_at`) VALUES (NULL, '12 E Mission Hills Ct', 0, 0, NULL, 0, 'United States', 'California', NULL, 'San Marcos', 0, -117.145567, 0, '2011-06-10 18:36:56', 33.145316, NULL, 0, '92069', 'San Marcos', '2011-06-10 18:36:56')
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT 1 FROM `locations` WHERE (`locations`.`name` = BINARY 'San Marcos') AND (`locations`.id <> 59) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE `locations` SET `street` = '2524 Orion Way, Carlsbad, CA 92010-7240, United States', `country` = 'US', `city` = 'Carlsbad', `lng` = -117.266277425384, `lat` = 33.1369993365273, `postal` = '92010-7240', `updated_at` = '2011-06-10 18:36:56' WHERE `locations`.`id` = 59
+  [1m[36mSQL (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  ROLLBACK

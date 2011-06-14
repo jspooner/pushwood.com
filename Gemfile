@@ -14,7 +14,7 @@ gem 'omniauth'
 gem "paperclip", "~> 2.3"
 
 gem 'hpricot'
-gem 'geocoder',    :git => 'git://github.com/jspooner/geocoder.git'
+gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # Deploy with Capistrano
@@ -35,8 +35,8 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :test do
-  gem "factory_girl_rails", ">= 1.0.0", :group => :test
-  gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
-  gem "rspec-rails", ">= 2.2.1", :group => [:development, :test]
-end
+
+gem "factory_girl_rails", ">= 1.0.0", :group => :test
+gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
+gem "rspec-rails", "~> 2.4", :group => [:development, :test]
+gem "capistrano", :group => [:development, :test]

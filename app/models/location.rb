@@ -1,26 +1,35 @@
 class Location < ActiveRecord::Base
   
-  belongs_to :cd_page
-  
+  belongs_to :cd_page  
   validates_uniqueness_of :name
     
   geocoded_by :address_from_components
-  after_validation :geocode          # auto-fetch coordinates
-  
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
-      puts geo.inspect
+      # puts geo.inspect
       obj.street  = geo.address(:street) #_components_of_type(:street_number)
-      obj.state    = geo.state
+      obj.state   = geo.state
       obj.city    = geo.city
       obj.postal  = geo.postal_code
       obj.country = geo.country_code
     end
   end
-  after_validation :reverse_geocode
+  # after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| obj.new_record? }
+  after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| Location.should_geocode?(obj) }
 
   def address_from_components
     [street, city, state, country].compact.join(', ')
+  end
+  
+  def self.should_geocode?(obj)
+    if obj.new_record?
+      return true
+    else
+      if obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?
+        return true
+      end
+    end
+    false
   end
   
   # def within(bounding_box)
