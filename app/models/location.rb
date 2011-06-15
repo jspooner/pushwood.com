@@ -40,11 +40,11 @@ class Location < ActiveRecord::Base
   # where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
   def self.in_bounds(bounds)
     _bounds = bounds.split(",")
-    lat_lo = _bounds[0]
-    lng_lo = _bounds[1]
-    lat_hi = _bounds[2]
-    lng_hi = _bounds[3]
-    where("lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", lat_lo, lat_hi, lng_lo, lng_hi )
+    lat_lo = _bounds[0].to_f
+    lng_lo = _bounds[1].to_f
+    lat_hi = _bounds[2].to_f
+    lng_hi = _bounds[3].to_f
+    where("lat >= ? AND lat <= ? AND lng >= ? AND lng <= ? ", lat_lo, lat_hi, lng_lo, lng_hi )
   end
   
   

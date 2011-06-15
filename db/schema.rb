@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614031729) do
+ActiveRecord::Schema.define(:version => 20110608141153) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20110614031729) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.float    "lat"
-    t.float    "lng"
+    t.text     "lat"
+    t.text     "lng"
     t.string   "phone"
     t.integer  "has_lights",    :limit => 1, :default => 0
     t.integer  "is_free",       :limit => 1, :default => 0
