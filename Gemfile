@@ -8,7 +8,7 @@ gem 'devise', "1.1.7"
 gem 'devise_invitable', "0.3.5"
 # gem 'ruby-mysql'#, "2.9.3"
 gem 'mysql'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'cancan'
 gem 'omniauth'
 gem "paperclip", "~> 2.3"
@@ -16,6 +16,8 @@ gem "paperclip", "~> 2.3"
 gem 'hpricot'
 gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'acts_as_commentable'
+gem "paperclip", "~> 2.3"
 
 # Deploy with Capistrano
 # gem 'capistrano'

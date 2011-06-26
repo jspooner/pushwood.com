@@ -7,6 +7,10 @@
 <% end -%>
 
 
+<div id="locationapp"></div>
+<div id="location-form"></div>
+<ul id="location-list"></ul>
+
 <div id="map_canvas"></div>
 <div id="location_list"></div>
 
@@ -18,7 +22,7 @@
 
 		
 		$(document).ready(function() {
-			
+return;			
 			function listItem(markerImg, name, address, phone, url) {
 				var div = $("<div></div>");
 				var a = $("<a>"+name+"</a>");
@@ -27,7 +31,6 @@
 				<% if current_user %>
 				div.append( $('<a style="color:red;" href="'+url+'/edit">edit</a>'));
 				<% end %>
-				
 				div.append($("<p>"+address+"</p>"));
 				div.append($("<p>"+phone+"</p>"));
 				return div;

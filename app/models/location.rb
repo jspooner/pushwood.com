@@ -1,5 +1,7 @@
 class Location < ActiveRecord::Base
   
+  acts_as_commentable  
+  
   belongs_to :cd_page  
   validates_uniqueness_of :name
     
@@ -54,12 +56,10 @@ class Location < ActiveRecord::Base
     @tricks ||= Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", bounding_box['sw']['lat'], bounding_box['ne']['lat'], bounding_box['ne']['lng'], bounding_box['sw']['lng'] ]
   end
   
-  # def lat
-  #   bounding_box['sw']['lat'].to_f# + (bounding_box['ne']['lat'].to_f-bounding_box['sw']['lat'].to_f)
-  # end
-  # 
-  # def lng
-  #   bounding_box['ne']['lng']
+  # [:has_lights, :is_free, :is_outdoors, :pads_required, :has_concrete, :has_wood].each do |method_name|
+  #   define_method(method_name) do |*val|
+  #     self[method_name] ? true : false
+  #   end
   # end
   
   def googlemapurl
@@ -82,7 +82,7 @@ class Location < ActiveRecord::Base
     end
     "[#{a.join(',')}]"
   end
-  
+
   def self.api_json_options
     {:methods => [:googlemapurl, :lat, :lng], :except => [:created_at]}
   end

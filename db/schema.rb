@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608141153) do
+ActiveRecord::Schema.define(:version => 20110626023811) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(:version => 20110608141153) do
     t.text     "data"
   end
 
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "bounding_box"
@@ -39,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20110608141153) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.text     "lat"
+    t.float    "lat"
     t.text     "lng"
     t.string   "phone"
     t.integer  "has_lights",    :limit => 1, :default => 0
@@ -49,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20110608141153) do
     t.integer  "has_concrete",  :limit => 1, :default => 0
     t.integer  "has_wood",      :limit => 1, :default => 0
     t.integer  "cd_page_id"
+    t.string   "hours"
   end
 
   create_table "locations_bak", :force => true do |t|
