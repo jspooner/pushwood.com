@@ -133,8 +133,8 @@ PW.controllers.locations = {
 			initialize: function()
 			{
 				_.bindAll(this, 'handle_resize', 'reload_locations');
-				var resizeTimer;
 				var that = this;
+				var resizeTimer;
 				$(window).resize(function() {
 				    clearTimeout(resizeTimer);
 				    resizeTimer = setTimeout(that.handle_resize, 60, that);
@@ -186,7 +186,8 @@ PW.controllers.locations = {
 			  }
 				
 				this.map = map; 
-				google.maps.event.addListener(map, "bounds_changed", this.reload_locations);
+				google.maps.event.addListener(map, "dragend", this.reload_locations);
+				// google.maps.event.addListener(map, "bounds_changed", this.reload_locations);
 				this.render();
 				// END INITIALIZE
 			},

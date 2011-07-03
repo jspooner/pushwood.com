@@ -14699,3 +14699,367 @@ NUMBER OF RESULTS 11
   [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
 Rendered api/v1/locations/index.rabl (315.6ms)
 Completed 200 OK in 349ms (Views: 214.1ms | ActiveRecord: 129.9ms)
+
+
+Started GET "/locations/1775" for 127.0.0.1 at Sun Jul 03 14:28:07 -0700 2011
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1775"}
+  [1m[36mLocation Load (0.6ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE `locations`.`id` = ? LIMIT 1[0m  [["id", "1775"]]
+  [1m[35mImage Load (0.5ms)[0m  SELECT `images`.* FROM `images` WHERE `images`.`location_id` = 1775
+  [1m[36mComment Load (2.2ms)[0m  [1mSELECT `comments`.* FROM `comments` WHERE `comments`.`commentable_id` = 1775 AND `comments`.`commentable_type` = 'Location' ORDER BY created_at ASC[0m
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from ratings_for at /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01@woodhack/bundler/gems/ajaxful-rating-81b563ef4e4f/lib/axr/helpers.rb:82)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from ratings_for at /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01@woodhack/bundler/gems/ajaxful-rating-81b563ef4e4f/lib/axr/helpers.rb:82)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from apply_stars_builder_options! at /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01@woodhack/bundler/gems/ajaxful-rating-81b563ef4e4f/lib/axr/stars_builder.rb:34)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from apply_stars_builder_options! at /Users/jspooner/.rvm/gems/ree-1.8.7-2011.01@woodhack/bundler/gems/ajaxful-rating-81b563ef4e4f/lib/axr/stars_builder.rb:34)
+  [1m[35m (1.1ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1775 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` = 'overall'[0m
+Rendered locations/show.html.erb within layouts/application (548.9ms)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from _app_views_layouts_application_html_erb___1558046014_2204574160 at /Users/jspooner/Dropbox/woodhack/app/views/layouts/application.html.erb:26)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from _app_views_layouts_application_html_erb___1558046014_2204574160 at /Users/jspooner/Dropbox/woodhack/app/views/layouts/application.html.erb:26)
+Completed 200 OK in 567ms (Views: 483.0ms | ActiveRecord: 80.6ms)
+
+
+Started GET "/assets/bootstrap/application.js" for 127.0.0.1 at Sun Jul 03 14:28:08 -0700 2011
+Served asset /bootstrap/application.js - 304 Not Modified  (0ms)  (pid 775)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at Sun Jul 03 14:28:08 -0700 2011
+Served asset /application.css - 304 Not Modified  (0ms)  (pid 775)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at Sun Jul 03 14:28:08 -0700 2011
+Served asset /application.js - 304 Not Modified  (0ms)  (pid 775)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.137229770792096,-117.69522893691408,33.3898523714534,-116.80258977675783" for 127.0.0.1 at Sun Jul 03 14:28:32 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.137229770792096,-117.69522893691408,33.3898523714534,-116.80258977675783", "limit"=>"19"}
+  [1m[35mLocation Load (12.1ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.1372297707921 AND lat <= 33.3898523714534 AND lng >= -117.695228936914 AND lng <= -116.802589776758 ) LIMIT 19
+NUMBER OF RESULTS 5
+  [1m[36m (1.0ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.8ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (57.3ms)
+Completed 200 OK in 83ms (Views: 57.8ms | ActiveRecord: 21.8ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.13550483778836,-117.69179570937501,33.38813242002591,-116.79915654921876" for 127.0.0.1 at Sun Jul 03 14:28:35 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.13550483778836,-117.69179570937501,33.38813242002591,-116.79915654921876", "limit"=>"19"}
+  [1m[36mLocation Load (11.8ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 33.1355048377884 AND lat <= 33.3881324200259 AND lng >= -117.691795709375 AND lng <= -116.799156549219 ) LIMIT 19[0m
+NUMBER OF RESULTS 6
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (1.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.6ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (80.7ms)
+Completed 200 OK in 109ms (Views: 79.7ms | ActiveRecord: 25.3ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.1349298525872,-117.68904912734376,33.38755909532122,-116.79640996718751" for 127.0.0.1 at Sun Jul 03 14:28:36 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.1349298525872,-117.68904912734376,33.38755909532122,-116.79640996718751", "limit"=>"19"}
+  [1m[35mLocation Load (12.1ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.1349298525872 AND lat <= 33.3875590953212 AND lng >= -117.689049127344 AND lng <= -116.796409967188 ) LIMIT 19
+NUMBER OF RESULTS 6
+  [1m[36m (1.0ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (174.3ms)
+Completed 200 OK in 200ms (Views: 173.5ms | ActiveRecord: 23.4ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.134354863619414,-117.68630254531251,33.38698576683552,-116.79366338515626" for 127.0.0.1 at Sun Jul 03 14:28:36 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.134354863619414,-117.68630254531251,33.38698576683552,-116.79366338515626", "limit"=>"19"}
+  [1m[36mLocation Load (12.1ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 33.1343548636194 AND lat <= 33.3869857668355 AND lng >= -117.686302545313 AND lng <= -116.793663385156 ) LIMIT 19[0m
+NUMBER OF RESULTS 6
+  [1m[35m (0.6ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.7ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (66.5ms)
+Completed 200 OK in 225ms (Views: 67.3ms | ActiveRecord: 22.8ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.133204874384276,-117.68355596328126,33.38583909852108,-116.79091680312501" for 127.0.0.1 at Sun Jul 03 14:28:36 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.133204874384276,-117.68355596328126,33.38583909852108,-116.79091680312501", "limit"=>"19"}
+  [1m[35mLocation Load (12.0ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.1332048743843 AND lat <= 33.3858390985211 AND lng >= -117.683555963281 AND lng <= -116.790916803125 ) LIMIT 19
+NUMBER OF RESULTS 6
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (59.0ms)
+Completed 200 OK in 83ms (Views: 58.9ms | ActiveRecord: 21.7ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.130904850716405,-117.67737615371095,33.38354571652119,-116.7847369935547" for 127.0.0.1 at Sun Jul 03 14:28:37 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.130904850716405,-117.67737615371095,33.38354571652119,-116.7847369935547", "limit"=>"19"}
+  [1m[36mLocation Load (12.2ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 33.1309048507164 AND lat <= 33.3835457165212 AND lng >= -117.677376153711 AND lng <= -116.784736993555 ) LIMIT 19[0m
+NUMBER OF RESULTS 6
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.6ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (59.9ms)
+Completed 200 OK in 84ms (Views: 59.8ms | ActiveRecord: 21.9ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.13147986228297,-117.67943609023439,33.38411906769247,-116.78679693007814" for 127.0.0.1 at Sun Jul 03 14:28:37 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.13147986228297,-117.67943609023439,33.38411906769247,-116.78679693007814", "limit"=>"19"}
+  [1m[35mLocation Load (15.1ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.131479862283 AND lat <= 33.3841190676925 AND lng >= -117.679436090234 AND lng <= -116.786796930078 ) LIMIT 19
+NUMBER OF RESULTS 6
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (1.3ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.9ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (188.3ms)
+Completed 200 OK in 216ms (Views: 184.9ms | ActiveRecord: 28.4ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.13032983538348,-117.67531621718751,33.3829723615691,-116.78267705703126" for 127.0.0.1 at Sun Jul 03 14:28:38 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.13032983538348,-117.67531621718751,33.3829723615691,-116.78267705703126", "limit"=>"19"}
+  [1m[36mLocation Load (12.2ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 33.1303298353835 AND lat <= 33.3829723615691 AND lng >= -117.675316217188 AND lng <= -116.782677057031 ) LIMIT 19[0m
+NUMBER OF RESULTS 6
+  [1m[35m (1.3ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (62.6ms)
+Completed 200 OK in 88ms (Views: 62.4ms | ActiveRecord: 22.7ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.13032983538348,-117.6746295716797,33.3829723615691,-116.78199041152345" for 127.0.0.1 at Sun Jul 03 14:28:38 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.13032983538348,-117.6746295716797,33.3829723615691,-116.78199041152345", "limit"=>"19"}
+  [1m[35mLocation Load (11.6ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.1303298353835 AND lat <= 33.3829723615691 AND lng >= -117.67462957168 AND lng <= -116.781990411523 ) LIMIT 19
+NUMBER OF RESULTS 6
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1341 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2608 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2741 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 2798 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (59.4ms)
+Completed 200 OK in 84ms (Views: 59.6ms | ActiveRecord: 21.5ms)
+
+
+Started GET "/locations" for 127.0.0.1 at Sun Jul 03 14:30:24 -0700 2011
+  Processing by LocationsController#index as HTML
+Rendered locations/index.html.erb within layouts/application (1.3ms)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from _app_views_layouts_application_html_erb___1558046014_2204574160 at /Users/jspooner/Dropbox/woodhack/app/views/layouts/application.html.erb:26)
+DEPRECATION WARNING: get is deprecated and will be removed from Rails 3.2. (called from _app_views_layouts_application_html_erb___1558046014_2204574160 at /Users/jspooner/Dropbox/woodhack/app/views/layouts/application.html.erb:26)
+Completed 200 OK in 29ms (Views: 27.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at Sun Jul 03 14:30:24 -0700 2011
+Served asset /application.css - 304 Not Modified  (0ms)  (pid 775)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at Sun Jul 03 14:30:24 -0700 2011
+Compiled ~/Dropbox/woodhack/app/assets/javascript/application.js  (18ms)  (pid 775)
+Compiled ~/Dropbox/woodhack/app/assets/javascript/controllers/locations.js  (0ms)  (pid 775)
+Compiled ~/Dropbox/woodhack/app/assets/javascript/application.js  (25ms)  (pid 775)
+Served asset /application.js - 200 OK  (28ms)  (pid 775)
+
+
+Started GET "/assets/bootstrap/application.js" for 127.0.0.1 at Sun Jul 03 14:30:25 -0700 2011
+Served asset /bootstrap/application.js - 304 Not Modified  (0ms)  (pid 775)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.02820497930849,-117.380573632959,33.18407747751709,-116.89683187270509" for 127.0.0.1 at Sun Jul 03 14:30:33 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.02820497930849,-117.380573632959,33.18407747751709,-116.89683187270509", "limit"=>"19"}
+  [1m[36mLocation Load (12.3ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 33.0282049793085 AND lat <= 33.1840774775171 AND lng >= -117.380573632959 AND lng <= -116.896831872705 ) LIMIT 19[0m
+NUMBER OF RESULTS 4
+  [1m[35m (1.0ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1696 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1696 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (159.3ms)
+Completed 200 OK in 211ms (Views: 160.5ms | ActiveRecord: 47.1ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=33.01553899468578,-117.27723348403322,33.17143393713063,-116.79349172377931" for 127.0.0.1 at Sun Jul 03 14:30:35 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"33.01553899468578,-117.27723348403322,33.17143393713063,-116.79349172377931", "limit"=>"19"}
+  [1m[35mLocation Load (14.2ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 33.0155389946858 AND lat <= 33.1714339371306 AND lng >= -117.277233484033 AND lng <= -116.793491723779 ) LIMIT 19
+NUMBER OF RESULTS 3
+  [1m[36m (1.0ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 812 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (47.5ms)
+Completed 200 OK in 75ms (Views: 49.8ms | ActiveRecord: 22.2ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.91818055146273,-117.20530736708986,33.230038606177,-116.23782384658205" for 127.0.0.1 at Sun Jul 03 14:30:38 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.91818055146273,-117.20530736708986,33.230038606177,-116.23782384658205", "limit"=>"19"}
+  [1m[36mLocation Load (18.1ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 32.9181805514627 AND lat <= 33.230038606177 AND lng >= -117.20530736709 AND lng <= -116.237823846582 ) LIMIT 19[0m
+NUMBER OF RESULTS 4
+  [1m[35m (0.6ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1698 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.8ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1717 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1717 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1780 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1780 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 3179 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (57.8ms)
+Completed 200 OK in 115ms (Views: 61.7ms | ActiveRecord: 49.6ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.8853194927684,-116.9546817567383,33.19729377360474,-115.98719823623048" for 127.0.0.1 at Sun Jul 03 14:30:39 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.8853194927684,-116.9546817567383,33.19729377360474,-115.98719823623048", "limit"=>"19"}
+  [1m[35mLocation Load (12.2ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 32.8853194927684 AND lat <= 33.1972937736047 AND lng >= -116.954681756738 AND lng <= -115.98719823623 ) LIMIT 19
+NUMBER OF RESULTS 1
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1717 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1717 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (34.6ms)
+Completed 200 OK in 59ms (Views: 38.7ms | ActiveRecord: 17.7ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.81725260377629,-116.58526647353517,33.12946730532226,-115.61778295302736" for 127.0.0.1 at Sun Jul 03 14:30:42 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.81725260377629,-116.58526647353517,33.12946730532226,-115.61778295302736", "limit"=>"19"}
+  [1m[36mLocation Load (14.1ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 32.8172526037763 AND lat <= 33.1294673053223 AND lng >= -116.585266473535 AND lng <= -115.617782953027 ) LIMIT 19[0m
+NUMBER OF RESULTS 0
+Rendered api/v1/locations/index.rabl (1.3ms)
+Completed 200 OK in 67ms (Views: 18.9ms | ActiveRecord: 45.8ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.78204501749602,-116.28382909560548,33.09438390464189,-115.31634557509767" for 127.0.0.1 at Sun Jul 03 14:30:44 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.78204501749602,-116.28382909560548,33.09438390464189,-115.31634557509767", "limit"=>"19"}
+  [1m[35mLocation Load (11.7ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 32.782045017496 AND lat <= 33.0943839046419 AND lng >= -116.283829095605 AND lng <= -115.316345575098 ) LIMIT 19
+NUMBER OF RESULTS 1
+  [1m[36m (1.0ms)[0m  [1mSELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1673 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1673 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+Rendered api/v1/locations/index.rabl (37.3ms)
+Completed 200 OK in 63ms (Views: 41.6ms | ActiveRecord: 18.1ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.73007394724339,-115.68988073134767,33.04259593440403,-114.72239721083986" for 127.0.0.1 at Sun Jul 03 14:30:46 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.73007394724339,-115.68988073134767,33.04259593440403,-114.72239721083986", "limit"=>"19"}
+  [1m[36mLocation Load (11.9ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (lat >= 32.7300739472434 AND lat <= 33.042595934404 AND lng >= -115.689880731348 AND lng <= -114.72239721084 ) LIMIT 19[0m
+NUMBER OF RESULTS 1
+  [1m[35m (2.6ms)[0m  SELECT SUM(`rates`.`stars`) AS sum_id FROM `rates` WHERE `rates`.`rateable_id` = 1673 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `rates` WHERE `rates`.`rateable_id` = 1673 AND `rates`.`rateable_type` = 'Location' AND `rates`.`dimension` IS NULL[0m
+Rendered api/v1/locations/index.rabl (46.9ms)
+Completed 200 OK in 73ms (Views: 47.4ms | ActiveRecord: 22.6ms)
+
+
+Started GET "/api/v1/locations.json?limit=19&bounds=32.6884752617797,-115.46672094130861,33.00114362156674,-114.4992374208008" for 127.0.0.1 at Sun Jul 03 14:30:58 -0700 2011
+  Processing by Api::V1::LocationsController#index as JSON
+  Parameters: {"bounds"=>"32.6884752617797,-115.46672094130861,33.00114362156674,-114.4992374208008", "limit"=>"19"}
+  [1m[35mLocation Load (13.7ms)[0m  SELECT `locations`.* FROM `locations` WHERE (lat >= 32.6884752617797 AND lat <= 33.0011436215667 AND lng >= -115.466720941309 AND lng <= -114.499237420801 ) LIMIT 19
+NUMBER OF RESULTS 0
+Rendered api/v1/locations/index.rabl (0.8ms)
+Completed 200 OK in 28ms (Views: 8.8ms | ActiveRecord: 16.5ms)
