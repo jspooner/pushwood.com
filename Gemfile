@@ -8,6 +8,7 @@ gem 'json'
 gem 'sass'
 gem 'uglifier'
 gem "sprockets", "~> 2.0.0.beta.10"
+gem 'therubyracer' # Google V8 JS engine inside of Ruby. Needed by sprockets.
 
 gem 'jquery-rails'
 
