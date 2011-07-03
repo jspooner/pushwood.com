@@ -1,0 +1,75 @@
+<form accept-charset="UTF-8" action="/locations/1775" class="edit_location" id="edit_location_1775" method="post" data-remote="true" >
+	<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="2b6NbI4PPBp0P3pytwkcNR3mpag3C6VLaPFkZ9xFchI="></div>
+
+  <div class="field">
+    <label for="location_name">Name</label><br> 
+    <input id="location_name" name="location[name]" size="30" type="text" value="<%= name %>">
+  </div>
+  <div class="field">
+    <label for="location_description">Description</label><br>
+    <textarea cols="100" id="location_description" name="location[description]" rows="20"><%= description %></textarea>
+  </div>
+  <div class="field">
+    <label for="location_phone">Phone</label><br>
+    <input id="location_phone" name="location[phone]" size="30" type="text" value="<%= phone %>">
+  </div>
+
+  <div class="field">
+    <label for="location_hours">Hours</label><br>
+    <input id="location_hours" name="location[hours]" placeholder="ex: 10am to 6pm" size="30" type="text" value="<%= hours %>">
+  </div>
+
+  <div class="field">
+    <label for="location_lat">Lat</label><br>
+    <input id="location_lat" name="location[lat]" size="30" type="text" value="<%= lat %>"><br>
+    <label for="location_lng">Lng</label><br>
+    <input id="location_lng" name="location[lng]" size="30" type="text" value="<%= lng %>"><br>
+  </div>
+	
+	<div id="edit_map"></div>
+	
+	<fieldset id="address" class="">
+		<legend>Address</legend>
+
+    <label for="location_street">Street</label><br>
+    <input id="location_street" name="location[street]" size="30" type="text" value="<%= street %>"><br>
+
+    <label for="location_city">City</label><br>
+    <input id="location_city" name="location[city]" size="30" type="text" value="<%= city %>"><br>
+
+    <label for="location_state">State</label><br>
+    <input id="location_state" name="location[state]" size="30" type="text" value="<%= state %>"><br>
+
+    <label for="location_postal">Postal</label><br>
+    <input id="location_postal" name="location[postal]" size="30" type="text" value="<%= postal %>"><br>
+
+    <label for="location_country">Country</label><br>
+    <input id="location_country" name="location[country]" size="30" type="text" value="<%= country %>"><br>		
+	</fieldset>
+
+	<fieldset id="address" class="">
+		<legend>Amenities</legend>
+		<label for="location_has_lights">Lights:</label>
+    <input name="location[has_lights]" type="hidden" value="<%= has_lights %>">
+		<input  id="location_has_lights" name="location[has_lights]" type="checkbox" value="<%= has_lights %>"><br>
+
+		<label for="location_is_free">Free:</label>
+    <input name="location[is_free]" type="hidden" value="<%= is_free %>"><input id="location_is_free" name="location[is_free]" type="checkbox" value="<%= is_free %>"><br>
+
+		<label for="location_is_outdoors">Outdoors:</label>
+    <input name="location[is_outdoors]" type="hidden" value="<%= is_outdoors %>"><input id="location_is_outdoors" name="location[is_outdoors]" type="checkbox" value="<%= is_outdoors %>"><br>
+
+		<label for="location_has_wood">Wood:</label>
+    <input name="location[has_wood]" type="hidden" value="<%= has_wood %>"><input id="location_has_wood" name="location[has_wood]" type="checkbox" value="<%= has_wood %>"><br>
+
+		<label for="location_has_concrete">Concrete:</label>
+    <input name="location[has_concrete]" type="hidden" value="<%= has_concrete %>"><input id="location_has_concrete" name="location[has_concrete]" type="checkbox" value="<%= has_concrete %>"><br>
+
+		<label for="location_pads_required">Pads:</label>
+    <input name="location[pads_required]" type="hidden" value="<%= pads_required %>"><input id="location_pads_required" name="location[pads_required]" type="checkbox" value="<%= pads_required %>"><br>    
+	</fieldset>
+	
+  <div class="actions">
+    <input name="commit" type="submit" value="Update Location">
+  </div>
+</form>

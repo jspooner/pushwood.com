@@ -49,4 +49,5 @@ Woodhack::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'pushwood.com' }
   
+  config.assets.js_compressor  = :uglifier
 end

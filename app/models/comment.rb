@@ -1,5 +1,4 @@
 class Comment < ActiveRecord::Base
-
   include ActsAsCommentable::Comment
 
   belongs_to :commentable, :polymorphic => true
@@ -12,4 +11,5 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+  
 end

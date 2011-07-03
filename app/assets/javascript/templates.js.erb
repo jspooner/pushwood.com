@@ -1,0 +1,24 @@
+<% 
+module Templater
+  extend self
+
+  def render_template(template, opts = {})
+    # Tilt.new(build_file(template, opts)).render.inspect.split("\\n").join
+		File.open(build_file(template, opts)).read
+		file = File.open (build_file(template, opts))
+		file.read.inspect.split("\\n").join
+  end
+
+  private
+  def build_file(file, opts)
+    relative_path = opts[:path] || "/app/assets/javascript/templates"
+    extension = opts[:extension] || ".html"
+    File.join Rails.root, "#{relative_path}/#{file.to_s}#{extension}"
+  end
+end
+
+%>
+window.JST = {
+    edit: <%= Templater.render_template :edit, :path => "/app/assets/javascript/templates/locations" %>,
+    location_item: <%= Templater.render_template :location_item, :path => "/app/assets/javascript/templates/locations" %>
+}

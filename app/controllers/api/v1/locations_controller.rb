@@ -47,22 +47,20 @@ class Api::V1::LocationsController < ApplicationController
   # bounds   "lat_lo,lng_lo,lat_hi,lng_hi"
   # for this bounds, where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
   def index
-
-
     radius = params[:radius] || 200
-    limit = params[:limit] || 100
+    limit = params[:limit] || 50
     if params[:point] # use the geo gem that doesn't support AReL ;(
       @locations = Location.near(params[:point], radius, { :limit => limit })
     else
-      @locations = Location.limit(limit)
-      @locations.where("city = ?", params[:city]) if params[:city]
-      @locations = @locations.in_bounds(params[:bounding_box]) if params[:bounding_box]
-      # @locations = Location.in_bounds(params[:bounding_box]) if params[:bounding_box]
+      @locations = Location.scoped
+      @locations = @locations.limit(limit)
+      @locations = @locations.where("city = ?", params[:city])  if params[:city]
+      @locations = @locations.in_bounds(params[:bounds])        if params[:bounds]
     end
-
-    respond_to do |format|
-      format.json  { render :text => Location.build_json(@locations) }
-    end
+    logger.info { "NUMBER OF RESULTS #{@locations.length}" }
+    # respond_to do |format|
+    #   format.json  { render :text => Location.build_json(@locations) }
+    # end
   end
   
   

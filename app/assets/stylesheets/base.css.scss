@@ -1,0 +1,84 @@
+/*
+ * Basic site structure setup.
+ * 
+ * 3rd party techniques used:
+ * Sticky Footer Solution by Steve Hatcher (http://www.cssstickyfooter.com)
+ */
+
+// VARIABLE DEFINITIONS
+$page_width: 960px;
+$footer_height: 36px;
+// END VARIABLES
+
+html, body {
+  height: 100%; // sticky footer
+}
+
+body {
+	color: #000;
+	font-size: 14px;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+h3 { font-size: 18px; }
+
+#wrap {
+  min-height: 100%; // sticky footer
+}
+
+#container {
+  width: $page_width;
+  margin: 0 auto;
+  border-right: 1px solid #bbb;
+  border-left: 1px solid #bbb;
+  padding: 15px;
+  // sticky footer
+  overflow:auto;
+	padding-bottom: $footer_height;
+	// end sticky footer
+}
+
+#header {
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 15px;
+  
+  h1 {
+    display: inline-block;
+    font-size: 30px;
+  }
+  h3 {
+    color: #333;
+    display: inline-block;
+  }
+  #nav {
+    float: right;
+  }
+}
+
+#footer {
+  border-top: 1px solid #bbb;
+  color: #666;
+  font-size: 12px;
+  width: $page_width;
+  margin: 0 auto;
+  // sticky footer
+  position: relative;
+  margin-top: -$footer_height;
+  height: $footer_height;
+  clear: both;
+  // end sticky footer
+}
+
+#main {
+  
+}
+
+/*Opera Fix*/
+body:before {/* thanks to Maleika (Kohoutec)*/
+content:"";
+height:100%;
+float:left;
+width:0;
+margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}

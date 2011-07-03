@@ -1,4 +1,4 @@
-<%= form_for(@location) do |f| %>
+<%= form_for(@location, :html => { :multipart => true }) do |f| %>
   <% if @location.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
@@ -15,6 +15,17 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
+	<div id="diagram_fields">
+		<h4>Images</h4>
+		<ul id="sortable">
+		<%= f.fields_for :images do |images_builder| %>
+	    <%= render 'image_fields', :f => images_builder %>		
+		<% end %>
+		</ul>		
+		<p><%= link_to_add_fields("Add Image", f, :images) %></p>
+	</div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description, :cols => 100 %>

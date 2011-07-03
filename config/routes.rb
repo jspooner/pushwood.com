@@ -11,7 +11,7 @@ Woodhack::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-    # Directs /admin/products/* to Admin::ProductsController
+      # Directs /admin/products/* to Admin::ProductsController
       # (app/controllers/admin/products_controller.rb)
       resources :locations do
         collection do
@@ -21,12 +21,17 @@ Woodhack::Application.routes.draw do
           get 'search'
         end
       end
+      resources :ratings
     end
   end
   
 
   resources :locations do
     get 'images'
+    resources :comments
+    member do
+      get 'rate'
+    end
   end
 
   resources :tricks

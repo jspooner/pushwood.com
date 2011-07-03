@@ -1,6 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rake', '~> 0.8.7'
+gem 'rails', '3.1.0.rc4'
+
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass'
+gem 'uglifier'
+gem "sprockets", "~> 2.0.0.beta.10"
 
 gem 'jquery-rails'
 
@@ -15,8 +22,12 @@ gem "paperclip", "~> 2.3"
 
 gem 'hpricot'
 gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
 gem 'acts_as_commentable'
+gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
+gem "paperclip", "~> 2.3"
+gem "rabl"
 gem "paperclip", "~> 2.3"
 
 # Deploy with Capistrano

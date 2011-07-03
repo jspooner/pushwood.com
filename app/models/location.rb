@@ -1,9 +1,12 @@
 class Location < ActiveRecord::Base
   
   acts_as_commentable  
-  
+  ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps]
+
   belongs_to :cd_page  
   validates_uniqueness_of :name
+  has_many :images, :dependent => :destroy#, :order => "position"
+  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
     
   geocoded_by :address_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
@@ -71,6 +74,15 @@ class Location < ActiveRecord::Base
     ""
   end
   
+  # Help out RestKit by keeping out nulls
+  def hours
+    self[:hours] || "unknown"
+  end
+  #help out rest key by converting numbers into strings
+  # def id
+  #   self[:id].to_s
+  # end
+  
   def build_json
     to_json(self.api_json_options)
   end
@@ -78,7 +90,8 @@ class Location < ActiveRecord::Base
   def self.build_json(list)
     a = []
     list.each do |item|
-      a << item.to_json(self.api_json_options)
+      # Hack to get the location node back
+      a << '{"location":'+item.to_json(self.api_json_options)+"}"
     end
     "[#{a.join(',')}]"
   end

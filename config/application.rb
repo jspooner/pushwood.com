@@ -13,7 +13,7 @@ module Woodhack
       g.test_framework :rspec, :fixture => true, :views => false
       g.integration_tool :rspec, :fixture => true, :views => true
     end
-
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -37,11 +37,17 @@ module Woodhack
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery.min.js jquery-ui.min.js rails.js)
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery.min.js jquery-ui.min.js rails.js)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-
+    
+    # Enable asset pipeline
+    config.assets.enabled = true
+    
+    # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+    config.assets.precompile += %w( bootstrap/application.js )
+    
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
   end

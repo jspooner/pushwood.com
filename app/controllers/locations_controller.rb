@@ -132,7 +132,16 @@ class LocationsController < ApplicationController
       end
     end
   end
-
+  
+  def rate
+    @location = Location.find(params[:id])
+    @location.rate(params[:stars], current_user, params[:dimension])
+    render :update do |page|
+      page.replace_html @location.wrapper_dom_id(params), ratings_for(@location, params.merge(:wrap => false))
+      page.visual_effect :highlight, @location.wrapper_dom_id(params)
+    end
+  end
+   
   # DELETE /locations/1
   # DELETE /locations/1.xml
   def destroy

@@ -1,0 +1,11 @@
+#locations {width:300px;overflow:auto;float:left;}
+#map_canvas {width:1000px;height:600px;position:absolute;left:300px;}
+
+.new_location {display:block;margin:5px;}
+
+.location_item {padding:8px 5px;}
+.location_item:hover {background:#EBF2FC;}
+.item-l {width:30px;float:left;}
+.item-r {width:200px;float:left;}
+.item-r a {font-size: 123%;font-weight:bold;text-decoration:none;}
+.item-r a:hover {text-decoration:underline;}
