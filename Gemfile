@@ -55,4 +55,4 @@ gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
 gem "rspec-rails", "~> 2.4", :group => [:development, :test]
 gem "capistrano", :group => [:development, :test]
 
-# gem "pg", :group => :production
+gem "pg", :group => :production
