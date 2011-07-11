@@ -1,5 +1,5 @@
 Woodhack::Application.routes.draw do
-
+  
   resources :cd_pages
   
   # match 'geo/search' => 'geo#search' 
@@ -22,6 +22,11 @@ Woodhack::Application.routes.draw do
         end
       end
       resources :ratings
+      resources :images
+      get "authentication/login"
+      post "authentication/login"
+      post "authentication/create"
+      get "authentication/exists"
     end
   end
   

@@ -22,7 +22,6 @@ test: &test
 cucumber:
   <<: *test
 
-
 production:
   adapter: mysql
   encoding: utf8

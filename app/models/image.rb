@@ -1,11 +1,10 @@
 class Image < ActiveRecord::Base
   belongs_to :location
   has_attached_file :img,
-                    # :default_url => "/images/defaults/:attachment/:style.jpg",
+                    :url => "/system/uploads/images/:id/:style.:extension",
                     :styles => { 
-                      :profile => ["280>280<x300", :jpg], 
-                      :detail => ["200>200<x200", :jpg], 
-                      :thumb => ["90x90>",:jpg],
-                      :tiny => ["20x20>",:jpg],
+                      :iosThumbnail => ["320x240", :jpg],
+                      :thumbnail => ["320>280<x320", :jpg],
+                      :tiny => ["100x75>",:jpg]
                     }
 end

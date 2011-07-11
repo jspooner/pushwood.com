@@ -48,9 +48,9 @@ class Api::V1::LocationsController < ApplicationController
   # for this bounds, where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
   def index
     radius = params[:radius] || 200
-    limit = params[:limit] || 50
+    limit = params[:limit] || 100
     if params[:point] # use the geo gem that doesn't support AReL ;(
-      @locations = Location.near(params[:point], radius, { :limit => limit })
+      @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
     else
       @locations = Location.scoped
       @locations = @locations.limit(limit)

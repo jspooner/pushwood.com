@@ -1,45 +1,61 @@
-
+<% content_for :title do %>
+<%= @location.name %> - Skatepark Locator
+<% end %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @location.name %>
-</p>
-<% @location.images.each do |image| %>
-	<%= image_tag image.img.url %>
-<% end %>
-<p>
-  <b>Lat/Lng:</b>
-  <%= @location.lat %>,<%= @location.lng %>
-</p>
-
-<p>
-  <b>Map link:</b>
-  <%= link_to @location.googlemapurl, @location.googlemapurl %>
-</p>
-
-<img border="0" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=18&size=400x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="Three Brooklyn Zipcodes">
-
-<p>
-	<%= @location.street %><br/>
-	<%= @location.city %> <%= @location.state %>, <%= @location.postal %><br/>
-	<%= @location.country %>
-</p>
-
-<h3>Comments</h3>
-<ul>
-	<% @location.comments.each do |comment| %>
-		<li><%= comment.comment %></li>
+<div id="content">
+	<h1><%= @location.name %></h1>
+	<p>
+		<%= @location.street %><br/>
+		<%= @location.city %> <%= @location.state %>, <%= @location.postal %><br/>
+		<%= @location.country %>
+	</p>
+	
+	<%= ratings_for @location, :dimension => :overall %>
+	
+	<% @location.images.each do |image| %>
+		<%= image_tag image.img.url(:thumbnail) %>
 	<% end %>
-</ul>
-<%= form_for([@location, Comment.new]) do|f| %> 
-  <%= f.hidden_field :commentable_id, :value => @location.id %>
-  <%= f.hidden_field :commentable_type, :value => 'Location' %> 
-  <%= f.label :comment %><br /> 
-  <%= f.text_area :comment %> 
-  <%= f.submit "Post Comment" %> 
-<% end %>
-<%= ratings_for @location, :dimension => :overall %>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+	<p>
+		<%= @location.description %>
+	</p>	
+	
+	
+	<h3>Comments</h3>
+	<ul>
+		<% @location.comments.each do |comment| %>
+			<li><%= comment.comment %></li>
+		<% end %>
+	</ul>
+	<%= form_for([@location, Comment.new]) do|f| %> 
+	  <%= f.hidden_field :commentable_id, :value => @location.id %>
+	  <%= f.hidden_field :commentable_type, :value => 'Location' %> 
+	  <%= f.label :comment %><br /> 
+	  <%= f.text_area :comment %> <br/>
+	  <%= f.submit "Post Comment" %> 
+	<% end %>
+
+
+	<%= link_to 'Edit', edit_location_path(@location) %> |
+	<%= link_to 'Back', locations_path %>
+	
+	
+	
+	
+</div>
+<div id="sidebar">
+	<img border="0" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=18&size=300x250&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
+	<fieldset>
+		<legend>Advertisement</legend>
+		<div id="ad">
+			
+		</div>
+	</fieldset>
+</div>
+
+
+
+
+
+
