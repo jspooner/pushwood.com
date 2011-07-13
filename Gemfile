@@ -37,8 +37,7 @@ gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", 
 gem "rails-backbone"
 gem 'bourbon'
 
-# Deploy with Capistrano
-gem 'capistrano', :group => [:development]
+gem "unicorn", :group => [:production]
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -59,6 +58,6 @@ gem 'capistrano', :group => [:development]
 gem "factory_girl_rails", ">= 1.0.0", :group => :test
 gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
 gem "rspec-rails", "~> 2.4", :group => [:development, :test]
-gem "capistrano", :group => [:development, :test]
+# gem "capistrano", :group => [:development, :test]
 
 # gem "pg", :group => :production
