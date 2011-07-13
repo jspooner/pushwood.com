@@ -4,6 +4,9 @@ gem 'rake', '~> 0.8.7'
 # gem 'rails', '3.1.0.rc4'
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
 
+gem 'ruby-mysql'#, "2.9.3"
+# gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
+
 # Rails 3.1 - Asset Pipeline
 gem 'json'
 gem 'sass'
@@ -15,8 +18,6 @@ gem 'jquery-rails'
 
 gem 'devise', "1.1.7"
 gem 'devise_invitable', "0.3.5"
-gem 'ruby-mysql'#, "2.9.3"
-# gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
 # gem 'newrelic_rpm'
 gem 'cancan'
 gem 'omniauth'

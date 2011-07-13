@@ -195,7 +195,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
-    ruby-mysql (2.9.4)
+    ruby-mysql (2.9.3)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
