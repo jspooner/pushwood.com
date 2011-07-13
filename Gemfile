@@ -1,11 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rake', '~> 0.8.7'
-# gem 'rails', '3.1.0.rc4'
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
-
-# gem 'ruby-mysql'
-gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
+gem 'mysql2'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
