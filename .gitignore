@@ -1,3 +1,4 @@
 .svn
-logs/*
+log/development.log
 tmp
+.sass-cache/
