@@ -74,12 +74,6 @@ GEM
       sass (>= 3.1)
     builder (3.0.0)
     cancan (1.6.5)
-    capistrano (2.6.0)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
     cocaine (0.1.0)
     coffee-script (2.2.0)
       coffee-script-source
@@ -105,7 +99,6 @@ GEM
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
     geocoder (1.0.2)
-    highline (1.6.2)
     hike (1.1.0)
     hpricot (0.8.4)
     i18n (0.6.0)
@@ -122,15 +115,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
-    mysql (2.8.1)
     net-ldap (0.2.2)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.1.4)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
     nokogiri (1.4.7)
     oa-basic (0.2.6)
       oa-core (= 0.2.6)
@@ -210,6 +195,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
+    ruby-mysql (2.9.4)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
@@ -240,7 +226,6 @@ DEPENDENCIES
   ajaxful_rating!
   bourbon
   cancan
-  capistrano
   devise (= 1.1.7)
   devise_invitable (= 0.3.5)
   factory_girl_generator (>= 0.0.1)
@@ -249,7 +234,6 @@ DEPENDENCIES
   hpricot
   jquery-rails
   json
-  mysql
   omniauth
   paperclip (~> 2.3)
   rabl
@@ -257,6 +241,7 @@ DEPENDENCIES
   rails-backbone
   rake (~> 0.8.7)
   rspec-rails (~> 2.4)
+  ruby-mysql
   sass
   sprockets (~> 2.0.0.beta.10)
   therubyracer

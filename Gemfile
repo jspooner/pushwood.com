@@ -15,8 +15,8 @@ gem 'jquery-rails'
 
 gem 'devise', "1.1.7"
 gem 'devise_invitable', "0.3.5"
-# gem 'ruby-mysql'#, "2.9.3"
-gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
+gem 'ruby-mysql'#, "2.9.3"
+# gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
 # gem 'newrelic_rpm'
 gem 'cancan'
 gem 'omniauth'
@@ -37,7 +37,7 @@ gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", 
 gem "rails-backbone"
 gem 'bourbon'
 
-gem "unicorn", :group => [:production]
+# gem "unicorn", :group => [:production]
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
