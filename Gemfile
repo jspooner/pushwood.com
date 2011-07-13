@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rake', '~> 0.8.7'
-gem 'rails', '3.1.0.rc4'
+# gem 'rails', '3.1.0.rc4'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
 
 # Rails 3.1 - Asset Pipeline
 gem 'json'
@@ -15,7 +16,7 @@ gem 'jquery-rails'
 gem 'devise', "1.1.7"
 gem 'devise_invitable', "0.3.5"
 # gem 'ruby-mysql'#, "2.9.3"
-gem 'mysql'
+gem 'mysql' # gem install mysql -- --with-mysql-dir=/usr/bin/mysql
 # gem 'newrelic_rpm'
 gem 'cancan'
 gem 'omniauth'
@@ -31,8 +32,13 @@ gem "paperclip", "~> 2.3"
 gem "rabl"
 gem "paperclip", "~> 2.3"
 
+gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
+
+gem "rails-backbone"
+gem 'bourbon'
+
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano', :group => [:development]
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -55,4 +61,4 @@ gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
 gem "rspec-rails", "~> 2.4", :group => [:development, :test]
 gem "capistrano", :group => [:development, :test]
 
-gem "pg", :group => :production
+# gem "pg", :group => :production

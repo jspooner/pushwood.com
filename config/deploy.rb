@@ -1,41 +1,75 @@
+# Stage
+# small
+
+# ssh -i ~/.ssh/coachfuel.pem ec2-user@ec2-50-19-197-222.compute-1.amazonaws.com
+
+
+# scp -r -i ~/.ssh/coachfuel.pem ec2-user@ec2-75-101-211-185.compute-1.amazonaws.com:webapps/coachfuel/shared/system/ .
 require 'bundler/capistrano'
 
-default_environment['PATH']='/home/pushwood/.gems/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/games'
-default_environment['GEM_PATH']='/home/pushwood/.gems/:/usr/lib/ruby/gems/1.8'
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                  # Load RVM's capistrano plugin.
+set :rvm_ruby_string, '1.9.2'        # Or whatever env you want it to run in.
+set :rvm_type, :user
 
-
-set :user, 'pushwood'  # Your dreamhost account's username
-set :domain, 'pushwood.com'  # Dreamhost servername where your account is located 
-set :application, 'pushwood.com'  # Your app's location (domain or sub-domain name as setup in panel)
-set :applicationdir, "/home/#{user}/#{application}"  # The standard Dreamhost setup
-
-# version control config
+ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/coachfuel.pem"]
+set :application, "pushwood"
+set :domain, "ec2-50-19-197-222.compute-1.amazonaws.com"
+set :user, "ec2-user"
+set :use_sudo, false
 set :scm_username, "deploy"
 set :scm_password, "g0Skat3!"
-set :repository, "http://labs.jonathanspooner.com/woodsvn/web/trunk"
+set :repository, "http://labs.jonathanspooner.com/woodsvn/web/trunk/"
+set :deploy_to,   "/home/ec2-user/webapps/#{application}"
 
-# roles (servers)
-role :web, domain
 role :app, domain
+role :web, domain
 role :db,  domain, :primary => true
 
-# deploy config
-set :deploy_to, applicationdir
-set :deploy_via, :export
+namespace :deploy do
+  
+  task :start, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
 
-# additional settings
-default_run_options[:pty] = true  # Forgo errors when deploying from windows
-#ssh_options[:keys] = %w(/Path/To/id_rsa)            # If you are using ssh_keys
-set :chmod755, "app config db lib public vendor script script/* public/disp*"
-set :use_sudo, false
+  task :stop, :roles => :app do
+    # Do nothing.
+  end
+
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+  
+  desc "create symlink for shared stuff"
+  task :create_symlink, :roles => :app do 
+    run "ln -fns #{deploy_to}/#{shared_dir}/system #{current_release}/public/system" 
+  end
 
 
+  desc "installs Bundler if it is not already installed"
+  task :install_bundler, :roles => :app do
+    run "sh -c 'if [ -z `which bundle` ]; then echo Installing Bundler; gem install bundler; fi'"
+  end
+  
+  desc "run 'bundle install' to install Bundler's packaged gems for the current deploy"
+  task :bundle_install, :roles => :app do
+    run "cd #{release_path} && bundle install"
+  end
+  
+end
 
-server domain, :app, :web
-role :db, domain, :primary => true
+before "deploy:bundle_install", "deploy:install_bundler"
+after "deploy:update_code", "deploy:bundle_install"
 
 
-before "deploy:gems", "deploy:symlink"
-
-
+# after 'deploy:update_code', 'bundler:bundle_new_release'
+desc "tail production log files" 
+task :tail, :roles => :app do
+  run "tail -f #{shared_path}/log/stage.log" do |channel, stream, data|
+    puts  # for an extra line break before the host name
+    puts "#{channel[:host]}: #{data}" 
+    break if stream == :err    
+  end
+end
 
