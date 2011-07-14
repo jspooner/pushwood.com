@@ -1,7 +1,7 @@
 <li class="field">
 <% if f.object.img.file? %>
 	<span class="ui-icon ui-icon-arrowthick-2-n-s move_image"></span>
-	<%= image_tag(f.object.img.url(:iosThumbnail)) %><br/>
+	<%= image_tag(f.object.img.url(:tiny)) %><br/>
 	<%= link_to_remove_fields "remove", f, {:class => "remove"} %><br/>
 	<%# f.hidden_field :position %>
 <% else %>

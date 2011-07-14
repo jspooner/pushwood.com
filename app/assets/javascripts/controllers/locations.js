@@ -319,23 +319,57 @@ PW.controllers.locations = {
   edit: function() 
 	{
     // action-specific code
-		remove_fields = function(link) {
+		PW.controllers.locations.init_form();
+		// set up map
+    var map, marker;
+	  var myOptions = {
+	    zoom: 19,
+	    mapTypeId: google.maps.MapTypeId.HYBRID
+	  };
+		
+    var lat = $("#location_lat").val();
+    var lng = $("#location_lng").val();
+    if (lat == "" && lng == "") {
+      lat = '33.0532118628684';
+      lat = '-117.287725073576';
+      // myOptions['zoom'] = 8;
+      console.log("SET", lat)
+    };
+		var centerLocation = new google.maps.LatLng( lat, lng ); 
+	  map = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
+		map.setCenter(centerLocation);
+    marker = new google.maps.Marker({ map: map,	draggable: true, position: centerLocation });
+    /**
+  	* watch the markers position
+  	*/
+  	var marker_to_lat_listener = google.maps.event.addListener(marker, 'position_changed', function() {
+  		$("#location_lat").val(marker.getPosition().lat());
+  		$("#location_lng").val(marker.getPosition().lng());
+  	});
+    //
+  },
+
+  new: function() 
+	{
+    // action-specific code
+		PW.controllers.locations.init_form();
+    // PW.controllers.locations.edit();
+  },
+  
+  init_form: function() 
+  {
+    // set up image fields
+  	remove_fields = function(link) {
 			$(link).prev("input[type=hidden]").val("1");
 			$(link).closest(".field").hide();
 		}
-
 		add_fields = function(link, association, content) {
 		  var new_id = new Date().getTime();
 		  var regexp = new RegExp("new_" + association, "g")
 		  $(link).parent().before(content.replace(regexp, new_id));
 		}
 
-  },
-
-  new: function() 
-	{
-    // action-specific code
-		PW.controllers.locations.edit();
+	  // end init_form
   }
 
 };
