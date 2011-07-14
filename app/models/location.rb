@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
   has_many :images, :dependent => :destroy#, :order => "position"
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
     
-  geocoded_by :address_from_components
+  geocoded_by :address #_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
       # puts geo.inspect
@@ -22,9 +22,9 @@ class Location < ActiveRecord::Base
   # after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| obj.new_record? }
   after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| Location.should_geocode?(obj) }
 
-  def address_from_components
-    [street, city, state, country].compact.join(', ')
-  end
+  # def address_from_components
+  #   [street, city, state, country].compact.join(', ')
+  # end
   
   def self.should_geocode?(obj)
     if obj.new_record?

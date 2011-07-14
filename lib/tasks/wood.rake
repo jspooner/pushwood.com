@@ -1,6 +1,15 @@
 
 namespace :wood do
 
+  desc "Move street to address"
+  task :add => :environment do
+    Location.find_each do |loc|
+      loc.lat = nil
+      loc.lng = nil
+      loc.save
+    end
+  end
+
   desc "L R Trim location name"
   task :trim => :environment do
     Location.find_each do |loc|

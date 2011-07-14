@@ -9,7 +9,7 @@ namespace :import do
         CdPage.parse_remote(x)
       end      
     end
-
+    
     desc "Save pages to location table"
     task :fixstreet => :environment do
       Location.find_each do |loc|

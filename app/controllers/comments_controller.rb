@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
   
   def create    
-    @commentable.comments.create(params[:comment].merge(:commentable_id => @commentable.id, :commentable_type => @commentable.class.name, :user => current_user))
+    @commentable.comments.create(params[:comment].merge(:commentable_id => @commentable.id, :commentable_type => @commentable.class.name, :user => current_user)) 
     redirect_to @commentable
   end
     
