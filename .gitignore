@@ -1,5 +1,6 @@
 .svn
 log/*.log
 tmp/*
+public/assets/*
 .sass-cache/*
 public/system

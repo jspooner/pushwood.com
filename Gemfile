@@ -28,7 +28,6 @@ gem 'acts_as_commentable'
 gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
 gem "paperclip", "~> 2.3"
 gem "rabl"
-gem "paperclip", "~> 2.3"
 
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
 

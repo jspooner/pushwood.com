@@ -1,14 +1,14 @@
 collection @locations
-attributes  :city, :street, :state, :postal, :country
+attributes  :city, :street, :state, :postal, :country, :address
 attributes :name, :description, :hours, :phone, :updated_at
 attributes :lng, :lat, :bearing, :googlemapurl, :distance
 attributes :pads_required, :is_outdoors, :has_concrete, :has_wood, :has_lights, :is_free
 
 code :thumbnail do |m|
   if m.images.empty?
-    "http://spoonbook-2.local:3000/images/BTail.png"
+    "http://#{request.env['HTTP_HOST']}/images/BTail.png"
   else
-    "http://spoonbook-2.local:3000" + m.images.first.img.url(:iosThumbnail)
+    "http://#{request.env['HTTP_HOST']}" + m.images.first.img.url(:iosThumbnail)
   end
 end
 
