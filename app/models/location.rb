@@ -4,14 +4,15 @@ class Location < ActiveRecord::Base
   ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps]
 
   belongs_to :cd_page  
-  validates_uniqueness_of :name
+  # validates_uniqueness_of :name
   has_many :images, :dependent => :destroy#, :order => "position"
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
     
-  geocoded_by :address #_from_components
+  geocoded_by :address_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
-      # puts geo.inspect
+      puts geo.inspect
+      obj.address = geo.address
       obj.street  = geo.address(:street) #_components_of_type(:street_number)
       obj.state   = geo.state
       obj.city    = geo.city
@@ -22,15 +23,15 @@ class Location < ActiveRecord::Base
   # after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| obj.new_record? }
   after_validation :reverse_geocode, :geocode, :if => lambda{ |obj| Location.should_geocode?(obj) }
 
-  # def address_from_components
-  #   [street, city, state, country].compact.join(', ')
-  # end
+  def address_from_components
+    [street, city, state, country].compact.join(', ')
+  end
   
   def self.should_geocode?(obj)
     if obj.new_record?
       return true
     else
-      if obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?
+      if obj.address.blank? or (obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?)
         return true
       end
     end

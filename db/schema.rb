@@ -63,64 +63,18 @@ ActiveRecord::Schema.define(:version => 20110714144833) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.decimal  "lat",                        :precision => 15, :scale => 8, :default => 0.0
-    t.decimal  "lng",                        :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lat",           :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lng",           :precision => 15, :scale => 8, :default => 0.0
     t.string   "phone"
-    t.integer  "has_lights",    :limit => 1,                                :default => 0
-    t.integer  "is_free",       :limit => 1,                                :default => 0
-    t.integer  "is_outdoors",   :limit => 1,                                :default => 0
-    t.integer  "pads_required", :limit => 1,                                :default => 0
-    t.integer  "has_concrete",  :limit => 1,                                :default => 0
-    t.integer  "has_wood",      :limit => 1,                                :default => 0
+    t.boolean  "has_lights",                                   :default => false
+    t.boolean  "is_free",                                      :default => false
+    t.boolean  "is_outdoors",                                  :default => false
+    t.boolean  "pads_required",                                :default => false
+    t.boolean  "has_concrete",                                 :default => false
+    t.boolean  "has_wood",                                     :default => false
     t.integer  "cd_page_id"
-    t.string   "hours",                                                     :default => ""
+    t.string   "hours"
     t.text     "address"
-  end
-
-  create_table "locations_bak", :force => true do |t|
-    t.string   "name"
-    t.string   "bounding_box"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "street"
-    t.string   "postal"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.text     "description"
-    t.string   "lat"
-    t.string   "lng"
-    t.string   "phone"
-    t.integer  "has_lights",        :limit => 1, :default => 0
-    t.integer  "is_free",           :limit => 1, :default => 0
-    t.integer  "is_outdoors",       :limit => 1, :default => 0
-    t.integer  "are_pads_required", :limit => 1, :default => 0
-    t.integer  "has_concrete",      :limit => 1, :default => 0
-    t.integer  "has_wood",          :limit => 1, :default => 0
-    t.integer  "cd_page_id"
-  end
-
-  create_table "locations_bing", :force => true do |t|
-    t.string   "name"
-    t.string   "bounding_box"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "street"
-    t.string   "postal"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.text     "description"
-    t.string   "lat"
-    t.string   "lng"
-    t.string   "phone"
-    t.integer  "has_lights",        :limit => 1, :default => 0
-    t.integer  "is_free",           :limit => 1, :default => 0
-    t.integer  "is_outdoors",       :limit => 1, :default => 0
-    t.integer  "are_pads_required", :limit => 1, :default => 0
-    t.integer  "has_concrete",      :limit => 1, :default => 0
-    t.integer  "has_wood",          :limit => 1, :default => 0
-    t.integer  "cd_page_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -186,14 +140,5 @@ ActiveRecord::Schema.define(:version => 20110714144833) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "votes", :force => true do |t|
-    t.integer  "image_a_id"
-    t.integer  "image_b_id"
-    t.integer  "user_id"
-    t.integer  "winner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
