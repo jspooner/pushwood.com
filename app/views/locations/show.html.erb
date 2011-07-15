@@ -19,10 +19,12 @@
 	<p>
 		<%= @location.description %>
 	</p>	
-	<h3>Links</h3>	
+	<% if @location.cd_page %>
+	<h3>Links</h3>
 	<p>
 		<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
 	</p>
+	<% end %>
 	
 	<h3>Reviews</h3>
 	<ul>
