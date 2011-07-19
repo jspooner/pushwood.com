@@ -17,10 +17,16 @@ class Api::V1::AuthenticationController < ApplicationController
   end
   
   def create
-    @user = User.create(params[:user])
-    unless @user
-      render :json => {:errors => ["Invalid user"]}, :status => 401
+    @user                       = User.new
+    @user.email                 = params[:email]
+    @user.password              = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+    
+    unless @user.save
+      logger.error { "COULD NOT SAVE USER" }
+      # render :json => @user.errors.to_json
     end
+    logger.info { "USER ID #{@user.id}" }
   end
 
   def exists

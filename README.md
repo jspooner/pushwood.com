@@ -13,3 +13,6 @@ http://smooth-warrior-153.heroku.com/ | git@heroku.com:smooth-warrior-153.git
 
 Add pngcrush to all images
 http://pmt.sourceforge.net/pngcrush/
+
+
+

@@ -348,18 +348,18 @@ PW.controllers.locations = {
   		$("#location_lng").val(marker.getPosition().lng());  		
   	});
   	
-  	google.maps.event.addListener(marker, 'dragend', function() {
-  	
-    	new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
-    	  console.log(results);
-    	  console.log(status);
-  			if (status == google.maps.GeocoderStatus.OK) {
-  			  // results[0].address_components[0]
-		      debugger;
-  			}
-  		});
-  		
-  	});
+  	// google.maps.event.addListener(marker, 'dragend', function() {
+  	//     
+  	//       new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
+  	//         console.log(results);
+  	//         console.log(status);
+  	//         if (status == google.maps.GeocoderStatus.OK) {
+  	//           // results[0].address_components[0]
+  	//           debugger;
+  	//         }
+  	//       });
+  	//       
+  	//     });
     //
   },
 
