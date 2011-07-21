@@ -1,5 +1,5 @@
 collection @locations
-attributes  :city, :street, :state, :postal, :country, :address
+attributes :id,  :city, :street, :state, :postal, :country, :address
 attributes :name, :description, :hours, :phone, :updated_at
 attributes :lng, :lat, :bearing, :googlemapurl, :distance
 attributes :pads_required, :is_outdoors, :has_concrete, :has_wood, :has_lights, :is_free

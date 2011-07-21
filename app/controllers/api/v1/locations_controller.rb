@@ -51,6 +51,9 @@ class Api::V1::LocationsController < ApplicationController
     limit = params[:limit] || 100
     if params[:point] # use the geo gem that doesn't support AReL ;(
       @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
+      @locations.each do |l|
+        puts "Location image count #{l.images}"
+      end
     else
       @locations = Location.scoped
       @locations = @locations.limit(limit)
