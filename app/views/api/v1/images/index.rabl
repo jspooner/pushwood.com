@@ -7,11 +7,11 @@ code :thumbnail do |m|
     "http://#{request.env['HTTP_HOST']}" + m.img.url(:iosThumbnail)
 end
 code :large do |m|
-    "http://#{request.env['HTTP_HOST']}" + m.img.url(:large)
+    "http://#{request.env['HTTP_HOST']}" + m.img.url(:iosLarge)
 end
 code :medium do |m|
-    "http://#{request.env['HTTP_HOST']}" + m.img.url(:medium)
+    "http://#{request.env['HTTP_HOST']}" + m.img.url(:iosSmall)
 end
-code :tiny do |m|
-    "http://#{request.env['HTTP_HOST']}" + m.img.url(:tiny)
-end
+# code :tiny do |m|
+#     "http://#{request.env['HTTP_HOST']}" + m.img.url(:tiny)
+# end

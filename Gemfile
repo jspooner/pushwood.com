@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rake', '~> 0.8.7'
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
 gem 'mysql2'
-
+gem "newrelic_rpm", "~> 3.1.1.beta1"
 # Rails 3.1 - Asset Pipeline
 gem 'json'
 gem 'sass'
@@ -15,7 +15,7 @@ gem 'jquery-rails'
 
 gem 'devise', "1.1.7"
 gem 'devise_invitable', "0.3.5"
-# gem 'newrelic_rpm'
+
 gem 'cancan'
 gem 'omniauth'
 gem "paperclip", "~> 2.3"

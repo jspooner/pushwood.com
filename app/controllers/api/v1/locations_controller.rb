@@ -32,11 +32,31 @@ class Api::V1::LocationsController < ApplicationController
   end
   
   def search
-    locations = Location.where("name LIKE ?", "%#{params[:name]}%").all
-    h = {}
-    respond_to do |format|
-      format.json { render :text => Location.build_json(locations) }
-    end    
+    
+    # t = Post.arel_table
+    # results = Post.where(
+    #   t[:author].eq("Someone").
+    #   or(t[:title].matches("%something%"))
+    # )
+    # t = Location.arel_table
+    # @locations = Location.where(
+    #   t[:name].matches("%#{params[:name]}%")
+    # )
+    
+    @locations = Location.where("city LIKE ? or city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
+    
+    # @locations = Location.where("city LIKE ?", "%#{params[:name]}%").
+    #                       where("state LIKE ?", "%#{params[:name]}%").
+    #                       where("postal LIKE ?", "%#{params[:name]}%").
+    #                       where("name LIKE ?", "%#{params[:name]}%")
+                          
+    
+    # @locations = []
+    # @locations += Location.where("city LIKE ?", "%#{params[:name]}%").all
+    # @locations += Location.where("state LIKE ?", "%#{params[:name]}%").all
+    # @locations += Location.where("postal LIKE ?", "%#{params[:name]}%").all
+    # @locations += Location.where("name LIKE ?", "%#{params[:name]}%").all
+    
   end
   
   # GET /api/v1/locations.json?radius=20&limit=10&point=32,-112
@@ -50,10 +70,7 @@ class Api::V1::LocationsController < ApplicationController
     radius = params[:radius] || 200
     limit = params[:limit] || 100
     if params[:point] # use the geo gem that doesn't support AReL ;(
-      @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
-      @locations.each do |l|
-        puts "Location image count #{l.images}"
-      end
+      @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] }) # include ratings is not working
     else
       @locations = Location.scoped
       @locations = @locations.limit(limit)
@@ -61,11 +78,7 @@ class Api::V1::LocationsController < ApplicationController
       @locations = @locations.in_bounds(params[:bounds])        if params[:bounds]
     end
     logger.info { "NUMBER OF RESULTS #{@locations.length}" }
-    # respond_to do |format|
-    #   format.json  { render :text => Location.build_json(@locations) }
-    # end
   end
-  
   
   def region
     render :text => "foo"

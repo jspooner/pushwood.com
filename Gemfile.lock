@@ -117,6 +117,7 @@ GEM
     multipart-post (1.1.2)
     mysql2 (0.3.6)
     net-ldap (0.2.2)
+    newrelic_rpm (3.1.1.beta3)
     nokogiri (1.4.7)
     oa-basic (0.2.6)
       oa-core (= 0.2.6)
@@ -236,6 +237,7 @@ DEPENDENCIES
   jquery-rails
   json
   mysql2
+  newrelic_rpm (~> 3.1.1.beta1)
   omniauth
   paperclip (~> 2.3)
   rabl
