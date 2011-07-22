@@ -1,7 +1,11 @@
 class Api::V1::ImagesController < ApplicationController
 
   def index
-    @images = Image.all
+    if params[:location_id]
+      @images = Location.find(params[:location_id]).images
+    else
+      @images = Image.all
+    end
   end
 
   def show
