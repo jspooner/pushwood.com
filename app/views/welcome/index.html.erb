@@ -1,35 +1,33 @@
 
-<div>
-	<h2>Recently Updated Locations</h2>
-	<% @recent_locations.each do |location| %>
-	<div>
-		<strong><%= link_to location.name, location %></strong><br/>
-		<%= time_ago_in_words location.updated_at %>
-	</div>
-	<% end %>	
-</div>
 
-<div>
-	<h2>New Images</h2>
-	<% @images.each do |image| %>
-	<div class="imageHolder">
-		<%= link_to image.location.name, image.location %><br/>
-		updated <%= time_ago_in_words image.updated_at %> ago<br/>
-		<%= link_to image_tag(image.img.url(:large)), image.location %>
-	</div>
-	<% end %>	
-</div>
+<h1>Recently Updated Locations</h1>
+<% @recent_locations.each do |location| %>
+<o>
+	<strong><%= link_to location.name, location %></strong>
+	<small>updated: <%= time_ago_in_words location.updated_at %></small><br/>
+	<%= location.address %>
+</p>
+<% end %>	
 
-<div>
-	<h2>New Comments</h2>
-	<% @comments.each do |comment| %>
-	<div class="imageHolder">
-		<%= link_to comment.commentable.name, comment.commentable %><br/>		
-		updated <%= time_ago_in_words comment.updated_at %> ago<br/>
-		<p>
-			<%= comment.comment %>
-		</p>
-		<%= comment.user.email %>
-	</div>
-	<% end %>	
-</div>
+<h1>New Comments</h1>
+<% @comments.each do |comment| %>
+<p class="imageHolder">
+	<%= link_to comment.commentable.name, comment.commentable %><br/>		
+	updated <%= time_ago_in_words comment.updated_at %> ago<br/>
+	<p>
+		<%= comment.comment %>
+	</p>
+	<%= comment.user.email %>
+</p>
+<% end %>
+
+<h1>New Images</h1>
+<% @images.each do |image| %>
+<p class="imageHolder">
+	<%= link_to image.location.name, image.location %><br/>
+	updated <%= time_ago_in_words image.updated_at %> ago<br/>
+	<%= link_to image_tag(image.img.url(:large)), image.location %>
+</p>
+<% end %>	
+
+

@@ -6,10 +6,10 @@
 <p id="notice"><%= notice %></p>
 
 <div id="content">
-	<h2><%= @location.name %></h2>
-	<p>
-		<%= @location.address_from_components %>
-	</p>
+	<h1><%= @location.name %></h1>
+	<small>
+		<%= @location.address %>
+	</small>
 	
 	<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
 	
