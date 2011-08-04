@@ -1,9 +1,5 @@
-<style type="text/css" media="screen">
-	.col {width:300px;float:left;margin-left:20px;}
-	.imageHolder {margin-bottom:10px;}
-</style>
 
-<div class="col">
+<div>
 	<h2>Recently Updated Locations</h2>
 	<% @recent_locations.each do |location| %>
 	<div>
@@ -13,7 +9,7 @@
 	<% end %>	
 </div>
 
-<div class="col">
+<div>
 	<h2>New Images</h2>
 	<% @images.each do |image| %>
 	<div class="imageHolder">
@@ -24,7 +20,7 @@
 	<% end %>	
 </div>
 
-<div class="col">
+<div>
 	<h2>New Comments</h2>
 	<% @comments.each do |comment| %>
 	<div class="imageHolder">
