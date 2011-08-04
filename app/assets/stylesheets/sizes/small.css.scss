@@ -1,0 +1,12 @@
+/* All styles that get applied on screen sizes smaller than 670 px */
+
+/* This applies to really small devices and screens ( < 480px)
+ * Here we want our content to flows like a waterfall so it can be better
+ * viewed on iphones and other mobile phones.
+ */
+
+@media only screen and (max-width: 670px) {
+  body {
+    color: #f00;
+  }
+}

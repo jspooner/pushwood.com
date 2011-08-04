@@ -1,0 +1,15 @@
+/* All styles that get applied on screen sizes smaller than 830 px */
+
+/* Now we come to the real shit. Responsive Webdesign!
+ * Here define what should happen when the page is viewed
+ * on a small screen or browser window. All these rules
+ * apply as soon as the window size is smaller than 830px
+ * but bigger than 670px (because we add another query for
+ * the real small devices like iphone & blackberry)
+ */
+
+@media only screen and (max-width: 830px) and (min-width: 670px) {
+  body {
+    color: #0f0;
+  }
+}

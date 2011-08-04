@@ -4,7 +4,30 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
 */
 @import "reset_html5boilerplate.css.scss";
+@import "default.scss";
+@import "type.scss";
+@import "forms.scss";
+@import "lists.scss";
+@import "tables.scss";
+
 @import "bourbon/bourbon.scss";
 @import "base.css.scss";
-@import "layout.css.scss";
-@import "locations.css.scss";
+/*@import "layout.css.scss";*/
+/*@import "locations.css.scss";*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

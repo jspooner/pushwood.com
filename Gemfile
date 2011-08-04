@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rake', '~> 0.8.7'
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-1-stable'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :tag => 'v3.1.0.rc5'
 gem 'mysql2'
 gem "newrelic_rpm", "~> 3.1.1.beta1"
 # Rails 3.1 - Asset Pipeline
 gem 'json'
 gem 'sass'
 gem 'uglifier'
-gem "sprockets", "~> 2.0.0.beta.10"
+gem "sprockets", "~> 2.0.0.beta.12"
 gem 'therubyracer' # Google V8 JS engine inside of Ruby. Needed by sprockets.
 
 gem 'jquery-rails'
@@ -22,7 +22,8 @@ gem "paperclip", "~> 2.3"
 
 gem 'hpricot'
 gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
-# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
+
 
 gem 'acts_as_commentable'
 gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
@@ -32,7 +33,10 @@ gem "rabl"
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
 
 gem "rails-backbone"
-gem 'bourbon'
+
+# Styles
+# gem 'bourbon'
+# gem "flutie"
 
 # gem "unicorn", :group => [:production]
 

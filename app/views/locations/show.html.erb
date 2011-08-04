@@ -6,10 +6,15 @@
 <p id="notice"><%= notice %></p>
 
 <div id="content">
-	<h1><%= @location.name %></h1>
+	<h2><%= @location.name %></h2>
 	<p>
 		<%= @location.address_from_components %>
 	</p>
+	
+	<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
+	
+	
+	
 	<%# ratings_for @location, :dimension => :overall %>
 	<div id="imagesHolder">
 	<% @location.images.each do |image| %>
@@ -20,13 +25,13 @@
 		<%= @location.description %>
 	</p>	
 	<% if @location.cd_page %>
-	<h3>Links</h3>
+	<h4>Links</h4>
 	<p>
 		<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
 	</p>
 	<% end %>
 	
-	<h3>Reviews</h3>
+	<h4>Reviews</h4>
 	<ul>
 		<% @location.comments.each do |comment| %>
 			<li><%= comment.comment %></li>
@@ -43,13 +48,13 @@
 	<% else %>
 		Login to comment.
 	<% end %>
-	
-	
 </div>
+
+
+
 <div id="sidebar">
-	<img border="0" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=18&size=300x250&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
 	<%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %>
-	<h3>Nearby Spots</h3>
+	<h4>Nearby Spots</h4>
 	<ul>
 	<% for location in @location.nearbys(20) %>
 	  <li><%= link_to location.name, location %> (<%= location.distance.round(2) %> miles)</li>

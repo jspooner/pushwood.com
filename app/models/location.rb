@@ -109,4 +109,9 @@ class Location < ActiveRecord::Base
     a.to_json
   end
   
+  def description
+    return "No description yet.  Try submitting one." if read_attribute(:description).nil?
+    read_attribute(:description)
+  end
+  
 end

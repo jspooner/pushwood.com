@@ -1,0 +1,19 @@
+/* All styles that get applied on screen sizes smaller than 1000 px */
+/* This includes the iPad. */
+
+/* Now we come to the real shit. Responsive Webdesign!
+ * Here define what should happen when the page is viewed
+ * on a small screen or browser window. All these rules
+ * apply as soon as the window size is smaller than 1000px
+ * but bigger than 830px (because we have two other size
+ * queries for smaller devices)
+ * The primary target for this layout is half the width of
+ * a 1080p display, such as when a Win7 user docks their
+ * browser to one side of their monitor.
+ */
+
+@media only screen and (max-width: 1000px) and (min-width: 830px) {
+  body {
+    color: #00f;
+  }
+}

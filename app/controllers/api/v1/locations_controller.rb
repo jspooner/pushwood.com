@@ -43,7 +43,7 @@ class Api::V1::LocationsController < ApplicationController
     #   t[:name].matches("%#{params[:name]}%")
     # )
     
-    @locations = Location.where("city LIKE ? or city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
+    @locations = Location.where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
     
     # @locations = Location.where("city LIKE ?", "%#{params[:name]}%").
     #                       where("state LIKE ?", "%#{params[:name]}%").
