@@ -5,8 +5,11 @@ attributes :lng, :lat, :bearing, :googlemapurl, :distance
 attributes :pads_required, :is_outdoors, :has_concrete, :has_wood, :has_lights, :is_free
 
 code :thumbnail do |m|
-  "http://maps.google.com/maps/api/staticmap?center=#{m.lat},#{m.lng}&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|#{m.lat},#{m.lng}&sensor=false"
-  # "http://#{request.env['HTTP_HOST']}" + m.images.first.img.url(:iosThumbnail)
+  if m.images.empty?
+    "http://maps.google.com/maps/api/staticmap?center=#{m.lat},#{m.lng}&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|#{m.lat},#{m.lng}&sensor=false"
+  else
+    "http://#{request.env['HTTP_HOST']}" + m.images.last.img.url(:iosThumbnail)
+  end
 end
 
 code :id do |m|
