@@ -18,4 +18,5 @@ end
 code :rate_average do |m|
   m.rate_average
 end
-node(:distance) { |val| (val)? "1":"0" }
+code(:distance) { |val| (val)? "1":"0" }
+code(:image_count) { |m| m.images.count }
