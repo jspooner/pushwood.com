@@ -1,7 +1,7 @@
 body[data-controller=locations] {
   
   #locations {width:300px;overflow:auto;float:left;}
-  #map_canvas {width:1000px;height:600px;position:absolute;left:300px;}
+  #map_canvas {width:600px;height:600px;float:left;}
 
   .new_location {display:block;margin:5px;}
   .location_item {padding:8px 5px;}

@@ -53,7 +53,10 @@
 
 
 <div id="sidebar">
+
+	<% if current_user && current_user.email == "jspooner@gmail.com" %>
 	<%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %>
+	<% end %>
 	<h4>Nearby Spots</h4>
 	<ul>
 	<% for location in @location.nearbys(20) %>

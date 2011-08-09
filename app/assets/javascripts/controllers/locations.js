@@ -199,13 +199,13 @@ PW.controllers.locations = {
 			},
 			handle_resize: function(mapView)
 			{
-				console.log("handle_resize", this); // DOMWindow VS. MapView
-				var rWidth = $(window).width() - $("#location_list").width();
+				// console.log("handle_resize", this); // DOMWindow VS. MapView
+				var rWidth = 600;//$(window).width() - $("#location_list").width();
 				var rHeight = $(window).height() - $("#location_list").position()['top'] + 10;
-				this.el.width(rWidth);
-				this.el.height(rHeight);
-				$("#locations").height(rHeight);
-				console.log("handle_resize", rWidth );
+				// this.el.width(rWidth);
+				// this.el.height(rHeight);
+			  $("#locations").height(rHeight);
+				// console.log("handle_resize", rWidth );
 			},
 			reload_locations :function()
 			{
