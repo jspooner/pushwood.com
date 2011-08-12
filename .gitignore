@@ -1,7 +1,9 @@
 .svn
-log/*.log
+log/*
 tmp/*
+tmp/**/*
 public/assets/*
 .sass-cache/*
 public/system
-**/**/DS_Store
+**.DS_Store
+
