@@ -1,5 +1,14 @@
 
 
+<h1>Near You</h1>
+<% @near.each do |location| %>
+<o>
+	<strong><%= link_to location.name, location %></strong>
+	<small>updated: <%= time_ago_in_words location.updated_at %></small><br/>
+	<%= location.address %>
+</p>
+<% end %>	
+
 <h1>Recently Updated Locations</h1>
 <% @recent_locations.each do |location| %>
 <o>

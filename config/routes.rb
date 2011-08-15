@@ -42,6 +42,7 @@ Woodhack::Application.routes.draw do
   resources :tricks
 
   get "welcome/index"
+  get "support", :to => "welcome#support"
 
   root :to => "welcome#index"
 
