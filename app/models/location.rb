@@ -7,7 +7,9 @@ class Location < ActiveRecord::Base
   # validates_uniqueness_of :name
   has_many :images, :dependent => :destroy#, :order => "position"
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
-    
+  
+  validates_presence_of :name
+  
   geocoded_by :address_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first

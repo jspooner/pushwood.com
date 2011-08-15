@@ -27,8 +27,8 @@
 		<div id="header">
 			<p>
 			<%= link_to 'pushwood.com', root_path %> |
-			<%= link_to 'locations', locations_path %> |
 			<% if current_user %>
+			<%= link_to 'locations', locations_path %> |
 			<%= link_to 'logout', destroy_user_session_path %> | 
 			<%= link_to 'invite', new_user_invitation_path %> |
 			<% else %>

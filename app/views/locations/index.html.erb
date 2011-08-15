@@ -8,7 +8,9 @@
 
 <div id="locationapp">
 	<div id="locations">
+		<% if current_user %>
 		<%= link_to 'New Location', new_location_path, :class => "new_location" %>		
+		<% end %>
 		<div id="location_list"></div>
 	</div>
 	<div id="map_canvas"></div>	
