@@ -110,8 +110,18 @@ class Location < ActiveRecord::Base
   end
   
   def description
-    return "No description yet.  Try submitting one." if read_attribute(:description).nil?
+    return "No description yet.  Please submit one." if read_attribute(:description).nil? or read_attribute(:description).empty?
     read_attribute(:description)
   end
+  
+  def to_param
+    return "#{id}-#{name.parameterize}" if name
+    # return "#{id}-#{name.parameterize}" if name
+    id
+  end
+  # def to_param
+  #   return "#{id}/#{name.parameterize}" if name
+  #   id
+  # end
   
 end

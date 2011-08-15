@@ -11,8 +11,9 @@
 	      Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pushwood skatepark locator and iPhone app." %>"> 
+		<meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "Skateboard, skateboarding, skatespot, skate, skatepark, skate park, halfpipe, miniramp, street course, iPhone, iPhone App" %>">
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->

@@ -1,5 +1,8 @@
 <% content_for :title do %>
-<%= @location.name %> - Skatepark Locator
+<%= @location.name %> - <%= @location.address %> - Skatepark Locator App
+<% end %>
+<% content_for :description do %>
+<%= @location.description %>
 <% end %>
 
 

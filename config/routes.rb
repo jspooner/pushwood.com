@@ -31,6 +31,7 @@ Woodhack::Application.routes.draw do
   end
   
 
+  # resources :locations, :id => /[0-9]+\/.+/ do
   resources :locations do
     get 'images'
     resources :comments
