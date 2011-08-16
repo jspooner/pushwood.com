@@ -69,7 +69,7 @@ class Location < ActiveRecord::Base
   # end
   
   def googlemapurl
-    "http://maps.google.com/maps?ll=#{lat},#{lng}&z=21&t=h"
+    "http://maps.google.com/maps?q=#{lat},#{lng}&z=19&t=h"
   end
   
   def bounding_box
