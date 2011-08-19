@@ -2,5 +2,6 @@
 PW.controllers.common = {
   init: function() {
     // application-wide code
+
   }
 };

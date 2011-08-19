@@ -10,9 +10,11 @@
 
 <div id="content">
 	<h1><%= @location.name %></h1>
-	<small>
+	<p><g:plusone></g:plusone></p>
+	<p><small>
 		<%= @location.address %>
-	</small>
+	</small></p>
+
 	
 	<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
 	
@@ -27,7 +29,7 @@
 	<p>
 		<%= @location.description %>
 	</p>	
-	<% if @location.cd_page %>
+	<% if @location.cd_page and current_user %>
 	<h4>Links</h4>
 	<p>
 		<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
@@ -71,5 +73,13 @@
 
 
 
+<!--  Place this tag after the last plusone tag -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 
 
