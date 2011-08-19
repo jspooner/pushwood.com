@@ -40,7 +40,7 @@ Woodhack::Application.configure do
   ActionMailer::Base.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :user_name            => "jspooner@example.com",
+      :user_name            => "jspooner@pushwood.com",
       :password             => 'Sn0wf1sh!',
       :authentication       => "plain",
       :enable_starttls_auto => true
