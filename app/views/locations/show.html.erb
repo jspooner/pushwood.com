@@ -15,7 +15,9 @@
 		<ul class="clearfix">
 			<li><a href="#map"><button class="minimal">Map</button></a></li>
 			<li><a href="#info"><button class="minimal">Info</button></a></li>
+			<% unless @location.images.empty? %>
 			<li><a href="#photos"><button class="minimal">Photos</button></a></li>
+			<% end %>
 			<li><a href="#reviews"><button class="minimal">Reviews</button></a></li>
 		</ul>
 	</div>
@@ -42,14 +44,17 @@
 		<% end %>
 	</div>
 	
+	<% unless @location.images.empty? %>
 	<div id="photos" class="cont">
+		<h4>Photos</h4>
 		<% @location.images.each do |image| %>
 			<a href="<%= image.img.url(:xlarge) %>" rel="imageGroup" class="gridImage"><%= image_tag image.img.url(:large_sq), %></a>
 		<% end %>
 	</div>
-	
+	<% end %>	
 	
 	<div id="reviews" class="cont">
+		<h4>Reviews</h4>
 		<ul>
 			<% @location.comments.each do |comment| %>
 				<li><%= comment.comment %></li>
@@ -63,9 +68,8 @@
 			  <%= f.text_area :comment %> <br/>
 			  <%= f.submit "Post Comment" %> 
 			<% end %>
-		<% else %>
-			Login to comment.
-		<% end %>		
+		<% end %>	
+		<fb:comments href="pushwood.com" num_posts="5" width="528"></fb:comments>	
 	</div>
 	
 	
