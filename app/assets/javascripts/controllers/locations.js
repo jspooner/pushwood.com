@@ -24,7 +24,39 @@ PW.controllers.locations = {
   },
 	
 	show: function() {
+		// Init slideshow
 		$("a[rel='imageGroup']").colorbox({slideshow:true});
+		
+		initialize = function() {
+			var geo = $("#geo");
+			var myLatlng = new google.maps.LatLng(geo.attr("lat"), geo.attr("lng"));
+		  var myOptions = {
+		    zoom: 21,
+		    center: myLatlng,
+		    mapTypeId: google.maps.MapTypeId.HYBRID,
+				mapTypeControlOptions: {
+				        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+				        position: google.maps.ControlPosition.RIGHT_BOTTOM
+				    }
+		  }
+		  var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		
+			var marker = new google.maps.Marker({
+			        position: myLatlng, 
+			        map: map,
+			        title:"Hello World!"
+			    });
+				
+		}
+	
+		function loadScript() {
+		  var script = document.createElement("script");
+		  script.type = "text/javascript";
+		  script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+		  document.body.appendChild(script);
+		}
+
+		window.onload = loadScript;
 	},
 	
   /**

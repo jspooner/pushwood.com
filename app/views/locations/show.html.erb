@@ -24,12 +24,14 @@
 	
 
 	<div id="map" class="cont">
-		<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">		
 	</div>
 
 	<div id="info" class="cont">
 		<p>
 			<strong>Address:</strong> <%= @location.address %><br>
+			<span style="display:none" id="geo" lat="<%= @location.lat %>" lng="<%= @location.lng %>"></span>
+			<span style="display:none" id="lat"><%= @location.lat %></span>
+			<span style="display:none" id="lng"><%= @location.lng %></span>
 			<strong>Has Lights:</strong> <%= (@location.has_lights?) ? "Yes" : "No" %><br>
 			<strong>Videos:</strong> <%= link_to "YouTube", "http://www.youtube.com/results?search_query=#{@location.name}&aq=f" %>
 		</p>
@@ -79,11 +81,7 @@
 
 
 <div id="sidebar">
-	<h3>Info</h3>
-	<div class="cont">
-		<strong>Address:</strong> <%= @location.address %>
-	</div>
-	
+
 	<h3>Share</h3>
 	<div class="cont">
 		<fb:like href="<%= location_url(@location) %>" send="true" width="450" show_faces="true" action="like" font=""></fb:like>
