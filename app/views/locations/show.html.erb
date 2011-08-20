@@ -31,6 +31,7 @@
 		<p>
 			<strong>Address:</strong> <%= @location.address %><br>
 			<strong>Has Lights:</strong> <%= (@location.has_lights?) ? "Yes" : "No" %><br>
+			<strong>Videos:</strong> <%= link_to "YouTube", "http://www.youtube.com/results?search_query=#{@location.name}&aq=f" %>
 		</p>
 		<p>
 			<strong>Description</strong><br>
@@ -45,7 +46,7 @@
 	</div>
 	
 	<% unless @location.images.empty? %>
-	<div id="photos" class="cont">
+	<div id="photos" class="cont clearfix">
 		<h4>Photos</h4>
 		<% @location.images.each do |image| %>
 			<a href="<%= image.img.url(:xlarge) %>" rel="imageGroup" class="gridImage"><%= image_tag image.img.url(:large_sq), %></a>
@@ -69,7 +70,7 @@
 			  <%= f.submit "Post Comment" %> 
 			<% end %>
 		<% end %>	
-		<fb:comments href="pushwood.com" num_posts="5" width="528"></fb:comments>	
+		<fb:comments href="<%= location_url(@location) %>" num_posts="5" width="528"></fb:comments>	
 	</div>
 	
 	
