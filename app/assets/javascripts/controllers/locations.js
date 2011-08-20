@@ -22,7 +22,11 @@ PW.controllers.locations = {
 		});
 		// END INIT
   },
-
+	
+	show: function() {
+		$("a[rel='imageGroup']").colorbox({slideshow:true});
+	},
+	
   /**
 	* 
 	**/
@@ -43,58 +47,6 @@ PW.controllers.locations = {
 		}		
 					
 		
-		// google.maps.event.addListener(map, 'idle', function() {
-		// 	
-		// 	var bounds = map.getBounds();
-		// 	$.getJSON('/api/v1/locations.json?bounding_box='+bounds.toUrlValue(), function(data) {
-		// 		// remove
-		// 	  $("#location_list").empty();
-		// 	  if (markersArray) {
-		// 	    for (i in markersArray) {
-		// 	      markersArray[i].setMap(null);
-		// 	    }
-		// 	    markersArray.length = 0;
-		// 	  }
-		// 		
-		// 		// add
-		// 		for (var i=0; i < data.length; i++) {
-		// 			var marker = new google.maps.Marker({ map: map,	draggable: true, title:data[i]['location']['name'], position: new google.maps.LatLng(data[i]['location']['lat'], data[i]['location']['lng']) });
-		// 			marker.setIcon( iconFor(i) );
-		// 			
-		// 			function foo(map,marker,location) {
-		// 				var contentString = '<div id="content">'+
-		// 				    '<div id="siteNotice">'+
-		// 				    '</div>'+
-		// 				    '<h1 id="firstHeading" class="firstHeading">'+location['name']+'</h1>'+
-		// 				    '<div id="bodyContent">'+
-		// 				    '<p>' + location['street'] +
-		// 				    '</p>'+
-		// 				    '</div>'+
-		// 				    '</div>';
-		// 				var infowindow = new google.maps.InfoWindow({content:contentString, disableAutoPan:true});
-		// 				google.maps.event.addListener(marker, 'click', function() {
-		// 				  infowindow.open(map,marker);
-		// 				});
-		// 			}
-		// 			foo(map,marker,data[i]['location']);
-		// 			
-		// 			markersArray.push(marker);
-		// 			$("#location_list").append( 
-		// 				listItem(
-		// 					iconFor(i),
-		// 					data[i]['location']['name'], 
-		// 					data[i]['location']['street'], 
-		// 					data[i]['location']['phone'],
-		// 					"locations/" + data[i]['location']['id']
-		// 				 ) );
-		// 		};
-		// 						
-		// 	});
-		// 	
-		// 	  });
-		// 
-		// Try W3C Geolocation (Preferred)
-
 		// End Map
 		/**
 		* Location <li> View

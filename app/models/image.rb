@@ -11,6 +11,7 @@ class Image < ActiveRecord::Base
                       :thumbnail => ["320>280<x320", :jpg],
                       :xlarge => ["800x598>",:jpg],
                       :large => ["300x224>",:jpg],
+                      :large_sq => ["262x149>",:jpg],
                       :medium => ["200x149>",:jpg],
                       :tiny => ["100x75>",:jpg]
                     }

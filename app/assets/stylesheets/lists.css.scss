@@ -6,7 +6,7 @@ ul, ol {
 }
 
 ul {
-  list-style-type: disc;
+  list-style-type: none;
 }
 
 ol {
@@ -34,6 +34,8 @@ dd {
 li {
   line-height: 1.4;
 }
+
+li a {text-decoration:none;}
 
 ol ol, ol ul, ul ul, ul ol {
   margin-left: 12px;

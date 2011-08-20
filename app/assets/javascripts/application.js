@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.colorbox
 //= require libs/rails
 //
 //= require libs/json2

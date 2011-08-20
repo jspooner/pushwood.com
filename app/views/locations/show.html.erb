@@ -9,72 +9,99 @@
 <p id="notice"><%= notice %></p>
 
 <div id="content">
-	<h1><%= @location.name %></h1>
-	<p><small>
-		<%= @location.address %>
-	</small></p>
-
-	
-	<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">	
-	
-	
-	
-	<%# ratings_for @location, :dimension => :overall %>
-	<div id="imagesHolder">
-	<% @location.images.each do |image| %>
-		<%= image_tag image.img.url(:large) %>
-	<% end %>
+	<h2><%= @location.name %></h2>
+		
+	<div id="pageAnchors">
+		<ul class="clearfix">
+			<li><a href="#map"><button class="minimal">Map</button></a></li>
+			<li><a href="#info"><button class="minimal">Info</button></a></li>
+			<li><a href="#photos"><button class="minimal">Photos</button></a></li>
+			<li><a href="#reviews"><button class="minimal">Reviews</button></a></li>
+		</ul>
 	</div>
-	<p>
-		<%= @location.description %>
-	</p>	
-	<% if @location.cd_page and current_user %>
-	<h4>Links</h4>
-	<p>
-		<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
-	</p>
-	<% end %>
 	
-	<h4>Reviews</h4>
-	<ul>
-		<% @location.comments.each do |comment| %>
-			<li><%= comment.comment %></li>
+
+	<div id="map" class="cont">
+		<img border="0" id="skatespotMap" src="http://maps.google.com/maps/api/staticmap?center=<%= @location.lat %>,<%= @location.lng %>&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|<%= @location.lat %>,<%= @location.lng %>&sensor=false" alt="<%= @location.name %>">		
+	</div>
+
+	<div id="info" class="cont">
+		<p>
+			<strong>Address:</strong> <%= @location.address %><br>
+			<strong>Has Lights:</strong> <%= (@location.has_lights?) ? "Yes" : "No" %><br>
+		</p>
+		<p>
+			<strong>Description</strong><br>
+			<%= @location.description %>
+		</p>
+		<% if @location.cd_page and current_user %>
+		<h4>Links</h4>
+		<p>
+			<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
+		</p>
 		<% end %>
-	</ul>
-	<% if current_user %>
-		<%= form_for([@location, Comment.new]) do|f| %> 
-		  <%= f.hidden_field :commentable_id, :value => @location.id %>
-		  <%= f.hidden_field :commentable_type, :value => 'Location' %> 
-		  <%= f.label :comment, "Write a review" %><br /> 
-		  <%= f.text_area :comment %> <br/>
-		  <%= f.submit "Post Comment" %> 
+	</div>
+	
+	<div id="photos" class="cont">
+		<% @location.images.each do |image| %>
+			<a href="<%= image.img.url(:xlarge) %>" rel="imageGroup" class="gridImage"><%= image_tag image.img.url(:large_sq), %></a>
 		<% end %>
-	<% else %>
-		Login to comment.
-	<% end %>
+	</div>
+	
+	
+	<div id="reviews" class="cont">
+		<ul>
+			<% @location.comments.each do |comment| %>
+				<li><%= comment.comment %></li>
+			<% end %>
+		</ul>
+		<% if current_user %>
+			<%= form_for([@location, Comment.new]) do|f| %> 
+			  <%= f.hidden_field :commentable_id, :value => @location.id %>
+			  <%= f.hidden_field :commentable_type, :value => 'Location' %> 
+			  <%= f.label :comment, "Write a review" %><br /> 
+			  <%= f.text_area :comment %> <br/>
+			  <%= f.submit "Post Comment" %> 
+			<% end %>
+		<% else %>
+			Login to comment.
+		<% end %>		
+	</div>
+	
+	
 </div>
 
 
 
 <div id="sidebar">
-	<div>
+	<h3>Info</h3>
+	<div class="cont">
+		<strong>Address:</strong> <%= @location.address %>
+	</div>
+	
+	<h3>Share</h3>
+	<div class="cont">
 		<fb:like href="<%= location_url(@location) %>" send="true" width="450" show_faces="true" action="like" font=""></fb:like>
 	</div>	
-	<div><g:plusone></g:plusone></div>
-	<div>
+	<div class="cont">
+		<g:plusone></g:plusone>
+	</div>
+	<div class="cont">
 		<iframe allowtransparency="true" frameborder="0" scrolling="no"
 		        src="http://platform.twitter.com/widgets/tweet_button.html"
-		        style="width:130px; height:50px;"></iframe>
+		        style="width:130px; height:20px;"></iframe>
 	</div>
 	<% if current_user && current_user.email == "jspooner@gmail.com" %>
-	<%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %>
+	<div class="cont"><%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %></div>
 	<% end %>
-	<h4>Nearby Spots</h4>
-	<ul>
-	<% for location in @location.nearbys(20) %>
-	  <li><%= link_to location.name, location %> (<%= location.distance.round(2) %> miles)</li>
-	<% end %>
-	</ul>
+	<div class="cont">
+		<h3>Nearby Spots</h3>
+		<ul>
+		<% for location in @location.nearbys(20) %>
+		  <li><%= link_to location.name, location %> (<%= location.distance.round(2) %> miles)</li>
+		<% end %>
+		</ul>		
+	</div>
 </div>
 
 

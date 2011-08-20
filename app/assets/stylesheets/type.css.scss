@@ -1,9 +1,44 @@
+/*	Typography presets
+	------------------	*/
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+ul, ol { margin-bottom: 12px; }	
+
+.gigantic {
+	font-size: 110px;
+	line-height: 120px;
+	letter-spacing: -2px;
 }
 
-h1 {
+.huge, h1 {
+	font-size: 68px;
+	line-height: 72px;
+	letter-spacing: -1px;
+}
+
+.large, h2 {
+	font-size: 42px;
+	line-height: 48px;
+}
+
+.bigger, h3 {
+	font-size: 26px;
+	line-height: 36px;
+}
+
+.big, h4 {
+	font-size: 22px;
+	line-height: 30px;
+}
+
+.small, small {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+
+/*h1 {
   font-size: 28px;
   line-height: 1.2;
   margin-bottom: 12px;
@@ -35,7 +70,7 @@ h5 {
 h6 {
   font-size: 12px;
   margin-bottom: 4px;
-}
+}*/
 
 /* Text elements */
 p {
@@ -68,7 +103,6 @@ del {
 
 a, a:link {
   color: #1a4882;
-  text-decoration: underline;
 }
 
 a:visited {

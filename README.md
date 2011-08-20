@@ -16,3 +16,4 @@ http://pmt.sourceforge.net/pngcrush/
 
 
 
+scp -r deploy@ec2-107-20-242-3.compute-1.amazonaws.com:/data/pushwoodcom/shared/system/ .

@@ -40,45 +40,6 @@ footer, header, nav, section, audio, video {
 a img {border: 0;}
 
 
-
-/*	Typography presets
-	------------------	*/
-p { margin-bottom: 18px; }
-ul, ol { margin-bottom: 18px; }	
-
-.gigantic {
-	font-size: 123px;
-	line-height: 132px;
-	letter-spacing: -2px;
-}
-
-.huge, h1 {
-	font-size: 24px; 
-  line-height: 36px;
-  margin-bottom: 18px;
-}
-
-.large, h2 {
-	font-size: 18px; 
-  line-height: 18px; 
-  margin-bottom: 18px;
-}
-
-.bigger, h3 {
-	font-size: 12px; 
-  line-height: 18px;
-}
-
-.big, h4 {
-	font-size: 12px; 
-  line-height: 18px;
-}
-
-.small, small {
-	font-size: 13px;
-	line-height: 18px;
-}
-
 /* Selection colours (easy to forget) */
 
 ::selection 	 	{background: rgb(0,147,147);}
@@ -131,9 +92,7 @@ body {
   // end sticky footer
 }
 
-#main {
-  
-}
+.cont {margin:8px 0 10px 0;}
 
 /*Opera Fix*/
 body:before {/* thanks to Maleika (Kohoutec)*/
@@ -161,6 +120,7 @@ body {
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
 }
 #content {width:528px;float:left;margin:0;padding:0;}
+	#imagesHolder img {margin:0;padding:0}
 #sidebar {width:344px;float:left;margin:0;padding:0 0 0 24px;}
 
 

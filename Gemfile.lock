@@ -243,7 +243,7 @@ DEPENDENCIES
   rake (~> 0.8.7)
   rspec-rails (~> 2.4)
   sass
-  sprockets (~> 2.0.0.beta.12)
+  sprockets (~> 2.0.0.beta.10)
   therubyracer
   uglifier
   will_paginate!
