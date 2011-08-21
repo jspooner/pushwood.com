@@ -37,7 +37,7 @@
 		</p>
 		<p>
 			<strong>Description</strong><br>
-			<%= @location.description %>
+			<%= @location.description.html_safe %>
 		</p>
 		<% if @location.cd_page and current_user %>
 		<h4>Links</h4>
