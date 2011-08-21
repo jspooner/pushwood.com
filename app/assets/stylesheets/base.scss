@@ -74,8 +74,9 @@ body {
 	// end sticky footer
 }
 
-
-#header { border-bottom: 1px solid #bbb; margin-bottom:18px }
+html {background:url(/images/header-bkg.png) repeat-x top left rgb(250,250,250);}
+#header { color:rgb(200,200,200); height:35px; padding-top:5px; margin-bottom:18px; }
+#header a {color:rgb(250,250,250); text-decoration:none}
 #header p {margin:5px 0 5px 5px}
 
 #footer {
@@ -115,7 +116,7 @@ body {
 	width: 896px;
 	padding: 0 48px 84px 0;
 	margin:0 auto;	
-	background: rgb(250,250,250);
+	background: url(/images/header-bkg.png) repeat-x top left rgb(250,250,250);
 	color: rgb(60,60,60);
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
 }
