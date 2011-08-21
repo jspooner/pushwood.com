@@ -5,5 +5,6 @@ tmp/**/*
 public/assets/*
 .sass-cache/*
 public/system
+public/.DS_Store
 **.DS_Store
 
