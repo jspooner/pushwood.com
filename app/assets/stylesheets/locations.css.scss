@@ -2,7 +2,7 @@
 body[data-controller=locations] {
 
   #locations {width:300px;overflow:auto;float:left;}
-  #map_canvas {width:600px;height:600px;float:left;}
+  #map_canvas {width:596px;height:600px;float:left;}
 	
 	#map {width:528px;height:400px}
 	
@@ -23,9 +23,7 @@ body[data-controller=locations] {
 	a.gridImage {display:block;width:262px;float:left;margin:0 1px 2px 1px;background:#ccc}
 	a.gridImage img {display:block;margin:auto;}
 	
-/*  #content {float:left;width:700px;padding-left:10px;}
-  #sidebar {float:left;width:320px;margin-left:10px;}
-*/  #sidebar h3 {margin-top:10px;}
+  #sidebar h3 {margin-top:10px;}
   
   /* show */
   a#editBtn {
@@ -47,6 +45,7 @@ body[data-controller=locations] {
   /* new edit */
   
   form.new_location, form.edit_location {
+	width:100%;
     h2 {
       margin:10px 0;
       border-bottom:2px solid #555;

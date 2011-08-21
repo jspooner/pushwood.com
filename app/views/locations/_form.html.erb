@@ -5,7 +5,7 @@
 
 <div id="content">
 	<% if @location.new_record? %>
-		<h1>New Skate Spot</h1>
+		<h2>New Skate Spot</h2>
 	<% else %>
 		<h1>Editing <%= @location.name %></h1>
 	<% end %>
@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-	<h2>Details</h2>
+	<h3>Details</h3>
 	<div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>

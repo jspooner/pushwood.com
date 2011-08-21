@@ -171,7 +171,6 @@ PW.controllers.locations = {
 				
 				this.map = map; 
 				google.maps.event.addListener(map, "dragend", this.reload_locations);
-				// google.maps.event.addListener(map, "bounds_changed", this.reload_locations);
 				this.render();
 				// END INITIALIZE
 			},
@@ -187,7 +186,7 @@ PW.controllers.locations = {
 				var rWidth = 600;//$(window).width() - $("#location_list").width();
 				var rHeight = $(window).height() - $("#location_list").position()['top'] + 10;
 				// this.el.width(rWidth);
-				// this.el.height(rHeight);
+				this.el.height(rHeight);
 			  $("#locations").height(rHeight);
 				// console.log("handle_resize", rWidth );
 			},
@@ -195,6 +194,12 @@ PW.controllers.locations = {
 			{
 				console.log("r", this.map );
 				var b = this.map.getBounds();
+				if (b==null) 
+				{
+					var that = this;
+					setTimeout(function() {that.reload_locations()}, 1000);
+					return;
+				};
 				var sw = [b.getSouthWest().lat(), b.getSouthWest().lng()];
 				var ne = [b.getNorthEast().lat(), b.getNorthEast().lng()];
 				var q = [sw,ne];
@@ -246,6 +251,8 @@ PW.controllers.locations = {
 			{
 				console.log("AppView render");
 				this.mapView = new MapView();
+				this.mapView.reload_locations();
+
 				return this;
 			},
 			handle_mapInit: function()
@@ -254,7 +261,7 @@ PW.controllers.locations = {
 		});
 		window.Locations = new LocationList; // add bounds
 		window.App       = new AppView;			
-
+		
 		
 		
 		
