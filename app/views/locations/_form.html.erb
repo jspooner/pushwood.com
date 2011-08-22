@@ -99,19 +99,7 @@
 		</ul>		
 		<%= link_to_add_fields("Add Image", f, :images) %>
 	</div>
-	<% unless @location.new_record? %>
-	<div id="name">
-		<h3>Are you the owner?</h3>
-		<p>Claim your park and make it easier for people to find.
-		Update your listing with photos, videos, and more.
-		Learn how many people have viewed your park.</p>
-	</div>
-	
-	<div id="name">
-		<h3>Have a problem that can't be edited?</h3>
-		<p>Just drop me an email at <a href="mailto:jspooner@pushwood.com?subject=Fix <%= @location.id %>&body=http://pushwood.com/locations/<%= @location.id %>">jspooner@pushwood.com</a>.</p>
-	</div>
-	<% end %>
+
 </div>
 
 

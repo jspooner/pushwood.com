@@ -44,6 +44,7 @@ Woodhack::Application.routes.draw do
 
   get "welcome/index"
   get "support", :to => "welcome#support"
+  get "terms_of_service", :to => "welcome#terms_of_service"
 
   root :to => "welcome#index"
 

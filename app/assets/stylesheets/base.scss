@@ -78,6 +78,7 @@ html {background:url(/images/header-bkg.png) repeat-x top left rgb(250,250,250);
 #header { color:rgb(200,200,200); height:35px; padding-top:5px; margin-bottom:18px; }
 #header a {color:rgb(250,250,250); text-decoration:none}
 #header p {margin:5px 0 5px 5px}
+#header span {float:right}
 
 #footer {
   border-top: 1px solid #bbb;
@@ -194,11 +195,11 @@ px      68    160    252    344    436    */
 	device-pixel-ratio of 2+, such as iPhone 4.
 -----------------------------------------------    */
 
-@media 
+/*@media 
 	only screen and (-webkit-min-device-pixel-ratio: 2),
 	only screen and (min-device-pixel-ratio: 2) {
 	
 	body {
 	}
 	
-}
+}*/

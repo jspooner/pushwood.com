@@ -27,17 +27,22 @@
 		<div id="header">
 			<p>
 			<%= link_to 'pushwood.com', root_path %> |
-			<%= link_to 'skateparks', locations_path %> |
-			<% if current_user %>
-			<%= link_to 'logout', destroy_user_session_path %> | 
-			<%= link_to 'invite', new_user_invitation_path %> |
-			<% else %>
-			<%= link_to 'login', new_user_session_path %> 
-			<% end %>
+			<%= link_to 'skateparks', locations_path %>
+			<span>
+				<% if current_user %>
+				<%= link_to 'invite', new_user_invitation_path %> | 
+				<%= link_to 'logout', destroy_user_session_path %>
+				<% else %>
+				|  <%= link_to 'login', new_user_session_path %> 
+				<% end %>				
+			</span>
 			</p>
 		</div>
 		<div>
 				<%= yield %>
+		</div>
+		<div id="footer">
+			<%= link_to "terms of service", terms_of_service_path %>
 		</div>
 	</div>
 	  

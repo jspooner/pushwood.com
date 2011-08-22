@@ -7,4 +7,7 @@ class WelcomeController < ApplicationController
   end
   def support
   end
+  def terms_of_service
+    
+  end
 end
