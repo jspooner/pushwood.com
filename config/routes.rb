@@ -36,7 +36,8 @@ Woodhack::Application.routes.draw do
     get 'images'
     resources :comments
     member do
-      get 'rate'
+      # get 'rate'
+      post 'rate'
     end
   end
 

@@ -26,7 +26,12 @@ PW.controllers.locations = {
 	show: function() {
 		// Init slideshow
 		$("a[rel='imageGroup']").colorbox({slideshow:true});
-		
+		// Init rating form
+		$('a').live('ajax:complete', function(xhr, status) {
+			$("#ratingDisplay").replaceWith(status.responseText);
+			// $("#ratingDisplay span").effect("highlight", {}, 3000);
+		});
+		// Global callback function for google maps api.
 		initialize = function() {
 			var geo = $("#geo");
 			var myLatlng = new google.maps.LatLng(geo.attr("lat"), geo.attr("lng"));
@@ -48,14 +53,13 @@ PW.controllers.locations = {
 			    });
 				
 		}
-	
+		// Load the google maps api
 		function loadScript() {
 		  var script = document.createElement("script");
 		  script.type = "text/javascript";
 		  script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
 		  document.body.appendChild(script);
 		}
-
 		window.onload = loadScript;
 	},
 	

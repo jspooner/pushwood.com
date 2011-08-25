@@ -1,0 +1,5 @@
+<div id="ratingDisplay">
+<span>  Total Ratings: <%= @location.total_rates %>
+  Average Rating: <%= @location.rate_average %>
+</span>  <%= ratings_for @location, current_user %>  
+</div>

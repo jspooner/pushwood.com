@@ -133,12 +133,15 @@ class LocationsController < ApplicationController
     end
   end
   
+  # POST
   def rate
     @location = Location.find(params[:id])
-    @location.rate(params[:stars], current_user, params[:dimension])
-    render :update do |page|
-      page.replace_html @location.wrapper_dom_id(params), ratings_for(@location, params.merge(:wrap => false))
-      page.visual_effect :highlight, @location.wrapper_dom_id(params)
+    respond_to do |format|
+      if @location.rate(params[:stars], current_user, params[:dimension])
+        format.js { render :partial => "rating" }
+      else
+        format.js { render :partial => "rating" }
+      end
     end
   end
    
