@@ -32,16 +32,22 @@ class Api::V1::LocationsController < ApplicationController
   end
   
   def search
-    @locations = Location.near( [params[:lat], params[:long]], 100).where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
-
+    lat  = params[:lat].to_i
+    long = params[:long].to_i
+    @locations = Location.near( [lat,long], 100).where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
+    # # Rails.logger.info { "----------  locations #{@locations}" }
     if @locations.empty?
       Rails.logger.info { "Doing second location search" }
-      @locations = Location.near( [params[:lat], params[:long]], 3000).where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
+      @locations = Location.near( [lat,long], 3000).where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
     end
-    
+
     if @locations.empty?
       Rails.logger.info { "Doing third location search" }
-      # @locations = Location.where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")      
+      @locations = Location.near(params[:name])
+    end
+
+    if @locations.empty?
+      Rails.logger.info { "Doing fourth location search" }
       @locations = Location.where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")      
     end
 

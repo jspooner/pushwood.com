@@ -2,17 +2,9 @@ Woodhack::Application.routes.draw do
   
   resources :cd_pages
   
-  # match 'geo/search' => 'geo#search' 
-  # match 'geo/ios/1/search' => 'geo#ios_search' 
-  
-  # match 'api/v1/geo/search'
-  # # match 'api/v1/geo/cities' states, etc...
-  # match 'api/v1/locations/search'
 
   namespace :api do
     namespace :v1 do
-      # Directs /admin/products/* to Admin::ProductsController
-      # (app/controllers/admin/products_controller.rb)
       resources :locations do
         collection do
           get 'countries' 
