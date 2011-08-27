@@ -109,8 +109,8 @@
 	<div class="cont">
 		<h3>Nearby Spots</h3>
 		<ul>
-		<% for location in @location.nearbys(20) %>
-		  <li><%= link_to location.name, location %> (<%= location.distance.round(2) %> miles)</li>
+		<% for location in @location.nearbys(20).sort { |a,b| a.distance.round(2) <=> b.distance.round(2)  } %>
+		  <li><%= link_to location.name, location %> <em><%= location.distance.round(2) %> miles</em></li>
 		<% end %>
 		</ul>		
 	</div>
