@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
   # protect_from_forgery :except => [:update, :create]
   skip_before_filter :verify_authenticity_token
   
+  authorize_resource
+  
   def countries
     @countries = Location.select("DISTINCT country").collect { |i| i.country }.compact!.sort
     respond_to do |format|

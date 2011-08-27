@@ -97,7 +97,7 @@
 		        src="http://platform.twitter.com/widgets/tweet_button.html"
 		        style="width:130px; height:20px;"></iframe>
 	</div>
-	<% if current_user && current_user.email == "jspooner@gmail.com" %>
+	<% if can? :manage, @location %>
 	<div class="cont"><%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %></div>
 	<% else %>
 	<div class="cont">
