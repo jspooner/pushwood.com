@@ -26,29 +26,34 @@
 	  <%= yield(:head) %>
 	</head>
 	<body lang="en" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-	<div>
-		<div id="header">
-			<p>
-			<%= link_to 'pushwood.com', root_path %> |
-			<%= link_to 'skateparks', locations_path %>
-			<span>
-				<% if current_user %>
-				  Welcome <%= current_user.email %> |
-  				<%= link_to 'invite', new_user_invitation_path %> | 
-  				<%= link_to 'logout', destroy_user_session_path %>
-				<% else %>
-				  <%= link_to 'login', new_user_session_path %> 
-				<% end %>				
-			</span>
-			</p>
-		</div>
-		<div>
-				<%= yield %>
-		</div>
-		<div id="footer">
-			<%= link_to "terms of service", terms_of_service_path %>
-		</div>
+
+		
+  <div id="wrap">
+    <div id="main">
+  		<div id="header">
+  			<p>
+  			<%= link_to 'pushwood.com', root_path %> |
+  			<%= link_to 'skateparks', locations_path %>
+  			<span>
+  				<% if current_user %>
+  				  Welcome <%= current_user.email %> |
+    				<%= link_to 'invite', new_user_invitation_path %> | 
+    				<%= link_to 'logout', destroy_user_session_path %>
+  				<% else %>
+  				  <%= link_to 'login', new_user_session_path %> 
+  				<% end %>				
+  			</span>
+  			</p>
+  		</div>
+  		<div>
+  				<%= yield %>
+  		</div>
+    </div>
+  </div>		
+	<div id="footer">
+		<p>Copyright &copy; 2011 Pushwood LLC.  <%= link_to "terms of service", terms_of_service_path %></p>
 	</div>
+
 	  
 	  <%= javascript_include_tag :application %>
 		<script type="text/javascript">
