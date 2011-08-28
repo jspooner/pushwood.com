@@ -115,6 +115,11 @@ class Location < ActiveRecord::Base
     return "No description yet.  Please submit one." if read_attribute(:description).nil? or read_attribute(:description).empty?
     read_attribute(:description)
   end
+
+  def ios_description
+    return "No description yet.  Please submit one." if read_attribute(:description).nil? or read_attribute(:description).empty?
+    read_attribute(:description).gsub(/<\/?[^>]*>/, "")
+  end
   
   def to_param
     return "#{id}-#{name.parameterize}" if name
