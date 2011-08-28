@@ -22,13 +22,10 @@ Woodhack::Application.routes.draw do
     end
   end
   
-
-  # resources :locations, :id => /[0-9]+\/.+/ do
   resources :locations do
     get 'images'
     resources :comments
     member do
-      # get 'rate'
       post 'rate'
     end
   end
@@ -43,7 +40,7 @@ Woodhack::Application.routes.draw do
 
   # auth
   match '/auth/:provider/callback' => 'authentications#create'  
-  devise_for :users, :controllers => {:registrations => 'registrations'}, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+  devise_for :users#, :controllers => {:registrations => 'registrations'}, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
   resources :authentications
 end
 

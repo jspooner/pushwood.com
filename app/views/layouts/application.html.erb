@@ -14,6 +14,9 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pushwood skatepark locator and iPhone app." %>"> 
 		<meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "Skateboard, skateboarding, skatespot, skate, skatepark, skate park, halfpipe, miniramp, street course, iPhone, iPhone App" %>">
+		<meta property="fb:admins" content="the.real.jonathan.spooner" />
+    <meta property="fb:page_id" content="122652701165628" />
+    <meta property="fb:app_id" content="202979059717647" />
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -30,6 +33,7 @@
 			<%= link_to 'skateparks', locations_path %>
 			<span>
 				<% if current_user %>
+				  Welcome <%= current_user.email %> |
   				<%= link_to 'invite', new_user_invitation_path %> | 
   				<%= link_to 'logout', destroy_user_session_path %>
 				<% else %>

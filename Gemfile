@@ -27,7 +27,11 @@ gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
 
 gem 'acts_as_commentable'
 gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
+
 gem "paperclip", "~> 2.3"
+# gem "opencv"#, :git => "https://github.com/ser1zw/ruby-opencv"
+gem "paperclip-facecrop"
+
 gem "rabl"
 
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"

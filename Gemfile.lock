@@ -158,6 +158,8 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    paperclip-facecrop (0.1.2)
+      paperclip
     polyglot (0.3.2)
     pyu-ruby-sasl (0.0.3.3)
     rabl (0.3.0)
@@ -237,6 +239,7 @@ DEPENDENCIES
   newrelic_rpm (~> 3.1.1.beta1)
   omniauth
   paperclip (~> 2.3)
+  paperclip-facecrop
   rabl
   rails!
   rails-backbone
