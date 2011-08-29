@@ -1,8 +1,5 @@
 Woodhack::Application.routes.draw do
   
-  resources :cd_pages
-  
-
   namespace :api do
     namespace :v1 do
       resources :locations do
