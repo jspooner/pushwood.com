@@ -1,0 +1,11 @@
+<h2><%= @state.titleize %></h2>
+
+<div style="float:left;margin-bottom:200px">
+  <ul>
+  <% @cities.each do |city| %>
+  <% unless city.empty? %>
+    <li><%= link_to(city, archive_city_path(:country => @country.parameterize, :state => @state.parameterize, :city => city.parameterize)) %></li>
+  <% end %>
+  <% end %>
+  </ul>  
+</div>

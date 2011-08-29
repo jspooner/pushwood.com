@@ -1,0 +1,11 @@
+<h2>Countries</h2>
+
+<div style="float:left;margin-bottom:200px">
+  <ul>
+  <% @countries.each do |country| %>
+    <% unless country.empty? %>
+    <li><%= link_to(country, archive_country_path(:country => country.parameterize)) %></li>
+    <% end %>
+  <% end %>
+  </ul>  
+</div>
