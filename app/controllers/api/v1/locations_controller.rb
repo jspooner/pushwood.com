@@ -32,13 +32,15 @@ class Api::V1::LocationsController < ApplicationController
   end
   
   def search
-    lat  = params[:lat].to_i
-    long = params[:long].to_i
-    @locations = Location.near( [lat,long], 100).where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
+    # lat        = params[:lat].to_i
+    # long       = params[:long].to_i
+    # points_arr = [lat,long]
+    points_str = "#{params[:lat]},#{params[:long]}"
+    @locations = Location.near(points_str , 100).where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
     # # Rails.logger.info { "----------  locations #{@locations}" }
     if @locations.empty?
       Rails.logger.info { "Doing second location search" }
-      @locations = Location.near( [lat,long], 3000).where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
+      @locations = Location.near(points_str, 3000).where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
     end
 
     if @locations.empty?
@@ -66,7 +68,8 @@ class Api::V1::LocationsController < ApplicationController
 
     if params[:point] # use the geo gem that doesn't support AReL ;(
       points = params[:point].split(",").map { |i| i.to_i }
-      @locations = Location.near(points, radius, { :limit => limit, :include => [:ratings] }) # include ratings is not working
+      @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
+      # @locations = Location.near(points, radius, { :limit => limit, :include => [:ratings] })
     else
       @locations = Location.scoped
       @locations = @locations.limit(limit)
