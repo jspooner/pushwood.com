@@ -9,3 +9,11 @@
   <% end %>
   </ul>  
 </div>
+
+<div style="float:left;margin-bottom:200px">
+  <ul>
+    <% @locations.each do |location| %>
+      <li><%= link_to location.name, location %></li>
+    <% end %>
+  </ul>
+</div>
