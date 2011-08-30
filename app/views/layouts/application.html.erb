@@ -32,9 +32,11 @@
     <div id="main">
   		<div id="header">
   			<p>
-  			<%= link_to ']:', root_path, :title => "home" %> -
-  			<%= link_to 'map', locations_path %> -
-  			<%= link_to 'usa', '/archive/united-states/' %>
+  			<%= link_to ']:', root_path, :title => "home" %> •
+  			<%= link_to 'map', locations_path %> •
+  			<%= link_to 'usa', '/archive/united-states/' %> •
+  			<a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone</a>
+        
   			<span>
   				<% if current_user %>
   				  Welcome <%= current_user.email %> |
