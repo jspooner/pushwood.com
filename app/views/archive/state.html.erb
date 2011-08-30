@@ -1,6 +1,18 @@
-<h2><%= @state.titleize %></h2>
+<h2><%= state_full_name(@state).titleize %></h2>
 
-<div style="float:left;margin-bottom:200px">
+<div id="wideContent">
+  <h3>Parks</h3>
+  <% @locations.each do |location| %>
+    <div class="cont">
+      <%= link_to location.name, location %>
+      <span style="display:inline-block;width:50px;"><%= ratings_for location, :static, :small => true %>  </span><br>
+      <%= location.address %>
+    </div>
+  <% end %>
+</div>
+
+<div id="skinnySidebar">
+  <h3>Cities</h3>
   <ul>
   <% @cities.each do |city| %>
   <% unless city.empty? %>
@@ -8,12 +20,4 @@
   <% end %>
   <% end %>
   </ul>  
-</div>
-
-<div style="float:left;margin-bottom:200px">
-  <ul>
-    <% @locations.each do |location| %>
-      <li><%= link_to location.name, location %></li>
-    <% end %>
-  </ul>
 </div>

@@ -19,7 +19,8 @@ class ArchiveController < ApplicationController
     @cities.compact! unless @cities.empty?
     @cities.sort! unless @cities.empty?
     
-    @locations = Location.near(@state)
+    @locations = Location.where("state = ?", @state)
+    @locations.sort! { |a,b| a.name <=> b.name }
   end
 
   def city

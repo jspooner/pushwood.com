@@ -32,8 +32,9 @@
     <div id="main">
   		<div id="header">
   			<p>
-  			<%= link_to 'pushwood.com', root_path %> |
-  			<%= link_to 'skateparks', locations_path %>
+  			<%= link_to ']:', root_path, :title => "home" %> -
+  			<%= link_to 'map', locations_path %> -
+  			<%= link_to 'usa', '/archive/united-states/' %>
   			<span>
   				<% if current_user %>
   				  Welcome <%= current_user.email %> |
