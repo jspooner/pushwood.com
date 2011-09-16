@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714144833) do
+ActiveRecord::Schema.define(:version => 20110902165633) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -63,17 +63,17 @@ ActiveRecord::Schema.define(:version => 20110714144833) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.decimal  "lat",           :precision => 15, :scale => 8, :default => 0.0
-    t.decimal  "lng",           :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lat",                        :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lng",                        :precision => 15, :scale => 8, :default => 0.0
     t.string   "phone"
-    t.boolean  "has_lights",                                   :default => false
-    t.boolean  "is_free",                                      :default => false
-    t.boolean  "is_outdoors",                                  :default => false
-    t.boolean  "pads_required",                                :default => false
-    t.boolean  "has_concrete",                                 :default => false
-    t.boolean  "has_wood",                                     :default => false
+    t.integer  "has_lights",    :limit => 1,                                :default => 0
+    t.integer  "is_free",       :limit => 1,                                :default => 0
+    t.integer  "is_outdoors",   :limit => 1,                                :default => 0
+    t.integer  "pads_required", :limit => 1,                                :default => 0
+    t.integer  "has_concrete",  :limit => 1,                                :default => 0
+    t.integer  "has_wood",      :limit => 1,                                :default => 0
     t.integer  "cd_page_id"
-    t.string   "hours"
+    t.string   "hours",                                                     :default => ""
     t.text     "address"
   end
 
@@ -140,5 +140,35 @@ ActiveRecord::Schema.define(:version => 20110714144833) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "versions", :force => true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["tag"], :name => "index_versions_on_tag"
+  add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
+  add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
+  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "image_a_id"
+    t.integer  "image_b_id"
+    t.integer  "user_id"
+    t.integer  "winner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

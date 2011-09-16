@@ -1,20 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'rake', '~> 0.8.7'
-gem 'rails', :git => 'git://github.com/rails/rails.git', :tag => 'v3.1.0.rc5'
+gem "rails", "~> 3.1.0"
+
 gem 'mysql2'
 gem "newrelic_rpm", "~> 3.1.1.beta1"
 # Rails 3.1 - Asset Pipeline
 gem 'json'
 gem 'sass'
 gem 'uglifier'
-gem "sprockets", "~> 2.0.0.beta.10"
+gem "sprockets", "~> 2.0.0"
 gem 'therubyracer' # Google V8 JS engine inside of Ruby. Needed by sprockets.
 
 gem 'jquery-rails'
 
-gem 'devise', "1.1.7"
-gem 'devise_invitable', "0.3.5"
+gem 'devise', "~> 1.4.5"
+gem "devise_invitable", "~> 0.5.4"
 
 gem 'cancan'
 gem 'omniauth'
@@ -23,7 +23,8 @@ gem "paperclip", "~> 2.3"
 gem 'hpricot'
 gem 'geocoder'#,    :git => 'git://github.com/jspooner/geocoder.git'
 
-
+# gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+gem 'vestal_versions', :git => 'https://github.com/jodosha/vestal_versions.git' # for rails 3.1
 
 gem 'acts_as_commentable'
 gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
@@ -36,7 +37,7 @@ gem "rabl"
 
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
 
-gem "rails-backbone"
+gem "rails-backbone", "~> 0.5.4"
 
 # Styles
 # gem 'bourbon'

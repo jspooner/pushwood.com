@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  
+  versioned  
   acts_as_commentable  
   ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps]
 

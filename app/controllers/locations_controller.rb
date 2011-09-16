@@ -56,7 +56,8 @@ class LocationsController < ApplicationController
   # GET /locations/1.xml
   def show
     @location = Location.find(params[:id])
-    
+    @location.revert_to(params[:version].to_i) if params[:version]
+ 
     # @json = @location.bounding_box 
     # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @json['sw']['lat'], @json['ne']['lat'], @json['ne']['lng'], @json['sw']['lng'] ]
     # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @location.bounding_box['sw']['lat'], @location.bounding_box['ne']['lat'], @location.bounding_box['ne']['lng'], @location.bounding_box['sw']['lng'] ]
@@ -108,7 +109,10 @@ class LocationsController < ApplicationController
   # PUT /locations/1.xml
   def update
     @location = Location.find(params[:id])
-
+    #
+    # TODO tag the version edit with the current_user.id
+    # @location.tag_version(current_user.id)
+    #
     respond_to do |format|
       if @location.update_attributes(params[:location])
         format.html { redirect_to(@location, :notice => 'Location was successfully updated.') }
