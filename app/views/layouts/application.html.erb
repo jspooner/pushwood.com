@@ -42,8 +42,8 @@
     				<%= link_to 'invite', new_user_invitation_path %> | 
     				<%= link_to 'logout', destroy_user_session_path %>
   				<% else %>
-  				  <%= link_to 'register', "/auth/facebook" %> |
-  				  <%= link_to 'login', new_user_session_path %> 
+  				  <%= link_to image_tag("login-with-facebook.gif"), "/auth/facebook" %>
+  				  <%# link_to 'login', new_user_session_path %> 
   				<% end %>				
   			</span>
   			</p>
