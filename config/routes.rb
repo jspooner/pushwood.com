@@ -32,8 +32,6 @@ Woodhack::Application.routes.draw do
     end
   end
 
-  resources :tricks
-
   get "welcome/index"
   get "support", :to => "welcome#support"
   get "terms_of_service", :to => "welcome#terms_of_service"
