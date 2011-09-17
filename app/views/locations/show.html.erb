@@ -99,12 +99,6 @@
 	</div>
 	<% if can? :manage, @location %>
 	<div class="cont"><%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %></div>
-	<% else %>
-	<div class="cont">
-		<h3>Update Content</h3>
-		<p>Do you have updated information or photos for <%= @location.name %>?
-			Just drop me an email at <a href="mailto:fixit@pushwood.com?subject=Fix <%= @location.id %>&body=http://pushwood.com/locations/<%= @location.id %>">fixit@pushwood.com</a>.</p>
-	</div>
 	<% end %>
 	
 	<div class="cont">
@@ -129,7 +123,8 @@
 		<% end %>
 		</ul>		
 	</div>
-
+  
+  <% if can? :manage, @location %>
   <div class="cont">
     <p>
       <%= link_to "Edit", edit_location_path(@location) %>
@@ -142,6 +137,7 @@
       <% end %>
     </p>
   </div>
+  <% end %>
   
 </div>
 
