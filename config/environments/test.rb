@@ -34,4 +34,9 @@ Woodhack::Application.configure do
   config.active_support.deprecation = :stderr
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  # Facbook app for Pushwood.dev
+  config.facebook_id      = '265888350098080'
+  config.facebook_seceret = '05b1f2177225121513e54a9021875959'
+  
 end

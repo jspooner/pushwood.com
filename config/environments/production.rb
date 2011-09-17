@@ -58,4 +58,9 @@ Woodhack::Application.configure do
   config.action_mailer.default_url_options = { :host => 'pushwood.com' }
   
   config.assets.js_compressor  = :uglifier
+  
+  # Facebook app Pushwood.com
+  config.facebook_id      = '202979059717647'
+  config.facebook_seceret = '19ab216e59c6445cf6471b5d726bfe22'
+  
 end
