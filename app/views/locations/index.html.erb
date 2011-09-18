@@ -1,15 +1,21 @@
 <% content_for :head do %>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <% end %>
+<% if current_user %>
+<%= link_to 'New Location', new_location_path, :class => "new_location" %>		
+<% end %>
 
 <div id="locationapp">
-	<div id="locations">
-		<% if current_user %>
-		<%= link_to 'New Location', new_location_path, :class => "new_location" %>		
-		<% end %>
+  <div id="map_canvas" class="span16"></div>
+  <div id="popularPlaces" class="span16">
+    <p><a href="#">Your Location</a> / <a href="#">California</a> / <a href="#">Arizona</a></p>
+  </div>
+
+
+	<div id="locations" class="span16">
 		<div id="location_list"></div>
 	</div>
-	<div id="map_canvas"></div>	
+	
 </div>
 
 

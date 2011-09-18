@@ -26,34 +26,35 @@
 	  <%= yield(:head) %>
 	</head>
 	<body lang="en" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-	  		
-  <div id="wrap">
-    <div id="main">
-  		<div id="header">
-  			<p>
-  			<%= link_to ']:', root_path, :title => "home" %> •
-  			<%= link_to 'map', locations_path %> •
-  			<%= link_to 'usa', '/archive/united-states/' %> •
-  			<a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone</a>
-        
-  			<span>
-  				<% if current_user %>
-  				  Welcome <%= current_user.email %> |
-    				<%= link_to 'invite', new_user_invitation_path %> | 
-    				<%= link_to 'logout', destroy_user_session_path %>
-  				<% else %>
-  				  <%= link_to image_tag("login-with-facebook.gif"), "/auth/facebook" %>
-  				  <%# link_to 'login', new_user_session_path %> 
-  				<% end %>				
-  			</span>
-  			</p>
-  		</div>
-  		<div>
-  				<%= yield %>
-  		</div>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <a class="brand" href="/">Pushwood</a>
+        <ul class="nav">
+          <li class="active"><%= link_to 'Skateparks', '/archive/united-states/' %></li>
+          <li class=""><a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone App</a></li>
+        </ul>
+        <form class="pull-left" action="">
+          <input type="text" placeholder="Search">
+        </form>
+        <ul class="nav secondary-nav">
+          <li>
+            <% if current_user %>
+          	  Welcome <%= current_user.email %> |
+          		<%= link_to 'invite', new_user_invitation_path %> | 
+          		<%= link_to 'logout', destroy_user_session_path %>
+          	<% else %>
+          	  <%= link_to image_tag("login-with-facebook.gif"), "/auth/facebook", :class => "imgLink" %>
+          	<% end %>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>  			  		
+  <div class="container">
+    <%= yield %>
   </div>		
-	<div id="footer">
+	<div class="container">
 		<p>Copyright &copy; 2011 Pushwood LLC.  <%= link_to "terms of service", terms_of_service_path %> | <%= link_to "archive", archive_path %></p>
 	</div>
 

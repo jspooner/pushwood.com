@@ -142,6 +142,7 @@ PW.controllers.locations = {
 			    browserSupportFlag = true;
 			    navigator.geolocation.getCurrentPosition(function(position) {
 			      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+						window.initialLocation = initialLocation;
 			      map.setCenter(initialLocation);
 			    }, function() {
 			      handleNoGeolocation(browserSupportFlag);
@@ -152,6 +153,7 @@ PW.controllers.locations = {
 			    var geo = google.gears.factory.create('beta.geolocation');
 			    geo.getCurrentPosition(function(position) {
 			      initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+						window.initialLocation = initialLocation;
 			      map.setCenter(initialLocation);
 			    }, function() {
 			      handleNoGeoLocation(browserSupportFlag);
@@ -187,11 +189,11 @@ PW.controllers.locations = {
 			handle_resize: function(mapView)
 			{
 				// console.log("handle_resize", this); // DOMWindow VS. MapView
-				var rWidth = 600;//$(window).width() - $("#location_list").width();
-				var rHeight = $(window).height() - $("#location_list").position()['top'] + 10;
+				// var rWidth = 600;//$(window).width() - $("#location_list").width();
+				// var rHeight = $(window).height() - $("#location_list").position()['top'] + 10;
 				// this.el.width(rWidth);
-				this.el.height(rHeight);
-			  $("#locations").height(rHeight);
+				// this.el.height(rHeight);
+			  // $("#locations").height(rHeight);
 				// console.log("handle_resize", rWidth );
 			},
 			reload_locations :function()
@@ -239,6 +241,45 @@ PW.controllers.locations = {
 					i++;
 				});												
 			}
+		});
+		
+		/**
+		* Popular Locations View
+		*/
+		window.PopularLocationsView = Backbone.View.extend({
+			el:$("#popularPlaces"),
+			// events: {
+			// 	"click a" : "change_location"
+			// },
+			initialize: function() {
+				$("#popularPlaces a").click(this.change_location);
+			},
+			render: function() {
+				return this;
+			},
+			change_location: function() {
+				var map = App.mapView.map;
+				console.log( $(this).text() );
+				var loc = $(this).text();
+				if (loc == 'Arizona') 
+				{
+					var ne = new google.maps.LatLng("32.513981", -"109.047798");
+					var sw = new google.maps.LatLng("31.328810", "-112.213867");
+					map.fitBounds(new google.maps.LatLngBounds(sw,ne));
+				} else if (loc == 'California') 
+				{
+					var ne = new google.maps.LatLng("42.009460", "-114.130836");
+					var sw = new google.maps.LatLng("32.534290", "-124.409622");
+					map.fitBounds(new google.maps.LatLngBounds(sw,ne));
+				} else {
+					map.setCenter(window.initialLocation);
+					map.setZoom(14);
+				}
+				window.App.mapView.reload_locations();
+				// map.panToBounds(new google.maps.LatLngBounds(sw,ne));
+				
+				return false;
+			}
 		})
 		/**
 		* Application View
@@ -254,6 +295,7 @@ PW.controllers.locations = {
 			render: function() 
 			{
 				console.log("AppView render");
+				this.popularList = new PopularLocationsView();
 				this.mapView = new MapView();
 				this.mapView.reload_locations();
 
