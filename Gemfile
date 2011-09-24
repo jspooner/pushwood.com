@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
 gem "rails", "~> 3.1.0"
-
 gem 'mysql2'
 gem "newrelic_rpm", "~> 3.1.1.beta1"
-# Rails 3.1 - Asset Pipeline
+
+
 gem 'json'
-gem 'sass'
-gem 'uglifier'
-gem "sprockets", "~> 2.0.0"
-gem 'therubyracer' # Google V8 JS engine inside of Ruby. Needed by sprockets.
+# gem 'sass'
+# gem 'uglifier'
+# gem "sprockets", "~> 2.0.0"
+# gem 'therubyracer' # Google V8 JS engine inside of Ruby. Needed by sprockets.
 
 gem 'jquery-rails'
 
@@ -66,4 +66,14 @@ gem "factory_girl_generator", ">= 0.0.1", :group => [:development, :test]
 gem "rspec-rails", "~> 2.4", :group => [:development, :test]
 # gem "capistrano", :group => [:development, :test]
 
-# gem "pg", :group => :production
+
+# Rails 3.1 - Asset Pipeline
+gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.
+group :assets do
+  gem 'execjs'
+  gem 'therubyracer'
+  gem 'sass'
+  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'uglifier'
+end
+
