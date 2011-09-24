@@ -8,6 +8,9 @@
 //= require jquery_ujs
 //= require jquery.colorbox
 //
+//= require bootstrap/bootstrap-alerts
+//= require bootstrap/bootstrap-dropdown
+//
 //= require libs/json2
 //= require libs/underscore
 //= require libs/backbone

@@ -34,19 +34,22 @@
           <li class="active"><%= link_to 'Skateparks', '/archive/united-states/' %></li>
           <li class=""><a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone App</a></li>
         </ul>
-        <form class="pull-left" action="">
+        <!-- <form class="pull-left" action="">
           <input type="text" placeholder="Search">
-        </form>
+        </form> -->
         <ul class="nav secondary-nav">
-          <li>
-            <% if current_user %>
-          	  Welcome <%= current_user.email %> |
-          		<%= link_to 'invite', new_user_invitation_path %> | 
-          		<%= link_to 'logout', destroy_user_session_path %>
-          	<% else %>
-          	  <%= link_to image_tag("login-with-facebook.gif"), "/auth/facebook", :class => "imgLink" %>
-          	<% end %>
-          </li>
+          <% if current_user %>
+          <li class="menu" data-dropdown="dropdown" >
+              <a href="#" class="dropdown-toggle menu"><%= current_user.email %></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Invite Friends', new_user_invitation_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to 'Logout', destroy_user_session_path %></li>
+              </ul>
+            </li>
+          <% else %>
+          <li><%= link_to image_tag("login-with-facebook.gif"), "/auth/facebook", :class => "imgLink" %></li>
+        	<% end %>
         </ul>
       </div>
     </div>

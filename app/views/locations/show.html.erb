@@ -5,23 +5,18 @@
 <%= @location.description %>
 <% end %>
 
+<br>
+<% if notice %>
+<div class="alert-message success">
+  <a class="close" href="#">×</a>
+  <p><strong><%= notice %></strong></p>
+</div>
+<% end %>
 
-<p id="notice"><%= notice %></p>
-
-<div id="content">
-	<h2><%= @location.name %></h2>
-		
-	<div id="pageAnchors">
-		<ul class="clearfix">
-			<li><a href="#map"><button class="minimal">Map</button></a></li>
-			<li><a href="#info"><button class="minimal">Info</button></a></li>
-			<% unless @location.images.empty? %>
-			<li><a href="#photos"><button class="minimal">Photos</button></a></li>
-			<% end %>
-			<li><a href="#reviews"><button class="minimal">Reviews</button></a></li>
-		</ul>
-	</div>
-	
+<div class="row">
+  
+<div id="content" class="span10">
+	<h2><%= @location.name %></h2>	
 
 	<div id="map" class="cont">
 	</div>
@@ -39,12 +34,6 @@
 			<strong>Description</strong><br>
 			<%= @location.description.html_safe %>
 		</p>
-		<% if @location.cd_page and current_user %>
-		<h4>Links</h4>
-		<p>
-			<%= link_to "concretediciples.com", @location.cd_page.url, :target => "blank" %>
-		</p>
-		<% end %>
 	</div>
 	
 	<% unless @location.images.empty? %>
@@ -63,15 +52,15 @@
 				<li><%= comment.comment %></li>
 			<% end %>
 		</ul>
-		<% if current_user %>
-			<%= form_for([@location, Comment.new]) do|f| %> 
-			  <%= f.hidden_field :commentable_id, :value => @location.id %>
-			  <%= f.hidden_field :commentable_type, :value => 'Location' %> 
-			  <%= f.label :comment, "Write a review" %><br /> 
-			  <%= f.text_area :comment %> <br/>
-			  <%= f.submit "Post Comment" %> 
-			<% end %>
-		<% end %>	
+		<!-- <% if current_user %>
+		      <%= form_for([@location, Comment.new]) do|f| %> 
+		        <%= f.hidden_field :commentable_id, :value => @location.id %>
+		        <%= f.hidden_field :commentable_type, :value => 'Location' %> 
+		        <%= f.label :comment, "Write a review" %><br /> 
+		        <%= f.text_area :comment %> <br/>
+		        <%= f.submit "Post Comment" %> 
+		      <% end %>
+		    <% end %>  -->
 		<fb:comments href="<%= location_url(@location) %>" num_posts="5" width="528"></fb:comments>	
 	</div>
 	
@@ -80,7 +69,24 @@
 
 
 
-<div id="sidebar">
+<div id="sidebar" class="span6">
+  <% if can? :manage, @location %>
+  <div class="cont">
+    <p>
+      <%= link_to 'Edit Location', edit_location_path(@location), :class => "btn primary" %>
+      <p>Version <%= @location.version %>
+      <% if @location.version > 1 %>
+        | <%= link_to "Previous version", :version => @location.version-1 %>
+      <% end %>
+      <% if params[:version] %>
+        | <%= link_to "Latest version", :version => nil %>
+      <% end %></p>
+    </p>
+  </div>
+  <% else %>
+    <%= link_to 'Edit Location', "/users/sign_in", :class => "btn primary" %>
+  <% end %>
+  
   <div class="cont">
     <h3>Rating</h3>
     <%= render "rating" %>
@@ -97,9 +103,6 @@
 		        src="http://platform.twitter.com/widgets/tweet_button.html"
 		        style="width:130px; height:20px;"></iframe>
 	</div>
-	<% if can? :manage, @location %>
-	<div class="cont"><%= link_to 'Edit Location', edit_location_path(@location), :id => "editBtn" %></div>
-	<% end %>
 	
 	<div class="cont">
     <script type="text/javascript"><!--
@@ -124,24 +127,9 @@
 		</ul>		
 	</div>
   
-  <% if can? :manage, @location %>
-  <div class="cont">
-    <p>
-      <%= link_to "Edit", edit_location_path(@location) %>
-      | Version <%= @location.version %>
-      <% if @location.version > 1 %>
-        | <%= link_to "Previous version", :version => @location.version-1 %>
-      <% end %>
-      <% if params[:version] %>
-        | <%= link_to "Latest version", :version => nil %>
-      <% end %>
-    </p>
-  </div>
-  <% end %>
-  
 </div>
 
-
+</div>
 
 <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=247714625258014&amp;xfbml=1"></script>
 <!--  Place this tag after the last plusone tag -->

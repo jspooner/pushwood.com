@@ -5,7 +5,13 @@
 	<%= link_to_remove_fields "remove", f, {:class => "remove"} %><br/>
 	<%# f.hidden_field :position %>
 <% else %>
-	<%= f.label :img %><br />
-	<%= f.file_field :img %>
+  <div class="clearfix">
+    <label for="fileInput">Image</label>
+    <div class="input">
+      <%= f.file_field :img %>
+    </div>
+  </div>
 <% end %>		
 </li>
+
+

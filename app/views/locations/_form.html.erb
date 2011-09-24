@@ -1,106 +1,171 @@
+<br>
+<br>
 <%= form_for(@location, :html => { :multipart => true }) do |f| %>
 	<%= f.hidden_field :lat %>
 	<%= f.hidden_field :lng %>
+  <div class="row">  
+  	<div class="span10">
+      <fieldset id="" class="">
+        <% if @location.new_record? %>
+      		<legend>New Skate Spot</legend>
+      	<% else %>
+      		<legend>Editing <%= @location.name %></legend>
+      	<% end %>
+        <% if @location.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+            <ul>
+            <% @location.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+    
+    
+        <div class="clearfix">
+          <%= f.label :name %>
+          <div class="input">
+            <%= f.text_field :name %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :phone %>
+          <div class="input">
+            <%= f.text_field :phone %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :hours %>
+          <div class="input">
+            <%= f.text_field :hours, :placeholder => "ex: 10am to 6pm" %>
+          </div>
+        </div>    
+      </fieldset>
+      <fieldset id="tags" class="">
+        <legend>About the Spot</legend>
+        <div class="clearfix">
+          <label id="optionsCheckboxes">List of options</label>
+          <div class="input">
+            <ul class="inputs-list">
+              <li>
+                <label for="location_has_lights">
+                  <%= f.check_box :has_lights %>
+                  <span>Lights:  Check if this spot has lights.</span>
+                </label>
+              </li>
+              <li>
+                <label for="location_is_free">
+                  <%= f.check_box :is_free %>
+                  <span>Free:  This spot doesn't have a fee.</span>
+                </label>
+              </li>
+              <li>
+                <label for="location_is_outdoors">
+                  <%= f.check_box :is_outdoors %>
+                  <span>Outdoors:  Enjoy the sun light at this spot?</span>
+                </label>
+              </li>
+              <li>
+                <label for="location_has_wood">
+                  <%= f.check_box :has_wood %>
+                  <span>Wood:  Do your roll on Skatelite, Masonite, or plywood? </span>
+                </label>
+              </li>
+              <li>
+                <label for="location_has_concrete">
+                  <%= f.check_box :has_concrete %>
+                  <span>Concrete:  Are you rolling smooth on concrete? </span>
+                </label>
+              </li>
+              <li>
+                <label for="location_pads_required">
+                  <%= f.check_box :pads_required %>
+                  <span>Pads:  Do look like a football player when you skate here? </span>
+                </label>
+              </li>
+            </ul>
+            <span class="help-block">
+              <strong>Note:</strong> These options help improve searching!
+            </span>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset id="" class="">
+        <legend></legend>
+        <div class="clearfix">
+          <%= f.label :description %>
+          <div class="input">
+            <%= f.text_area :description %>
+            <span class="help-block">
+              Some HTML is allowed
+            </span>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset id="location" class="">
+        <legend>Location</legend>
+        <div class="clearfix">
+          <%= f.label :street %>
+          <div class="input">
+            <%= f.text_field :street %>        
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :city %>
+          <div class="input">
+            <%= f.text_field :city %>        
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :state %>
+          <div class="input">
+            <%= f.text_field :state %>        
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :postal %>
+          <div class="input">
+            <%= f.text_field :postal %>        
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :country %>
+          <div class="input">
+            <%= f.text_field :country %>        
+          </div>
+        </div>
+        <div class="clearfix">
+          <label>Map</label> 
+          <div class="input">
+            <div class="field">	
+          		<div id="exactLocationMap"></div>
+          	</div>
+          </div>
+        </div>
+      </fieldset>	
+  	</div>
+	
+  	<div class="span6">
 
-
-<div id="content">
-	<% if @location.new_record? %>
-		<h2>New Skate Spot</h2>
-	<% else %>
-		<h1>Editing <%= @location.name %></h1>
-	<% end %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
-      <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    	<div id="diagram_fields">
+    		<h4>Images</h4>
+    		<ul id="sortable">
+    		<%= f.fields_for :images do |images_builder| %>
+    	    <%= render 'image_fields', :f => images_builder %>
+    		<% end %>
+    		</ul>		
+    		<%= link_to_add_fields("Add Image", f, :images) %>
+    	</div>
     </div>
-  <% end %>
-
-	<h3>Details</h3>
-	<div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :hours %>
-    <%= f.text_field :hours, :placeholder => "ex: 10am to 6pm" %>
-  </div>
-  <div class="field">
-		<%= f.label :has_lights, "Lights:" %>
-    <%= f.check_box :has_lights %><br />
-
-		<%= f.label :is_free, "Free:" %>
-    <%= f.check_box :is_free %><br />
-
-		<%= f.label :is_outdoors, "Outdoors:" %>
-    <%= f.check_box :is_outdoors %><br />
-
-		<%= f.label :has_wood, "Wood:" %>
-    <%= f.check_box :has_wood %><br />
-
-		<%= f.label :has_concrete, "Concrete:" %>
-    <%= f.check_box :has_concrete %><br />
-
-		<%= f.label :pads_required, "Pads:" %>
-    <%= f.check_box :pads_required %><br />
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description, :cols => 45, :rows => 10 %>
-  </div>
-
-	<h2>Location</h2>
-	<div class="field">
-	  <%= f.label :street %>
-    <%= f.text_field :street %>
-	</div>
-	<div class="field">	
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-	</div>
-	<div class="field">	
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-	</div>
-	<div class="field">	
-    <%= f.label :postal %>
-    <%= f.text_field :postal %>
-	</div>
-	<div class="field">	
-    <%= f.label :country %>
-    <%= f.text_field :country %>
-	</div>
-	<div class="field">	
-    <%= label_tag "map", "Exact Location"  %>
-		<div id="exactLocationMap"></div>
-	</div>
-	
+  </div>  
+	    
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", :class => "btn primary" %>
+    <%= link_to "Cancel", @location, :class => "btn" %>
   </div>
 
-</div>
-<div id="sidebar">
-	
-	<div id="diagram_fields">
-		<h4>Images</h4>
-		<ul id="sortable">
-		<%= f.fields_for :images do |images_builder| %>
-	    <%= render 'image_fields', :f => images_builder %>		
-		<% end %>
-		</ul>		
-		<%= link_to_add_fields("Add Image", f, :images) %>
-	</div>
 
-</div>
 
 
 
