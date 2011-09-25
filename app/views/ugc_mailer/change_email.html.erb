@@ -1,1 +1,33 @@
-<%= @user.email %> has updated <%= link_to @location.name, @location %>.
+<style type="text/css" media="screen">
+  span.highlight {background-color:#fffcdb;padding:0;color:#363636;}	
+  .label{padding:1px 3px 2px;background-color:#bfbfbf;font-size:9.75px;font-weight:bold;color:#ffffff;text-transform:uppercase;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+  .label.important{background-color:#c43c35;}
+  .label.warning{background-color:#f89406;}
+  .label.success{background-color:#46a546;}
+  .label.notice{background-color:#62cffc;}
+</style>
+<p><%= @user.email %> has updated <%= link_to @location.name, location_url(@location) %>.</p>
+
+<ul>
+  <% @location.versions.reverse.each do |v| %>
+  <li>
+    <strong><%= link_to "v#{v.number} #{l(v.updated_at, :format => :short)}", location_url(@location, :version => v.number ) %></strong>
+   <% unless v.reverted_from.nil? %>
+     reverted_from v<%= v.reverted_from %>
+   <% end %>
+    <br> Edited by: <span class="label info"><%= v.user.try(:email) %></span>
+   <br>
+   <ul>
+   <% v.modifications.each do |mod| %>
+      <li>
+        <strong><%= mod.first.try(:titleize) %></strong>
+        <ul>
+          <li><span class="label warning">Old</span> <span class="highlight"><%= mod[1][0] %></span></li>
+          <li><span class="label success">New</span> <span class="highlight"><%= mod[1][1] %></span></li>
+        </ul>
+      </li>
+   <% end %>
+   </ul>        
+  </li>
+  <% end %>
+</ul>
