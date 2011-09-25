@@ -116,7 +116,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       @location.updated_by = current_user
       if @location.update_attributes(params[:location])
-        UgcMailer.change_email(current_user, @location).deliver
+        UgcMailer.change_email(current_user, @location).deliver # TODO https://github.com/scottwater/resque_mail_queue
         format.html { redirect_to(@location, :notice => 'Location was successfully updated.') }
         format.xml  { head :ok }
       else
