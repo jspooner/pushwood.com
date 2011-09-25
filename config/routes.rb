@@ -29,6 +29,7 @@ Woodhack::Application.routes.draw do
     resources :comments
     member do
       post 'rate'
+      get 'revert'
     end
   end
 

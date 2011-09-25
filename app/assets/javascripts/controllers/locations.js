@@ -24,6 +24,17 @@ PW.controllers.locations = {
   },
 	
 	show: function() {
+		//
+		$("#showHideHistory").click(function(e){
+			$("#historyList").slideToggle();
+		});
+		// 
+		$(".showhide-changes").click(function(e){
+			console.log( $(e.currentTarget) )
+			$(e.currentTarget).siblings("ul").toggle();
+			
+			return false;
+		});
 		// Init slideshow
 		$("a[rel='imageGroup']").colorbox({slideshow:true});
 		// Init rating form

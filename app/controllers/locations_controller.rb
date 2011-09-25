@@ -114,7 +114,9 @@ class LocationsController < ApplicationController
     # @location.tag_version(current_user.id)
     #
     respond_to do |format|
+      @location.updated_by = current_user
       if @location.update_attributes(params[:location])
+        UgcMailer.change_email(current_user, @location)
         format.html { redirect_to(@location, :notice => 'Location was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -122,6 +124,19 @@ class LocationsController < ApplicationController
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def revert
+    @location = Location.find(params[:id])
+    redirect_to(@location) if params[:version].nil?
+    authorize! :revert, @location
+
+    if @location.revert_to!(params[:version].to_i)
+      notice = "#{@location.name} was successfully reverted to version #{params[:version]}."
+    else
+      notice = 'Location was not reverted.'
+    end
+    redirect_to(@location, :notice => notice)
   end
   
   # POST

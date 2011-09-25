@@ -26,18 +26,21 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)
+
+    if user.email == "jspooner@gmail.com" or user.email == "chris.r.gonzales@gmail.com"
+      can :revert, Location
+      can :manage, Location
+    end
     
     # EVERYONE
     can :read, Location       # user can read any object
     can :read, Rate       # user can read any object
     
     unless user.new_record?
-      can :rate, :location
+      can :rate, Location
+      can :update, Location
     end
     
-    if user.email == "jspooner@gmail.com" or user.email == "chris.r.gonzales@gmail.com"
-      can :manage, Location
-    end
     
     
     # # LOGGED IN USER

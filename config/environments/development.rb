@@ -29,5 +29,8 @@ Woodhack::Application.configure do
   config.facebook_id      = '265888350098080'
   config.facebook_seceret = '05b1f2177225121513e54a9021875959'
   
+  # Test mailers
+  config.action_mailer.delivery_method = :letter_opener
+  
 end
 

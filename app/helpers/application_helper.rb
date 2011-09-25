@@ -10,7 +10,7 @@ module ApplicationHelper
       puts builder
       render(association.to_s.singularize + "_fields", :f => builder)
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :id => "addField")
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :id => "", :class => "btn")
   end
   
   # Print out a locaiton with city camelcased and state abbr and upcased.

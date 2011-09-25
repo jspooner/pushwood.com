@@ -146,15 +146,14 @@
       </fieldset>	
   	</div>
 	
-  	<div class="span6">
-
-    	<div id="diagram_fields">
-    		<h4>Images</h4>
-    		<ul id="sortable">
-    		<%= f.fields_for :images do |images_builder| %>
+    <div class="span6">
+      <h4>Images</h4>
+      <div id="diagram_fields">
+        <ul id="sortable">
+        <%= f.fields_for :images do |images_builder| %>
     	    <%= render 'image_fields', :f => images_builder %>
     		<% end %>
-    		</ul>		
+    		</ul>
     		<%= link_to_add_fields("Add Image", f, :images) %>
     	</div>
     </div>

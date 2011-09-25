@@ -13,13 +13,27 @@
 </div>
 <% end %>
 
+<h2><%= @location.name %></h2>	
+
 <div class="row">
   
 <div id="content" class="span10">
-	<h2><%= @location.name %></h2>	
+  <% if params[:version] %>
+  <div class="alert-message block-message message">
+    <a class="close" href="#">×</a>
+      <p><strong>Revision #<%= params[:version] %></strong> This is not the latest revision.</p>
+    <div class="alert-actions">
+      <% if can? :revert, @location %>
+        <%= link_to "Revert to v#{params[:version]}", revert_location_path(@location, :version => params[:version]), {:class => "btn small", :confirm => "Revert to version #{params[:version]}?"}  %>
+       <% end %>
+      <%= link_to "Latest version", @location, :class => "btn small" %>
+    </div>
+  </div>
+  <% end %>
+  
 
-	<div id="map" class="cont">
-	</div>
+
+	<div id="map" class="cont"></div>
 
 	<div id="info" class="cont">
 		<p>
@@ -64,24 +78,54 @@
 		<fb:comments href="<%= location_url(@location) %>" num_posts="5" width="528"></fb:comments>	
 	</div>
 	
-	
 </div>
 
-
-
 <div id="sidebar" class="span6">
-  <% if can? :manage, @location %>
+  <% if can? :update, @location %>
   <div class="cont">
     <p>
-      <%= link_to 'Edit Location', edit_location_path(@location), :class => "btn primary" %>
-      <p>Version <%= @location.version %>
-      <% if @location.version > 1 %>
-        | <%= link_to "Previous version", :version => @location.version-1 %>
-      <% end %>
-      <% if params[:version] %>
-        | <%= link_to "Latest version", :version => nil %>
-      <% end %></p>
+      <%= link_to 'Edit Location', edit_location_path(@location), :class => "btn" %>
+      <a id="showHideHistory" class="btn" href="#">History</a>
     </p>
+    
+    <div style="display:<%= params[:version].nil? ? "none" : "block"  %>" id="historyList">
+      <p>
+        Version <%= @location.version %>
+        <% if @location.version > 1 %>
+          | <%= link_to "Previous version", :version => @location.version-1 %>
+        <% end %>
+        <% if params[:version] %>
+          | <%= link_to "Latest version", :version => nil %>
+        <% end %>
+      </p>
+      <ul>
+        <% @location.versions.reverse.each do |v| %>
+        <li>
+          <strong><%= link_to "v#{v.number} #{l(v.updated_at, :format => :short)}", :version => v.number %></strong>
+         <% unless v.reverted_from.nil? %>
+           reverted_from v<%= v.reverted_from %>
+         <% end %>
+         <% if can? :manage, @location and v.user %>
+          <br> Edited by: <span class="label info"><%= v.user.email %></span>
+         <% end %>
+         <br>
+         <ul>
+         <% v.modifications.each do |mod| %>
+            <li>
+              <%= mod.first.try(:titleize) %> <%= link_to "changes", "#", :class => "showhide-changes" %><br>
+              <ul style="display:none">
+                <li><span class="label warning">Old</span> <span class="highlight"><%= mod[1][0] %></span></li>
+                <li><span class="label success">New</span> <span class="highlight"><%= mod[1][1] %></span></li>
+              </ul>
+            </li>
+         <% end %>
+         </ul>        
+        </li>
+        <% end %>
+      </ul>
+      
+    </div>
+    
   </div>
   <% else %>
     <%= link_to 'Edit Location', "/users/sign_in", :class => "btn primary" %>
@@ -104,19 +148,7 @@
 		        style="width:130px; height:20px;"></iframe>
 	</div>
 	
-	<div class="cont">
-    <script type="text/javascript"><!--
-    google_ad_client = "ca-pub-6987587183408883";
-    /* Test - Text/Rich 300x250 */
-    google_ad_slot = "2691696764";
-    google_ad_width = 300;
-    google_ad_height = 250;
-    //-->
-    </script>
-    <script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-    </script>
-  </div>
+
 	
 	<div class="cont">
 		<h3>Nearby Spots</h3>

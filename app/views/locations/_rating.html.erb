@@ -1,5 +1,5 @@
 <div id="ratingDisplay">
 <span>  Total Ratings: <%= @location.total_rates %>
-  Average Rating: <%= @location.rate_average %>
+  Average Rating: <%= @location.rate_average.to_i %>
 </span>  <%= ratings_for @location, current_user %>  
 </div>

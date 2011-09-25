@@ -10,6 +10,7 @@ class Location < ActiveRecord::Base
   
   validates_presence_of :name
   
+  
   geocoded_by :address_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
