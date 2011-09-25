@@ -13,7 +13,7 @@
 </div>
 <% end %>
 
-<h2><%= @location.name %></h2>	
+<h2><%= @location.name %></h2>	<br>
 
 <div class="row">
   
@@ -24,7 +24,7 @@
       <p><strong>Revision #<%= params[:version] %></strong> This is not the latest revision.</p>
     <div class="alert-actions">
       <% if can? :revert, @location %>
-        <%= link_to "Revert to v#{params[:version]}", revert_location_path(@location, :version => params[:version]), {:class => "btn small", :confirm => "Revert to version #{params[:version]}?"}  %>
+        <%= link_to "Revert to version #{params[:version]}", revert_location_path(@location, :version => params[:version]), {:class => "btn small danger", :confirm => "Revert to version #{params[:version]} ?"}  %>
        <% end %>
       <%= link_to "Latest version", @location, :class => "btn small" %>
     </div>
