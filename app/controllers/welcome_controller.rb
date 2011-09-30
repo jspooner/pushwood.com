@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+  
+  caches_page :index
+  
   def index
     @near             = Location.near(request.ip).limit(20)
     @recent_locations = Location.order("updated_at DESC").limit(50)
@@ -8,6 +11,5 @@ class WelcomeController < ApplicationController
   def support
   end
   def terms_of_service
-    
   end
 end
