@@ -33,50 +33,16 @@ class Ability
     end
     
     # EVERYONE
-    can :read, Location       # user can read any object
-    can :read, Rate       # user can read any object
+    can :read, Location # user can read any object
+    can :read, Rate     # user can read any object
     
     unless user.new_record?
       can :rate, Location
       can :update, Location
+      can :create, Location
     end
-    
-    
-    
-    # # LOGGED IN USER
-    #    unless user.new_record?
-    #      can :create, AccessRequest
-    #      can [:create, :read], Flag
-    #      can :read, AccessRequest do |access_request|
-    #        access_request.try(:user) == user
-    #      end
-    #      can :update, User do |u|
-    #        user == u
-    #      end
-    #      can :change_owner, Event do |u|
-    #        owner == u
-    #      end
-    #    end
-    # 
-    #    if user.role? :approved
-    #      can :see_dashboard, User
-    #      can :manage, Event do |event|
-    #        event.try(:owner) == user
-    #      end
-    #      can :manage, SubEvent do |sub_event|
-    #        sub_event.event.try(:owner) == user
-    #      end
-    #      can :manage, Upload
-    #    end
-    #    
-    #    if user.role? :organizer
-    #      # TODO can search and claim for events
-    #    end 
-    #    
-    #    if user.role?(:admin) or user.role?(:root)
-    #      can :manage, :all
-    #    end    
-    
+
+
   end
-  
+
 end

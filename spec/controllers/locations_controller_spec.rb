@@ -9,10 +9,16 @@ describe LocationsController do
   def mock_location(stubs={})
     @mock_location ||= mock_model(Location, stubs).as_null_object
   end
-
+  let(:user) { User.create!({:email => "someguy@gmail.com", :password => "111111", :password_confirmation => "111111"}) }
+  let(:admin) { User.create!({:email => "jspooner@gmail.com", :password => "111111", :password_confirmation => "111111"}) }
+  
+  before(:each) do
+    sign_in user
+  end
+  
   describe "GET index" do
     it "assigns all locations as @locations" do
-      Location.stub(:all) { [mock_location] }
+      Location.stub(:limit) { [mock_location] }
       get :index
       assigns(:locations).should eq([mock_location])
     end
@@ -41,13 +47,22 @@ describe LocationsController do
       assigns(:location).should be(mock_location)
     end
   end
-
+  
+  describe "GET rate" do
+    it "rates the location" do
+      Location.stub(:find).with("37") { mock_location }      
+      # Location.sub(:rate).with(stars, user, dimension)
+      get :rate, :id => "37"
+      # assigns(:location).should be(mock_location)
+    end
+  end
+  
   describe "POST create" do
     describe "with valid params" do
       it "assigns a newly created location as @location" do
-        Location.stub(:new).with({'these' => 'params'}) { mock_location(:save => true) }
-        post :create, :location => {'these' => 'params'}
-        assigns(:location).should be(mock_location)
+        Location.stub(:new).with({ "name" => "WVST"}) { mock_location(:save => true) }
+        post :create, :location => { :name => "WVST" }
+        assigns(:location).should == mock_location
       end
 
       it "redirects to the created location" do
@@ -109,16 +124,27 @@ describe LocationsController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested location" do
-      Location.stub(:find).with("37") { mock_location }
-      mock_location.should_receive(:destroy)
-      delete :destroy, :id => "37"
+    context "user" do
+      it "should not allow a user to delete" do
+        Location.stub(:find).with("37") { mock_location }
+        mock_location.should_not_receive(:destroy)
+        delete :destroy, :id => "37"
+        response.should redirect_to(root_url)
+      end
     end
+    context "admin" do
+      before(:each) { sign_in admin }
+      it "destroys the requested location" do
+        Location.stub(:find).with("37") { mock_location }
+        mock_location.should_receive(:destroy)
+        delete :destroy, :id => "37"
+      end
 
-    it "redirects to the locations list" do
-      Location.stub(:find) { mock_location }
-      delete :destroy, :id => "1"
-      response.should redirect_to(locations_url)
+      it "redirects to the locations list" do
+        Location.stub(:find) { mock_location }
+        delete :destroy, :id => "1"
+        response.should redirect_to(locations_url)
+      end      
     end
   end
 
