@@ -51,9 +51,11 @@ describe LocationsController do
   describe "GET rate" do
     it "rates the location" do
       Location.stub(:find).with("37") { mock_location }      
-      # Location.sub(:rate).with(stars, user, dimension)
-      get :rate, :id => "37"
-      # assigns(:location).should be(mock_location)
+      Location.stub(:rate).with("3") { true }
+      post :rate, :id => "37", :stars => "3", :format => :js
+      # dimension, show_user_rating, small, stars
+      assigns(:location).should be(mock_location)
+      response.should render_template("_rating")
     end
   end
   

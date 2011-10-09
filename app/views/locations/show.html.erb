@@ -125,7 +125,9 @@
       </ul>
       
     </div>
-    
+    <% if can? :destroy, @location %>
+      <%= link_to 'Destroy', @location, :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
   </div>
   <% else %>
     <%= link_to 'Edit Location', "/users/sign_in", :class => "btn primary" %>

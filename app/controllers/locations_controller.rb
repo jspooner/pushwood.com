@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   # protect_from_forgery :except => [:update, :create]
   skip_before_filter :verify_authenticity_token
   
-  authorize_resource :except => [:rate]
+  authorize_resource
   
   def countries
     @countries = Location.select("DISTINCT country").collect { |i| i.country }.compact!.sort
@@ -73,9 +73,8 @@ class LocationsController < ApplicationController
   # GET /locations/new.xml
   def new
     @location = Location.new
-    @tricks   = Trick.all
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @location }
       format.json { render :text => @location.to_json }
     end
@@ -89,7 +88,6 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.xml
   def create
-    logger.info { "PARAMS #{params.inspect}"}
     @location = Location.new(params[:location])
 
     respond_to do |format|
@@ -141,13 +139,13 @@ class LocationsController < ApplicationController
   
   # POST
   def rate
-    authorize! :rate, :location
+    authorize! :rate, Location
     @location = Location.find(params[:id])
     respond_to do |format|
       if @location.rate(params[:stars], current_user, params[:dimension])
-        format.js { render :partial => "rating" }
+        format.js { render "_rating" }
       else
-        format.js { render :partial => "rating" }
+        format.js { render "_rating" }
       end
     end
   end
