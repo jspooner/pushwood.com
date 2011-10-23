@@ -4,19 +4,19 @@ class Location < ActiveRecord::Base
   ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps]
 
   belongs_to :cd_page  
-  # validates_uniqueness_of :name
   has_many :images, :dependent => :destroy#, :order => "position"
+
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
   
   validates_presence_of :name
-  
   
   geocoded_by :address_from_components
   reverse_geocoded_by :lat, :lng do |obj,results|
     if geo = results.first
       puts geo.inspect
       obj.address = geo.address
-      obj.street  = geo.address(:street) #_components_of_type(:street_number)
+      obj.street  = geo.address(:street)
+      # obj.street  = geo.address_components_of_type(:street_number)
       obj.state   = geo.state
       obj.city    = geo.city
       obj.postal  = geo.postal_code
@@ -34,7 +34,8 @@ class Location < ActiveRecord::Base
     if obj.new_record?
       return true
     else
-      if obj.address.blank? or (obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?)
+      # if obj.address.blank? or (obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?)
+      if (obj.street.blank? and obj.city.blank? and obj.state.blank? and obj.postal.blank?)
         return true
       end
     end
@@ -124,7 +125,6 @@ class Location < ActiveRecord::Base
   
   def to_param
     return "#{id}-#{name.parameterize}" if name
-    # return "#{id}-#{name.parameterize}" if name
     id
   end
   # def to_param

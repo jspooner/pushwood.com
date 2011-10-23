@@ -23,9 +23,9 @@ class ArchiveController < ApplicationController
     @locations.sort! { |a,b| a.name <=> b.name }
   end
 
-  def city
-    @city = params[:city].titleize
-    @locations = Location.near(@city)
-  end
+  # def city
+  #   @city      = params[:city].titleize
+  #   @locations = Location.near(@city)
+  # end
 
 end

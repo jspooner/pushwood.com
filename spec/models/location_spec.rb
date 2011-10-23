@@ -14,7 +14,7 @@ describe Location do
   end
   
   it "should set the address if given lat and lng" do
-    location = Location.create!({ :lat => "33.140862", :lng => "-117.158827" })
+    location = Location.create!({ :name => "Foo Bar", :lat => "33.140862", :lng => "-117.158827" })
     location.street.should_not be_nil
     location.city.should_not be_nil
     location.state.should_not be_nil
@@ -24,21 +24,22 @@ describe Location do
   
   it "should allow the lat and long to be adjusted without changing the address" do
     location = Location.create!({ :name => "San Marcos", 
-                                  :street => "12 E Mission Hills Ct",
+                                  :street => "400 E Mission Hills Ct",
                                   :city => "San Marcos",
                                   :state => "California",
                                   :postal => "92069",
                                   :country => "United States"});
-    street  = location.street
-    city    = location.city
-    state   = location.state
-    postal  = location.postal
-    country = location.country
+    street       = location.street
+    city         = location.city
+    state        = location.state
+    postal       = location.postal
+    country      = location.country
     location.lat = 37.6360874401032
     location.lng = -89.0127259807095
+    location.lng.should_not be_nil
     location.save
     
-    location.street.should eql(street)
+    location.street.should eql("400 E Mission Hills Ct")
     location.city.should eql(city)
     location.state.should eql(state)
     location.postal.should eql(postal)
