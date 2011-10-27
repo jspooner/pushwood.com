@@ -21,7 +21,7 @@ module Geocoder
           else                 :madison_square_garden
         end
         # make sure you specify the correct file name here
-        read_fixture "google_data.json"
+        read_fixture "google_madison_square_garden.json"
       end
     end
   end
