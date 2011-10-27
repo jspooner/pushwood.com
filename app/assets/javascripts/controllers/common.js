@@ -7,5 +7,9 @@ PW.controllers.common = {
 		$('a.close').click(function(){
 			$(".alert-message").hide();
 		});
+		
+		$("a[rel*='external']").click(function(){
+			pageTracker._trackPageview('/outgoing/'+ $(this).attr('href'));
+		});
   }
 };
