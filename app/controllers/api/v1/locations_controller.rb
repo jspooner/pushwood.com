@@ -37,22 +37,22 @@ class Api::V1::LocationsController < ApplicationController
     # points_arr = [lat,long]
     points_str = "#{params[:lat]},#{params[:long]}"
     @locations = Location.near(points_str , 100).where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%", "%#{params[:name]}%")
-    # Rails.logger.info { "----------  locations #{@locations}" }
-    if @locations.length > 0
+    Rails.logger.info { "----------  locations #{@locations.length}" }
+    if @locations.length == 0
       Rails.logger.info { "Doing second location search" }
       @locations = Location.near(points_str, 3000).where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
     end
-
-    if @locations.length > 0
+    Rails.logger.info { "2 ----------  locations #{@locations.length}" }
+    if @locations.length == 0
       Rails.logger.info { "Doing third location search" }
       @locations = Location.near(params[:name])
     end
-
-    if @locations.length > 0
+    Rails.logger.info { "3 ----------  locations #{@locations.length}" }
+    if @locations.length == 0
       Rails.logger.info { "Doing fourth location search" }
       @locations = Location.where("address LIKE ? or name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")      
     end
-
+    Rails.logger.info { "4 ----------  locations #{@locations.length}" }
   end
   
   # GET /api/v1/locations.json?radius=20&limit=10&point=32,-112
