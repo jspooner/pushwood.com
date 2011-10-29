@@ -1,6 +1,6 @@
 class ArchiveController < ApplicationController
   def index
-    @countries = Location.select("DISTINCT country").collect { |i| i.country }.compact!.sort
+    @countries = Location.select("DISTINCT country").collect { |i| i.country }.compact.sort
   end
 
   def country
