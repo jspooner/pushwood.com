@@ -9,44 +9,67 @@
 *= require locations
 *= require welcome
 *= require ajaxful_rating
+*= require search
+*= require_self 
 */
 html, body {background:#fafafa;}
 body {padding-top:40px;}
-	
+
+.main-content {padding:20px 0 30px 0}
+
 span.highlight {background-color:#fffcdb;padding:0;color:#363636;}	
 .label{padding:1px 3px 2px;background-color:#bfbfbf;font-size:9.75px;font-weight:bold;color:#ffffff;text-transform:uppercase;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 .label.important{background-color:#c43c35;}
 .label.warning{background-color:#f89406;}
 .label.success{background-color:#46a546;}
 .label.notice{background-color:#62cffc;}
-	
-	.topbar-inner,
-	.topbar .fill {
-	  background-color: #222;
-	}
-	.topbar a.imgLink {
-		padding:8px 0 0 0;
-	}
-	.topbar a {
-	  color: #bfbfbf;
-	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	}
-	.topbar h3 a:hover, .topbar .brand a:hover, .topbar ul .active > a {
-	  background-color: #333;
-	  background-color: rgba(255, 255, 255, 0.05);
-	  color: #ffffff;
-	  text-decoration: none;
-	}
-	.topbar h3 {
-	  position: relative;
-	}
-	.topbar h3 a, .topbar .brand {
-	  float: left;
-	  display: block;
-	  padding: 8px 20px 12px;
-	  margin-left: -20px;
-	  color: #ffffff;
-	  font-size: 20px;
-	  font-weight: 200;
-	  line-height: 1;
-	}	
+
+  .topbar-inner,
+  .topbar .fill {
+    background-color: #222;
+  }
+  .topbar a.imgLink {
+  	padding:8px 0 0 0;
+  }
+  .topbar a {
+    color: #bfbfbf;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+  .topbar h3 a:hover, .topbar .brand a:hover, .topbar ul .active > a {
+    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .topbar h3 {
+    position: relative;
+  }
+  .topbar h3 a, .topbar .brand {
+    float: left;
+    display: block;
+    padding: 8px 20px 12px;
+    margin-left: -20px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 1;
+  }	
+
+  #search-form span.glass {
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  right: 0;
+  padding: 7px 8px 5px 8px;
+  }
+
+  #search-form span.glass i {
+    background-image: url(/images/sprite-icons.png);
+    background-position: -224px -96px;
+    width: 14px;
+    height: 14px;
+    display: block;
+  }
+
+

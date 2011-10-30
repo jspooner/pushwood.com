@@ -1,6 +1,6 @@
 Woodhack::Application.routes.draw do
   
-  get "search/index"
+  match 'search' => 'search#index'
 
   match 'archive/' => 'archive#index', :as => :archive
   match 'archive/:country/' => 'archive#country', :as => :archive_country

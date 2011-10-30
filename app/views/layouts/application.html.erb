@@ -34,9 +34,10 @@
           <li class="active"><%= link_to 'Skateparks', '/archive/united-states/' %></li>
           <li class=""><a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone App</a></li>
         </ul>
-        <!-- <form class="pull-left" action="">
-          <input type="text" placeholder="Search">
-        </form> -->
+        <form id="search-form" class="js-search-form" action="/search" method="GET">
+          <span class="glass js-search-action"><i></i></span>
+          <input value="<%= @query || "" %>" placeholder="Search" name="q" id="search-query" type="text">
+        </form>          
         <ul class="nav secondary-nav">
           <% if current_user %>
           <li class="menu" data-dropdown="dropdown" >
@@ -54,7 +55,7 @@
       </div>
     </div>
   </div>  			  		
-  <div class="container">
+  <div class="container main-content">
     <%= yield %>
   </div>		
 	<div class="container">

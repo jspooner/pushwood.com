@@ -2,14 +2,21 @@
 PW.controllers.common = {
   init: function() {
     // application-wide code
+    
+    $('.nav').dropdown();
+    $('a.close').click(function(){
+      $(".alert-message").hide();
+    });
 
-		$('.nav').dropdown();
-		$('a.close').click(function(){
-			$(".alert-message").hide();
-		});
-		
-		$("a[rel*='external']").click(function(){
-			pageTracker._trackPageview('/outgoing/'+ $(this).attr('href'));
-		});
+    // track external clicks
+    $("a[rel*='external']").click(function(){
+      pageTracker._trackPageview('/outgoing/'+ $(this).attr('href'));
+    });
+    
+    // Search form
+    $("#search-form span").click(function(){
+      $("#search-form").submit();
+    });
+
   }
 };

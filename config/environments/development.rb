@@ -31,6 +31,8 @@ Woodhack::Application.configure do
   
   # Test mailers
   config.action_mailer.delivery_method = :letter_opener
-  
+
+  config.assets.debug = true
 end
 
+ENV['RAILS_TEST_IP_ADDRESS'] = "70.181.146.179"
