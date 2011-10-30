@@ -37,6 +37,7 @@
         <form id="search-form" class="js-search-form" action="/search" method="GET">
           <span class="glass js-search-action"><i></i></span>
           <input value="<%= @query || "" %>" placeholder="Search" name="q" id="search-query" type="text">
+          <input value="<%= @query_location || request.location.city %>" placeholder="Near" name="l" id="search-location" type="text">
         </form>          
         <ul class="nav secondary-nav">
           <% if current_user %>
@@ -54,28 +55,28 @@
         </ul>
       </div>
     </div>
-  </div>  			  		
+  </div>
   <div class="container main-content">
     <%= yield %>
-  </div>		
-	<div class="container">
-		<p>Copyright &copy; 2011 Pushwood LLC.  <%= link_to "terms of service", terms_of_service_path %> | <%= link_to "archive", archive_path %></p>
-	</div>
+  </div>
+  <div class="container">
+    <p>Copyright &copy; 2011 Pushwood LLC.  <%= link_to "terms of service", terms_of_service_path %> | <%= link_to "archive", archive_path %></p>
+  </div>
 
-	  
-	  <%= javascript_include_tag :application %>
-		<script type="text/javascript">
 
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-23487589-1']);
-		  _gaq.push(['_trackPageview']);
+  <%= javascript_include_tag :application %>
+  <script type="text/javascript">
 
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23487589-1']);
+    _gaq.push(['_trackPageview']);
 
-		</script>
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
   </body>
 </html>
