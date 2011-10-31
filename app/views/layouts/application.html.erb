@@ -37,7 +37,6 @@
         <form id="search-form" class="js-search-form" action="/search" method="GET">
           <span class="glass js-search-action"><i></i></span>
           <input value="<%= @query || "" %>" placeholder="Search" name="q" id="search-query" type="text">
-          <input value="<%= @query_location || request.location.city %>" placeholder="Near" name="l" id="search-location" type="text">
         </form>          
         <ul class="nav secondary-nav">
           <% if current_user %>

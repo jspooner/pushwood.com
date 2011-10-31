@@ -19,23 +19,24 @@ body[data-controller=search] {
     }
   .rating {background:#d3b34d;color:#fff;font-weight:bold;font-size:16px;padding-top:8px}
 
-  .img_thumb {width:162px;height:150px;padding:2px;border:0px solid #ccc;overflow:hidden;float:left;background:#000;
+  .img_thumb {width:162px;height:150px;padding:0px;border:2px solid #000;overflow:hidden;float:left;background:#000;
       -webkit-box-shadow:0 7px 7px rgba(0, 0, 0, 0.7);
       -moz-box-shadow:0 7px 7px rgba(0, 0, 0, 0.7);
       box-shadow:0 7px 7px rgba(0, 0, 0, 0.7);
-      -webkit-transform:rotate(-3deg);
+/*      -webkit-transform:rotate(-3deg);
       -moz-transform:rotate(-3deg);
       -o-transform:rotate(-3deg);
       transform:rotate(-3deg);
-    }
+*/    }
   .img_thumb img {margin:auto}
   /*.img_thumb img {position:relative;top:0;left:0;}*/
 
   .location-desc {float:left;margin-left:10px;width:425px;}
-
+  .location-desc h4 {margin-bottom:7px;line-height:14px}
+  
   .ajaxful-rating.small {width:50px}
 
   .location-title, .ajaxful-rating-wrapper {float:left}
-  .ajaxful-rating-wrapper {width:50px;margin:15px 0 0 10px}
+  .ajaxful-rating-wrapper {width:50px;margin:5px 0 0 10px}
 
 }
