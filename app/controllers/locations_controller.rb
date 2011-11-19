@@ -38,11 +38,10 @@ class LocationsController < ApplicationController
   def index
     # @locations = Location.limit(20).where("state = ?", "CA").all
 
-    radius = params[:radius] || 200
-    limit = 50
+    radius     = params[:radius] || 200
+    limit      = 50
     @locations = Location.limit(limit)
     @locations = @locations.in_bounds(params[:bounding_box]) if params[:bounding_box]
-
     
     # @locations = Location.near("San Marcos, CA, USA")
     respond_to do |format|

@@ -1,29 +1,29 @@
 // Events Controller
 PW.controllers.locations = {
   init: function() 
-	{
+  {
     // controller-wide code
-		/**
-		* Location Model
-		*/
-		window.Location = Backbone.Model.extend({
-			name: 'location',
-			initialize: function(attributes, options) {
-				this.set(attributes["location"], {silent : true});
-		    this._previousAttributes = _.clone(this.attributes);
-			}
-		});
-		/**
-		* Locations List
-		*/	
-		window.LocationList = Backbone.Collection.extend({
-			model: Location,
-			url: '/api/v1/locations.json?city=San Diego'
-		});
-		// END INIT
+    /**
+    * Location Model
+    */
+    window.Location = Backbone.Model.extend({
+      name: 'location',
+      initialize: function(attributes, options) {
+        this.set(attributes["location"], {silent : true});
+        this._previousAttributes = _.clone(this.attributes);
+      }
+    });
+    /**
+    * Locations List
+    */	
+    window.LocationList = Backbone.Collection.extend({
+      model: Location,
+      url: '/api/v1/locations.json?city=San Diego'
+    });
+    // END INIT
   },
 	
-	show: function() {
+  show: function() {
 		//
 		$("#showHideHistory").click(function(e){
 			$("#historyList").slideToggle();
@@ -73,107 +73,110 @@ PW.controllers.locations = {
 		}
 		window.onload = loadScript;
 	},
-	
+  
   /**
-	* 
-	**/
+  * 
+  **/
   index: function()
-	{
-		
-		function listItem(markerImg, name, address, phone, url) {
-			var div = $("<div></div>");
-			var a = $("<a>"+name+"</a>");
-			a.attr("href", url);
-			div.append($("<h2 style='display:inline'></h2>").append($('<img src="'+markerImg+'" />')).append(a) );
+  {
+    
+    function listItem(markerImg, name, address, phone, url) {
+      var div = $("<div></div>");
+      var a = $("<a>"+name+"</a>");
+      a.attr("href", url);
+      div.append($("<h2 style='display:inline'></h2>").append($('<img src="'+markerImg+'" />')).append(a) );
 
-			div.append( $('<a style="color:red;" href="'+url+'/edit">edit</a>'));
+      div.append( $('<a style="color:red;" href="'+url+'/edit">edit</a>'));
 
-			div.append($("<p>"+address+"</p>"));
-			div.append($("<p>"+phone+"</p>"));
-			return div;
-		}		
-					
-		
-		// End Map
-		/**
-		* Location <li> View
-		*/
-		window.LocationViewLI = Backbone.View.extend({
-			tagName: "div",
-			className: "location_item clearfix",
-			template: _.template(JST.location_item),
-			events: {
-				"click a": "handleClick"
-			},
-			initialize: function(args) {
-				this.index      = args['index'];
-				this.markerIcon = args['markerIcon'];
-				this.render();
-			},
-			handleClick: function(event) {
-				// event.preventDefault();
-			},
-			render: function() {
-				var json   = this.model.toJSON();
-				json['markerIcon'] = this.markerIcon;
-				json['index'] = this.index;
-				$(this.el).html(this.template(json));
-				$('#location_list').append(this.el);
-				return this;
-	    }
-		});
-		/**
-		* Map View
-		*/
-		window.MapView = Backbone.View.extend({
-			el:$('#map_canvas'),
-			markers:[],
-			events: {},
-			initialize: function()
-			{
-				_.bindAll(this, 'handle_resize', 'reload_locations');
-				var that = this;
-				var resizeTimer;
-				$(window).resize(function() {
-				    clearTimeout(resizeTimer);
-				    resizeTimer = setTimeout(that.handle_resize, 60, that);
-				});
-				// init map
-				var carmelvalley = new google.maps.LatLng(32.94803512647807, -117.23739940536501); 
-				var map;
-				var marker;
-				var markersArray = [];
-			  var myOptions = {
-			    zoom: 12,
-			    mapTypeId: google.maps.MapTypeId.ROADMAP
-			  };
-			  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-				map.setCenter(carmelvalley);
-				if(navigator.geolocation) {
-			    browserSupportFlag = true;
-			    navigator.geolocation.getCurrentPosition(function(position) {
-			      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-						window.initialLocation = initialLocation;
-			      map.setCenter(initialLocation);
-			    }, function() {
-			      handleNoGeolocation(browserSupportFlag);
-			    });
-			  // Try Google Gears Geolocation
-			  } else if (google.gears) {
-			    browserSupportFlag = true;
-			    var geo = google.gears.factory.create('beta.geolocation');
-			    geo.getCurrentPosition(function(position) {
-			      initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
-						window.initialLocation = initialLocation;
-			      map.setCenter(initialLocation);
-			    }, function() {
-			      handleNoGeoLocation(browserSupportFlag);
-			    });
-			  // Browser doesn't support Geolocation
-			  } else {
-			    browserSupportFlag = false;
-			    handleNoGeolocation(browserSupportFlag);
-			  };
+      div.append($("<p>"+address+"</p>"));
+      div.append($("<p>"+phone+"</p>"));
+      return div;
+    }
+
+
+    // End Map
+    /**
+    * Location <li> View
+    */
+    window.LocationViewLI = Backbone.View.extend({
+      tagName: "div",
+      className: "location_item clearfix",
+      template: _.template(JST.location_item),
+      events: {
+        "click a": "handleClick"
+      },
+      initialize: function(args) {
+        this.index      = args['index'];
+        this.markerIcon = args['markerIcon'];
+        this.render();
+      },
+      handleClick: function(event) {
+        // event.preventDefault();
+      },
+      render: function() {
+        var json   = this.model.toJSON();
+        json['markerIcon'] = this.markerIcon;
+        json['index'] = this.index;
+        $(this.el).html(this.template(json));
+        $('#location_list').append(this.el);
+        return this;
+      }
+    });
+    /**
+    * Map View
+    */
+    window.MapView = Backbone.View.extend({
+      el:$('#map_canvas'),
+      markers:[],
+      events: {},
+      initialize: function()
+      {
+        _.bindAll(this, 'handle_resize', 'reload_locations');
+        var that = this;
+        var resizeTimer;
+        $(window).resize(function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(that.handle_resize, 60, that);
+        });
+        // init map
+        if (lat == undefined)
+          lat = 32.94803512647807;
+        if (lng == undefined)
+          lng = -117.23739940536501;
+        var carmelvalley = new google.maps.LatLng(lat, lng); 
+        var map, marker;
+        var markersArray = [];
+        var myOptions = {
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        map.setCenter(carmelvalley);
+        // if(navigator.geolocation) {
+        //           browserSupportFlag = true;
+        //           navigator.geolocation.getCurrentPosition(function(position) {
+        //             initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        //             window.initialLocation = initialLocation;
+        //             map.setCenter(initialLocation);
+        //           }, function() {
+        //             handleNoGeolocation(browserSupportFlag);
+        //           });
+        //           // Try Google Gears Geolocation
+        //         } else if (google.gears) {
+        //           browserSupportFlag = true;
+        //           var geo = google.gears.factory.create('beta.geolocation');
+        //           geo.getCurrentPosition(function(position) {
+        //             initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+        //             window.initialLocation = initialLocation;
+        //             map.setCenter(initialLocation);
+        //           }, function() {
+        //             handleNoGeoLocation(browserSupportFlag);
+        //           });
+        //           // Browser doesn't support Geolocation
+        //         } else {
+        //           browserSupportFlag = false;
+        //           handleNoGeolocation(browserSupportFlag);
+        //         };
 
 				function handleNoGeolocation(errorFlag) {
 			    if (errorFlag == true) {

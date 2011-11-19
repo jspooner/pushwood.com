@@ -1,0 +1,25 @@
+<h1>Locations</h1>
+<p>
+  Locations with ratings <strong><%= (@locations_with_ratings * 100.0 / @locations_total).round(2) %>%</strong> 
+  <%= @locations_with_ratings %> / <%= @locations_total %>
+</p>
+
+<p>
+  Locations that have images <strong><%= (@locations_with_images * 100.0 / @locations_total).round(2) %>%</strong>
+  <%= @locations_with_images %> / <%= @locations_total %>
+</p>
+
+<p>
+  Locations with descriptions <strong><%= (@locations_with_descriptions * 100.0 / @locations_total).round(2) %>%</strong>
+  <%= @locations_with_descriptions %> / <%= @locations_total %>
+</p>
+
+<h2><%= @duplicates.flatten.uniq.count %> Possible Duplicates</h2>
+<% @duplicates.each do |set| %>
+<h4><%= link_to "#{set.first.lat}, #{set.first.lng}", locations_path(:lat => set.first.lat.to_s, :lng => set.first.lng.to_s), :target => "_blank"  %></h4>
+<ul>
+  <% set.each do |location| %>
+    <li><%= link_to location.name, location %> <%= location.distance_to(set.first) %> </li>
+  <% end %>
+</ul>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118035647) do
+ActiveRecord::Schema.define(:version => 20111118050749) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -64,19 +64,20 @@ ActiveRecord::Schema.define(:version => 20111118035647) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.decimal  "lat",                        :precision => 15, :scale => 8, :default => 0.0
-    t.decimal  "lng",                        :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lat",                         :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lng",                         :precision => 15, :scale => 8, :default => 0.0
     t.string   "phone"
-    t.integer  "has_lights",    :limit => 1,                                :default => 0
-    t.integer  "is_free",       :limit => 1,                                :default => 0
-    t.integer  "is_outdoors",   :limit => 1,                                :default => 0
-    t.integer  "pads_required", :limit => 1,                                :default => 0
-    t.integer  "has_concrete",  :limit => 1,                                :default => 0
-    t.integer  "has_wood",      :limit => 1,                                :default => 0
+    t.integer  "has_lights",     :limit => 1,                                :default => 0
+    t.integer  "is_free",        :limit => 1,                                :default => 0
+    t.integer  "is_outdoors",    :limit => 1,                                :default => 0
+    t.integer  "pads_required",  :limit => 1,                                :default => 0
+    t.integer  "has_concrete",   :limit => 1,                                :default => 0
+    t.integer  "has_wood",       :limit => 1,                                :default => 0
     t.integer  "cd_page_id"
-    t.string   "hours",                                                     :default => ""
+    t.string   "hours",                                                      :default => ""
     t.text     "address"
     t.integer  "images_count"
+    t.decimal  "rating_average",              :precision => 6,  :scale => 2, :default => 0.0
   end
 
   create_table "rails_admin_histories", :force => true do |t|

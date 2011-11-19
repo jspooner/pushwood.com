@@ -1,5 +1,11 @@
 Woodhack::Application.routes.draw do
   
+  get "admin/index"
+
+  get "admin/users"
+
+  get "admin/locations"
+
   match 'search' => 'search#index'
 
   match 'archive/' => 'archive#index', :as => :archive

@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   versioned  
   acts_as_commentable  
-  ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps]
+  ajaxful_rateable :stars => 5, :dimensions => [:overall, :street, :bowls, :vert, :miniramps], :cache_column => :rating_average
 
   belongs_to :cd_page  
   has_many :images, :dependent => :destroy#, :order => "position"
@@ -131,5 +131,23 @@ class Location < ActiveRecord::Base
   #   return "#{id}/#{name.parameterize}" if name
   #   id
   # end
+  
+  def find_duplicate_locations
+    Location.near([self.lat, self.lng], 0.1)
+  end
+  
+  def self.find_duplicate_locations
+    duplicates = []
+    Location.find_each(:batch_size => 10) do |location|
+      results = location.find_duplicate_locations
+      if results.length > 1
+        duplicates << results
+        puts "Probably some dups here for #{results.first.name} #{results.first.id}"
+        puts "#{results.collect { |l| l.id }.join(", ")}"
+      end
+    end
+    
+    duplicates
+  end
   
 end
