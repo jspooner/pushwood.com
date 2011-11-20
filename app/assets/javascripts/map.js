@@ -4,9 +4,13 @@
 **/
 
 PW.maps = {
+  /**
+  * Convert lat/lng into an address
+  * PW.maps.reverseGeocode(39.302753, -84.467662, function(results) { console.log(PW.maps.google.toUSAAddress(results[1])); });
+  */
   reverseGeocode: function(lat,lng, fn) {
     var geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(lat,lng);
+    var latlng   = new google.maps.LatLng(lat,lng);
     geocoder.geocode({'latLng':latlng}, function(results, status){
       if (status == google.maps.GeocoderStatus.OK) {
         fn(results);
@@ -58,6 +62,20 @@ PW.maps.google = {
       postal: usa_address['postal_code'],
       country: usa_address['country'],
       };
+  },
+  
+  userLocation: function(callback) {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        callback(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      }, function() {
+        callback(new google.maps.LatLng(0.0, 0.0));
+      });
+      // Try Google Gears Geolocation
+    } else {
+      console.log("navigator.geolocation not found");
+      callback(new google.maps.LatLng(0.0, 0.0));
+    }
   }
   
   

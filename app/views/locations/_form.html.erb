@@ -154,7 +154,11 @@
           <%= f.label :lng, "Longitude" %>
           <div class="input">
             <%= f.text_field :lng, :class => "disabled", :disabled => true %>
+            <ul class="inputs-list">
+              <li><label><%= check_box_tag "lockLatLng", "" %> <span>Enable latitude and longitude fields</span></label></li>
+            </ul>
           </div>
+          
         </div>
         
       </fieldset>
@@ -183,4 +187,3 @@
 
 
 <% end %>
-

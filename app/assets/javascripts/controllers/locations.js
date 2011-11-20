@@ -366,11 +366,55 @@ PW.controllers.locations = {
 		});
 		// END INDEX
   },
-
+  
+  create: function()
+  {
+    PW.controllers.locations.edit();
+  },
+  
   edit: function() 
 	{
     // action-specific code
     PW.controllers.locations.init_form();
+
+  	// google.maps.event.addListener(marker, 'dragend', function() {
+  	//     
+  	//       new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
+  	//         console.log(results);
+  	//         console.log(status);
+  	//         if (status == google.maps.GeocoderStatus.OK) {
+  	//           // results[0].address_components[0]
+  	//           debugger;
+  	//         }
+  	//       });
+  	//       
+  	//     });
+    //
+  },
+
+  new: function() 
+  {
+    // action-specific code
+    PW.maps.google.userLocation(function(latLng){
+      $("#location_lat").val(latLng.lat());
+      $("#location_lng").val(latLng.lng());
+      PW.controllers.locations.init_form();
+    });
+    
+  },
+  
+  init_form: function() 
+  {
+    // set up image fields
+    remove_fields = function(link) {
+      $(link).prev("input[type=hidden]").val("1");
+      $(link).closest(".field").hide();
+    }
+    add_fields = function(link, association, content) {
+      var new_id = new Date().getTime();
+      var regexp = new RegExp("new_" + association, "g")
+      $(link).parent().before(content.replace(regexp, new_id));
+    }
     // set up map
     var map, marker;
     var myOptions = {
@@ -380,12 +424,7 @@ PW.controllers.locations = {
 
     var lat = $("#location_lat").val();
     var lng = $("#location_lng").val();
-    if (lat == "" && lng == "") {
-      lat = '33.0532118628684';
-      lat = '-117.287725073576';
-      // myOptions['zoom'] = 8;
-      console.log("SET", lat)
-    };
+    console.log(lat, ",", lng)
     var centerLocation = new google.maps.LatLng( lat, lng ); 
     map = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
     map.setCenter(centerLocation);
@@ -410,42 +449,25 @@ PW.controllers.locations = {
         });
       };
     });
-
-  	// google.maps.event.addListener(marker, 'dragend', function() {
-  	//     
-  	//       new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
-  	//         console.log(results);
-  	//         console.log(status);
-  	//         if (status == google.maps.GeocoderStatus.OK) {
-  	//           // results[0].address_components[0]
-  	//           debugger;
-  	//         }
-  	//       });
-  	//       
-  	//     });
-    //
-  },
-
-  new: function() 
-  {
-    // action-specific code
-    PW.controllers.locations.init_form();
-    // PW.controllers.locations.edit();
-  },
-  
-  init_form: function() 
-  {
-    // set up image fields
-    remove_fields = function(link) {
-      $(link).prev("input[type=hidden]").val("1");
-      $(link).closest(".field").hide();
-    }
-    add_fields = function(link, association, content) {
-      var new_id = new Date().getTime();
-      var regexp = new RegExp("new_" + association, "g")
-      $(link).parent().before(content.replace(regexp, new_id));
-    }
-
+    /**
+    *
+    **/
+    $("#lockLatLng").change(function() {
+      console.log("C");
+      if ( $("#lockLatLng").prop("checked") ) {
+        $("#location_lat").removeProp("disabled").removeClass("disabled");
+        $("#location_lng").removeProp("disabled").removeClass("disabled");
+      } else {
+        $("#location_lat").prop("disabled","disabled").addClass("disabled");
+        $("#location_lng").prop("disabled","disabled").addClass("disabled");        
+      }
+    });
+    $("#location_lat, #location_lng").change(function() {
+      var latLng = new google.maps.LatLng( $("#location_lat").val(), $("#location_lng").val() );
+      marker.setPosition(latLng);
+      map.setCenter(latLng);
+    });
+    
     // end init_form
   }
 
