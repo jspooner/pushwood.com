@@ -370,14 +370,14 @@ PW.controllers.locations = {
   edit: function() 
 	{
     // action-specific code
-		PW.controllers.locations.init_form();
-		// set up map
+    PW.controllers.locations.init_form();
+    // set up map
     var map, marker;
-	  var myOptions = {
-	    zoom: 19,
-	    mapTypeId: google.maps.MapTypeId.HYBRID
-	  };
-		
+    var myOptions = {
+      zoom: 19,
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+
     var lat = $("#location_lat").val();
     var lng = $("#location_lng").val();
     if (lat == "" && lng == "") {
@@ -386,19 +386,31 @@ PW.controllers.locations = {
       // myOptions['zoom'] = 8;
       console.log("SET", lat)
     };
-		var centerLocation = new google.maps.LatLng( lat, lng ); 
-	  map = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
-		map.setCenter(centerLocation);
-    marker = new google.maps.Marker({ map: map,	draggable: true, position: centerLocation });
+    var centerLocation = new google.maps.LatLng( lat, lng ); 
+    map = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
+    map.setCenter(centerLocation);
+    marker = new google.maps.Marker({ map: map, draggable: true, position: centerLocation });
     /**
-  	* watch the markers position
-  	*/
+    * watch the markers position
+    */
+    var marker_to_lat_listener = google.maps.event.addListener(marker, 'position_changed', function() {
+      $("#location_lat").val(marker.getPosition().lat());
+      $("#location_lng").val(marker.getPosition().lng());
+      // Reverse geocode
+      if ( $("#lockMarkerToAddress").prop("checked") ) {
+        PW.maps.reverseGeocode($("#location_lat").val(), $("#location_lng").val(), function(results) {
+          if (results != undefined && results[0] != undefined) {
+            var address = PW.maps.google.toUSAAddress(results[0]);
+            $("#location_street").val(address['street']);
+            $("#location_city").val(address['city']);
+            $("#location_state").val(address['state']);
+            $("#location_postal").val(address['postal']);
+            $("#location_country").val(address['country']);
+          };
+        });
+      };
+    });
 
-  	var marker_to_lat_listener = google.maps.event.addListener(marker, 'position_changed', function() {
-  		$("#location_lat").val(marker.getPosition().lat());
-  		$("#location_lng").val(marker.getPosition().lng());  		
-  	});
-  	
   	// google.maps.event.addListener(marker, 'dragend', function() {
   	//     
   	//       new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
@@ -415,26 +427,26 @@ PW.controllers.locations = {
   },
 
   new: function() 
-	{
+  {
     // action-specific code
-		PW.controllers.locations.init_form();
+    PW.controllers.locations.init_form();
     // PW.controllers.locations.edit();
   },
   
   init_form: function() 
   {
     // set up image fields
-  	remove_fields = function(link) {
-			$(link).prev("input[type=hidden]").val("1");
-			$(link).closest(".field").hide();
-		}
-		add_fields = function(link, association, content) {
-		  var new_id = new Date().getTime();
-		  var regexp = new RegExp("new_" + association, "g")
-		  $(link).parent().before(content.replace(regexp, new_id));
-		}
+    remove_fields = function(link) {
+      $(link).prev("input[type=hidden]").val("1");
+      $(link).closest(".field").hide();
+    }
+    add_fields = function(link, association, content) {
+      var new_id = new Date().getTime();
+      var regexp = new RegExp("new_" + association, "g")
+      $(link).parent().before(content.replace(regexp, new_id));
+    }
 
-	  // end init_form
+    // end init_form
   }
 
 };

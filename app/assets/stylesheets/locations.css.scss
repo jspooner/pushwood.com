@@ -56,29 +56,13 @@ body[data-controller=locations] {
   #imagesHolder {margin:10px 0;}
   
   /* new edit */
+  form.new_location, form.edit_location {
+    textarea#location_description {
+      width:500px;height:200px;
+    }
+  }
   
-  /*form.new_location, form.edit_location {
-  	width:100%;
-      h2 {
-        margin:10px 0;
-        border-bottom:2px solid #555;
-      }
-      .field {
-        padding:4px 0;
-      }
-      label {
-        display:inline-block; width:170px;
-        vertical-align:top;      
-      }
-      input[type="submit"] {
-        margin:30px 0 30px 0;
-        float:right;
-      }
-      textarea#location_description {
-        width:500px;
-      }
-    }*/
-	li.field {list-style:none}
+  li.field {list-style:none}
   #diagram_fields {
     margin:0;padding:0;
   }

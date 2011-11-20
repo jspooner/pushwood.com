@@ -19,6 +19,7 @@
 //
 //= require pre_init
 //
+//= require map
 //= require controllers/common
 //= require controllers/locations
 //

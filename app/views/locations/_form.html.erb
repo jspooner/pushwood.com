@@ -1,16 +1,15 @@
 <br>
 <br>
 <%= form_for(@location, :html => { :multipart => true }) do |f| %>
-	<%= f.hidden_field :lat %>
-	<%= f.hidden_field :lng %>
+
   <div class="row">  
-  	<div class="span10">
+    <div class="span10">
       <fieldset id="" class="">
         <% if @location.new_record? %>
-      		<legend>New Skate Spot</legend>
-      	<% else %>
-      		<legend>Editing <%= @location.name %></legend>
-      	<% end %>
+          <legend>New Skate Spot</legend>
+        <% else %>
+          <legend>Editing <%= @location.name %></legend>
+        <% end %>
         <% if @location.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
@@ -21,8 +20,7 @@
             </ul>
           </div>
         <% end %>
-    
-    
+
         <div class="clearfix">
           <%= f.label :name %>
           <div class="input">
@@ -108,57 +106,73 @@
         <div class="clearfix">
           <%= f.label :street %>
           <div class="input">
-            <%= f.text_field :street %>        
+            <%= f.text_field :street %>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :city %>
           <div class="input">
-            <%= f.text_field :city %>        
+            <%= f.text_field :city %>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :state %>
           <div class="input">
-            <%= f.text_field :state %>        
+            <%= f.text_field :state %>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :postal %>
           <div class="input">
-            <%= f.text_field :postal %>        
+            <%= f.text_field :postal %>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :country %>
           <div class="input">
-            <%= f.text_field :country %>        
+            <%= f.text_field :country %>
           </div>
         </div>
         <div class="clearfix">
-          <label>Map</label> 
+          <label>Map</label>
           <div class="input">
-            <div class="field">	
-          		<div id="exactLocationMap"></div>
-          	</div>
+            <ul class="inputs-list">
+              <li><label><%= check_box_tag "lockMarkerToAddress", "", :checked => true %> <span>Update address when marker moves</span></label></li>
+            </ul>
+            <div class="field">
+              <div id="exactLocationMap"></div>
+            </div>
           </div>
         </div>
-      </fieldset>	
-  	</div>
-	
+        <div class="clearfix">
+          <%= f.label :lat, "Latitude" %>
+          <div class="input">
+            <%= f.text_field :lat, :class => "disabled", :disabled => true %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :lng, "Longitude" %>
+          <div class="input">
+            <%= f.text_field :lng, :class => "disabled", :disabled => true %>
+          </div>
+        </div>
+        
+      </fieldset>
+    </div>
+
     <div class="span6">
       <h4>Images</h4>
       <div id="diagram_fields">
         <ul id="sortable">
         <%= f.fields_for :images do |images_builder| %>
-    	    <%= render 'image_fields', :f => images_builder %>
-    		<% end %>
-    		</ul>
-    		<%= link_to_add_fields("Add Image", f, :images) %>
-    	</div>
+          <%= render 'image_fields', :f => images_builder %>
+        <% end %>
+        </ul>
+        <%= link_to_add_fields("Add Image", f, :images) %>
+      </div>
     </div>
-  </div>  
-	    
+  </div>
+
   <div class="actions">
     <%= f.submit "Save", :class => "btn primary" %>
     <%= link_to "Cancel", @location, :class => "btn" %>
