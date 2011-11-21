@@ -376,20 +376,6 @@ PW.controllers.locations = {
 	{
     // action-specific code
     PW.controllers.locations.init_form();
-
-  	// google.maps.event.addListener(marker, 'dragend', function() {
-  	//     
-  	//       new google.maps.Geocoder().geocode( { 'location': new google.maps.LatLng($("#location_lat").val(), $("#location_lng").val())}, function(results, status) {
-  	//         console.log(results);
-  	//         console.log(status);
-  	//         if (status == google.maps.GeocoderStatus.OK) {
-  	//           // results[0].address_components[0]
-  	//           debugger;
-  	//         }
-  	//       });
-  	//       
-  	//     });
-    //
   },
 
   new: function() 
@@ -421,14 +407,12 @@ PW.controllers.locations = {
       zoom: 19,
       mapTypeId: google.maps.MapTypeId.HYBRID
     };
-
-    var lat = $("#location_lat").val();
-    var lng = $("#location_lng").val();
-    console.log(lat, ",", lng)
+    var lat            = $("#location_lat").val();
+    var lng            = $("#location_lng").val();
     var centerLocation = new google.maps.LatLng( lat, lng ); 
-    map = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
+    map                = new google.maps.Map(document.getElementById("exactLocationMap"), myOptions);
     map.setCenter(centerLocation);
-    marker = new google.maps.Marker({ map: map, draggable: true, position: centerLocation });
+    marker             = new google.maps.Marker({ map: map, draggable: true, position: centerLocation });
     /**
     * watch the markers position
     */
@@ -450,18 +434,17 @@ PW.controllers.locations = {
       };
     });
     /**
-    *
+    * Lock/Unlock the lat/lng textfields.
     **/
     $("#lockLatLng").change(function() {
-      console.log("C");
-      if ( $("#lockLatLng").prop("checked") ) {
-        $("#location_lat").removeProp("disabled").removeClass("disabled");
-        $("#location_lng").removeProp("disabled").removeClass("disabled");
-      } else {
-        $("#location_lat").prop("disabled","disabled").addClass("disabled");
-        $("#location_lng").prop("disabled","disabled").addClass("disabled");        
-      }
+      if ( $("#lockLatLng").prop("checked") ) 
+        $("#location_lat, #location_lng").removeProp("disabled").removeClass("disabled");
+      else
+        $("#location_lat, #location_lng").prop("disabled","disabled").addClass("disabled");
     });
+    /**
+    * Update map when lat/lng textfields update
+    **/
     $("#location_lat, #location_lng").change(function() {
       var latLng = new google.maps.LatLng( $("#location_lat").val(), $("#location_lng").val() );
       marker.setPosition(latLng);
