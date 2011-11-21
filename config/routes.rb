@@ -1,10 +1,9 @@
 Woodhack::Application.routes.draw do
   
   get "admin/index"
-
   get "admin/users"
-
   get "admin/locations"
+  get "admin/duplicates"
 
   match 'search' => 'search#index'
 

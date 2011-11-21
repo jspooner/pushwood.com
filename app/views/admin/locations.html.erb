@@ -14,12 +14,16 @@
   <%= @locations_with_descriptions %> / <%= @locations_total %>
 </p>
 
-<h2><%= @duplicates.flatten.uniq.count %> Possible Duplicates</h2>
-<% @duplicates.each do |set| %>
-<h4><%= link_to "#{set.first.lat}, #{set.first.lng}", locations_path(:lat => set.first.lat.to_s, :lng => set.first.lng.to_s), :target => "_blank"  %></h4>
+<h2>Count by US State</h2>
 <ul>
-  <% set.each do |location| %>
-    <li><%= link_to location.name, location %> <%= location.distance_to(set.first) %> </li>
+  <% @count_by_state.sort {|x,y| y["count(state)"] <=> x["count(state)"]}.each do |i| %>
+    <li><%= i["state"] %> <%= i["count(state)"] %></li>
   <% end %>
 </ul>
-<% end %>
+
+<h2>Count by Country</h2>
+<ul>
+  <% @count_by_country.sort {|x,y| y["count(country)"] <=> x["count(country)"]}.each do |i| %>
+    <li><%= i["country"] %> <%= i["count(country)"] %></li>
+  <% end %>
+</ul>

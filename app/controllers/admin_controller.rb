@@ -10,6 +10,12 @@ class AdminController < ApplicationController
     @locations_with_images       = Location.where("images_count > 0").count
     @locations_with_ratings      = Location.where("rating_average > 0").count
     @locations_total             = Location.count
+    
+    @count_by_state   = ActiveRecord::Base.connection.select_all("SELECT state, count(state) FROM locations WHERE country = 'United States' GROUP BY `state`;")
+    @count_by_country = ActiveRecord::Base.connection.select_all("SELECT country, count(country) FROM locations GROUP BY country;")
+  end
+  
+  def duplicates
     @duplicates                  = Location.find_duplicate_locations || []
   end
 
