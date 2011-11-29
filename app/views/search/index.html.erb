@@ -1,33 +1,35 @@
 <h1>Results for &ldquo;<%= @query %>&rdquo;</h1>
 
-
-<% @locations.each do |location| %>
-  <div class="location-item">
-    <div class="img_thumb">
-      <% if location.images.empty? %>
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{location.lat},#{location.lng}&zoom=17&size=162x150&maptype=hybrid&markers=color:blue|label:A|#{location.lat},#{location.lng}&sensor=false" %>
-      <% else %>
-        <% location.images.each do |image| %>
-          <%= image_tag(image.img.url(:large_sq)) %>
+<div class="clearfix">
+  <% @locations.each do |location| %>
+    <div class="location-item">
+      <div class="img_thumb">
+        <% if location.images.empty? %>
+          <%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{location.lat},#{location.lng}&zoom=17&size=162x150&maptype=hybrid&markers=color:blue|label:A|#{location.lat},#{location.lng}&sensor=false" %>
+        <% else %>
+          <% location.images.each do |image| %>
+            <%= image_tag(image.img.url(:large_sq)) %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <div class="location-desc">
-      <h4 class="location-title"><%= link_to location.name, location %></h4>
-      <%= ratings_for location, :static, :small => true %>
-      <div style="clear:both"></div>
-      <p>
-        Categories:
-        <%=  "concrete" if location.has_concrete? %>
-        <%=  "wood" if location.has_wood? %>
-        <%=  "outdoors" unless location.is_outdoors? %>
-        <%=  "indoors" if location.is_outdoors? %>
-        <%=  "pads required" if location.pads_required? %>
-        <%=  "free" if location.is_free? %>
-        <br>
-        <%= location.address %>
-      </p>
+      </div>
+      <div class="location-desc">
+        <h4 class="location-title"><%= link_to location.name, location %></h4>
+        <%= ratings_for location, :static, :small => true %>
+        <div style="clear:both"></div>
+        <p>
+          Categories:
+          <%=  "concrete" if location.has_concrete? %>
+          <%=  "wood" if location.has_wood? %>
+          <%=  "outdoors" unless location.is_outdoors? %>
+          <%=  "indoors" if location.is_outdoors? %>
+          <%=  "pads required" if location.pads_required? %>
+          <%=  "free" if location.is_free? %>
+          <br>
+          <%= location.address %>
+        </p>
       
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
+<%= will_paginate @locations %>

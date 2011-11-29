@@ -3,7 +3,6 @@ class SearchController < ApplicationController
     @query          = params[:q]
     @query_location = params[:l]
     
-    @locations = Location.limit(25)
-    @locations = @locations.where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    @locations = Location.where("city LIKE ? or state LIKE ? or postal LIKE ? or name LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", "%#{@query}%").paginate(:page => params[:page], :per_page => 30)
   end
 end
