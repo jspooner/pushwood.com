@@ -378,7 +378,7 @@ PW.controllers.locations = {
     PW.controllers.locations.init_form();
   },
 
-  new: function() 
+  'new': function() 
   {
     // action-specific code
     PW.maps.google.userLocation(function(latLng){
@@ -438,9 +438,9 @@ PW.controllers.locations = {
     **/
     $("#lockLatLng").change(function() {
       if ( $("#lockLatLng").prop("checked") ) 
-        $("#location_lat, #location_lng").removeProp("disabled").removeClass("disabled");
+        $("#location_lat, #location_lng").removeClass("disabled");
       else
-        $("#location_lat, #location_lng").prop("disabled","disabled").addClass("disabled");
+        $("#location_lat, #location_lng").addClass("disabled");
     });
     /**
     * Update map when lat/lng textfields update

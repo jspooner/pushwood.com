@@ -147,13 +147,13 @@
         <div class="clearfix">
           <%= f.label :lat, "Latitude" %>
           <div class="input">
-            <%= f.text_field :lat, :class => "disabled", :disabled => true %>
+            <%= f.text_field :lat, :class => "disabled" %>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :lng, "Longitude" %>
           <div class="input">
-            <%= f.text_field :lng, :class => "disabled", :disabled => true %>
+            <%= f.text_field :lng, :class => "disabled" %>
             <ul class="inputs-list">
               <li><label><%= check_box_tag "lockLatLng", "" %> <span>Enable latitude and longitude fields</span></label></li>
             </ul>
