@@ -1,9 +1,17 @@
 Woodhack::Application.routes.draw do
+
+  namespace :admin do
+    resources :users
+    resources :roles
+  end
   
   get "admin/index"
-  get "admin/users"
+  # get "admin/users"
+  # post "admin/users/update"
   get "admin/locations"
   get "admin/duplicates"
+  get "admin/parkskaters"
+  get "admin/skateparkcom"
 
   match 'search' => 'search#index'
 
@@ -11,6 +19,7 @@ Woodhack::Application.routes.draw do
   match 'archive/:country/' => 'archive#country', :as => :archive_country
   match 'archive/:country/:state/' => 'archive#state', :as => :archive_state
   match 'archive/:country/:state/:city' => 'archive#city', :as => :archive_city
+
   
   namespace :api do
     namespace :v1 do

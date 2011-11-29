@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   end
 
   def users
+    @users = User.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
   end
 
   def locations
@@ -16,7 +17,13 @@ class AdminController < ApplicationController
   end
   
   def duplicates
-    @duplicates                  = Location.find_duplicate_locations || []
+    @duplicates = Location.find_duplicate_locations || []
   end
-
+  
+  def parkskaters
+  end
+  
+  def skateparkcom
+  end
+  
 end

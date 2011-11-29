@@ -1,0 +1,29 @@
+<h1>User Management</h1>
+<div class="section tbl">
+  <h3>List of Users</h3>
+  <table id="users-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Roles</th>
+        <th class="col-actions">Actions</th>
+      </tr>
+    </thead>
+  	<tbody>
+    	<% @users.each do |user| %>
+      <tr>
+    		<td><%= link_to "#{user.email}", admin_user_path(user) %></td>
+    		<td><%= link_to "#{user.first_name} #{user.last_name}", admin_user_path(user) %></td>
+    		<td><%= user.roles.collect(&:name).join(", ") %></td>
+    		<td class="col-actions"><div><%= link_to "Edit", edit_admin_user_path(user) %></div><div><%= link_to "Delete", admin_user_path(user), confirm: 'Are you sure you want to permanently delete this user?', method: :delete %></div></td>
+    	</tr>
+  	<% end %>	
+  	</tbody>
+  	<tfoot>
+  	 <tr>
+  	   <td colspan="4"><%= link_to 'Invite New User', new_admin_user_path, :class => "float-right btn green" %></td>
+  	 </tr>
+  	</tfoot>
+  </table>
+</div>

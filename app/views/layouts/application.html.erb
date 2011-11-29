@@ -4,28 +4,28 @@
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-	<head>
-	 <title><%= content_for?(:title) ? yield(:title) : "Pushwood" %></title>
-	 <meta charset="utf-8">
-	 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-	      Remove this if you use the .htaccess -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pushwood skatepark locator and iPhone app." %>"> 
-		<meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "Skateboard, skateboarding, skatespot, skate, skatepark, skate park, halfpipe, miniramp, street course, iPhone, iPhone App" %>">
-		<meta property="fb:admins" content="the.real.jonathan.spooner" />
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Pushwood" %></title>
+   <meta charset="utf-8">
+   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+     Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pushwood skatepark locator and iPhone app." %>"> 
+    <meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "Skateboard, skateboarding, skatespot, skate, skatepark, skate park, halfpipe, miniramp, street course, iPhone, iPhone App" %>">
+    <meta property="fb:admins" content="the.real.jonathan.spooner" />
     <meta property="fb:page_id" content="122652701165628" />
     <meta property="fb:app_id" content="202979059717647" />
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<%= stylesheet_link_tag :application %>
-		<%= javascript_include_tag 'bootstrap/application' %>
-	  <%= csrf_meta_tag %>
-	  <%= yield(:head) %>
-	</head>
-	<body lang="en" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <%= stylesheet_link_tag :application %>
+    <%= javascript_include_tag 'bootstrap/application' %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body lang="en" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">

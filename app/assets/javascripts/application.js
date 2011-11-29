@@ -22,6 +22,7 @@
 //= require map
 //= require controllers/common
 //= require controllers/locations
+//= require controllers/admin
 //
 //= require post_init
 //

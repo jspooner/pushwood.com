@@ -1,12 +1,28 @@
-<h2><%= state_full_name(@state).titleize %></h2>
+<h2>Skateparks in <%= state_full_name(@state).titleize %></h2>
 
-<div id="wideContent">
-  <h3>Parks</h3>
+<div id="wideContent" class="clearfix">
   <% @locations.each do |location| %>
-    <div class="cont">
-      <%= link_to location.name, location %>
-      <span style="display:inline-block;width:50px;"><%= ratings_for location, :static, :small => true %>  </span><br>
-      <%= location.address %>
+    <div class="location-item">
+      <div class="img_thumb">
+          <%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{location.lat},#{location.lng}&zoom=17&size=162x150&maptype=hybrid&markers=color:blue|label:A|#{location.lat},#{location.lng}&sensor=false" %>
+      </div>
+      <div class="location-desc">
+        <h4 class="location-title"><%= link_to location.name, location %></h4>
+        <%= ratings_for location, :static, :small => true %>
+        <div style="clear:both"></div>
+        <p>
+          Categories:
+          <%=  "concrete" if location.has_concrete? %>
+          <%=  "wood" if location.has_wood? %>
+          <%=  "outdoors" unless location.is_outdoors? %>
+          <%=  "indoors" if location.is_outdoors? %>
+          <%=  "pads required" if location.pads_required? %>
+          <%=  "free" if location.is_free? %>
+          <br>
+          <%= location.address %>
+        </p>
+
+      </div>
     </div>
   <% end %>
 </div>

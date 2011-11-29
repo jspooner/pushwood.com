@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118050749) do
+ActiveRecord::Schema.define(:version => 20111129044321) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(:version => 20111118050749) do
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
   create_table "tricks", :force => true do |t|
     t.integer  "user_id"
     t.string   "image_file_name"
@@ -138,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20111118050749) do
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
     t.string   "authentication_token"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

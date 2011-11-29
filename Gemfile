@@ -1,13 +1,12 @@
 source 'http://rubygems.org'
 
 gem 'rake', '~> 0.8.7'
-gem 'rails', '~> 3.1.0'
+gem 'rails', '~> 3.1.3'
 gem 'mysql2'
 gem "rpm_contrib" # requires and loads newrelic_rpm
 
 
 gem 'json'
-
 gem 'jquery-rails'
 
 gem 'devise', "~> 1.4.5"
@@ -15,6 +14,9 @@ gem "devise_invitable", "~> 0.5.4"
 
 gem 'cancan'
 gem 'omniauth'
+
+gem 'redis', '2.2.2'
+gem 'nokogiri'
 
 gem "paperclip", "~> 2.3"
 gem 'hpricot'
