@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Skaternav do
+describe "Skaternav" do
 
 end

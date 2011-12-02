@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129044321) do
+ActiveRecord::Schema.define(:version => 20111201155510) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,38 @@ ActiveRecord::Schema.define(:version => 20111129044321) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "geoplanet_adjacencies", :force => true do |t|
+    t.integer "woeid",              :limit => 8
+    t.string  "iso_code"
+    t.integer "neighbour_woeid",    :limit => 8
+    t.string  "neighbour_iso_code"
+  end
+
+  add_index "geoplanet_adjacencies", ["woeid"], :name => "index_geoplanet_adjacencies_on_woeid"
+
+  create_table "geoplanet_aliases", :force => true do |t|
+    t.integer "woeid",         :limit => 8
+    t.string  "name"
+    t.string  "name_type"
+    t.string  "language_code"
+  end
+
+  add_index "geoplanet_aliases", ["woeid"], :name => "index_geoplanet_aliases_on_woeid"
+
+  create_table "geoplanet_places", :force => true do |t|
+    t.integer "woeid",        :limit => 8
+    t.integer "parent_woeid", :limit => 8
+    t.string  "country_code"
+    t.string  "name"
+    t.string  "language"
+    t.string  "place_type"
+    t.string  "ancestry"
+  end
+
+  add_index "geoplanet_places", ["ancestry"], :name => "index_geoplanet_places_on_ancestry"
+  add_index "geoplanet_places", ["parent_woeid"], :name => "index_geoplanet_places_on_parent_woeid"
+  add_index "geoplanet_places", ["woeid"], :name => "index_geoplanet_places_on_woeid", :unique => true
 
   create_table "images", :force => true do |t|
     t.integer  "location_id"

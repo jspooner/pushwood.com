@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AdminController do
+describe Admin::UsersController do
   
   describe "an anymouse users" do
     it "returns http success" do
@@ -8,11 +8,6 @@ describe AdminController do
       response.should_not be_success
     end
     it "returns http success" do
-      get 'parkskaters'
-      response.should_not be_success
-    end
-    it "returns http success" do
-      get 'skateparkcom'
       response.should_not be_success
     end
   end
@@ -23,14 +18,6 @@ describe AdminController do
       get 'index'
       response.should_not be_success
     end
-    it "returns http success" do
-      get 'parkskaters'
-      response.should_not be_success
-    end
-    it "returns http success" do
-      get 'skateparkcom'
-      response.should_not be_success
-    end
   end
   
   describe "an admin user" do
@@ -38,12 +25,6 @@ describe AdminController do
     describe "GET 'index'" do
       it "returns http success" do
         get 'index'
-        response.should be_success
-      end
-    end
-    describe "GET 'locations'" do
-      it "returns http success" do
-        get 'locations'
         response.should be_success
       end
     end

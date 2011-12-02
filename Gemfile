@@ -31,6 +31,7 @@ gem "rabl"
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
 gem "rails-backbone", "~> 0.5.4"
 
+gem 'ancestry'
 
 # # Rails 3.1 - Asset Pipeline
 # gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.
@@ -55,14 +56,13 @@ group :development do
   gem 'syntax'
   gem 'spork', '=0.9.0.rc9'
   gem 'capistrano', :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
+  gem 'capistrano-ext'
   gem 'capistrano_colors'
   gem 'rails-footnotes', '>= 3.7'
-  gem "letter_opener"
 end
 group :test do
   gem 'rails3-generators' #mainly for factory_girl
-  # gem 'factory_girl'
-  gem "factory_girl_rails", ">= 1.0.0"
+  gem 'factory_girl'
   gem "cucumber-rails", ">= 1.0.2"
   gem "capybara", ">= 1.0.0"
   gem "database_cleaner", ">= 0.6.7"
@@ -74,5 +74,5 @@ group :test do
 end
 group :test, :development do
   gem "rspec-rails", ">= 2.6.1" # Needs to be in Dev group for rake tasks
-  gem "factory_girl_generator", ">= 0.0.1"
+  # gem "ruby-prof"
 end

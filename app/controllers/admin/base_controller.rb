@@ -12,7 +12,7 @@ module Admin
     private
     
     def verify_admin
-      redirect_to root_url unless current_user && (current_user.role?(:admin) or current_user.role?(:root))
+      redirect_to root_url unless current_user && current_user.role?(:admin)
     end
       
   end
