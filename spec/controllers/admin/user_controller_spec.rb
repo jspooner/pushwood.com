@@ -7,9 +7,6 @@ describe Admin::UsersController do
       get 'index'
       response.should_not be_success
     end
-    it "returns http success" do
-      response.should_not be_success
-    end
   end
   
   describe "a logged in user" do
