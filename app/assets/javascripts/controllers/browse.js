@@ -109,13 +109,10 @@ PW.controllers.browse = {
       });
       
     }
-    loadExtensions = function() {
-      $.getScript("/assets/infobox.js", showMap);
-    }
     function loadScript() {
       var script  = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=loadExtensions";
+      script.src  = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=showMap";
       document.body.appendChild(script);
     }
     window.onload = loadScript;
