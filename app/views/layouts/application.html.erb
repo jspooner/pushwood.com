@@ -20,6 +20,7 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <%= include_gon(:camel_case => true, :namespace => 'rails') %>
     <%= stylesheet_link_tag :application %>
     <%= javascript_include_tag 'bootstrap/application' %>
     <%= csrf_meta_tag %>
@@ -31,7 +32,7 @@
       <div class="container">
         <a class="brand" href="/">Pushwood</a>
         <ul class="nav">
-          <li class="active"><%= link_to 'Skateparks', '/archive/united-states/' %></li>
+          <li class="active"><%# link_to 'Skateparks', '/skateparks/us/' %></li>
           <li class=""><a target="_blank" href="http://itunes.apple.com/us/app/pushwood-skatepark-locator/id457305109?mt=8">iPhone App</a></li>
         </ul>
         <form id="search-form" class="js-search-form" action="/search" method="GET">
