@@ -10,13 +10,11 @@ class GeoplanetPlace < ActiveRecord::Base
   
   scope :us, :conditions => { :country_code => "US" }
   scope :county, :conditions => { :place_type => "County" }
+
+  # validates_uniqueness_of :slug, :if => lambda { |gpp| !gpp.slug.nil? }
   
-  validates_uniqueness_of :slug, :if => lambda { |gpp| !gpp.slug.nil? }
-  
-  serialize :bounding_box, Hash
-  
-  
-  
+  serialize :bounding_box
+    
   def bounding_box
     if self[:bounding_box].nil?
       self.update_attribute :bounding_box, GeoPlanet::Place.new( woeid ).bounding_box.to_json
