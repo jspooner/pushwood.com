@@ -4,19 +4,21 @@
 	#popularPlaces a {font-size:16px;font-weight:bold;color:#fff;}
 
 
-body[data-action=show] {
-	div#historyList ul li {margin-bottom:10px}
-	div#historyList ul ul li {list-style:none;margin-bottom:0px}
-	div#historyList ul ul {margin-left:10px}
-	form.display-inline {float:left;margin:-5px 10px 0 0}
-}
-body[data-controller=locations] {
 
+body[data-controller=locations] {
+  
+  body[data-action=show] {
+    div#historyList ul li {margin-bottom:10px}
+    div#historyList ul ul li {list-style:none;margin-bottom:0px}
+    div#historyList ul ul {margin-left:10px}
+    form.display-inline {float:left;margin:-5px 10px 0 0}
+  }
+  
   #locations {width:300px;overflow:auto;float:left;}
   #map_canvas {width:100%;height:600px;float:left;}
-	
-	#map {width:100%;height:400px}
-	
+
+  #map {width:100%;height:400px}
+
   .new_location {display:block;margin:5px;}
   .location_item {padding:8px 5px;}
   .location_item:hover {background:#EBF2FC;}
@@ -25,19 +27,18 @@ body[data-controller=locations] {
   .item-r a {font-size: 123%;font-weight:bold;text-decoration:none;}
   .item-r a:hover {text-decoration:underline;}  
 
-	
-	div#content h1 {margin:9px 0 9px 0;}
+
+  div#content h1 {margin:9px 0 9px 0;}
   #pageAnchors {margin:9px 0 9px 0;}
-	#pageAnchors li { float:left; display:inline-block; margin:0 20px 0 0; }
-	#pageAnchors a {text-decoration:none}
-	
-	a.gridImage {display:block;width:262px;float:left;margin:0 1px 2px 1px;background:#ccc}
-	a.gridImage img {display:block;margin:auto;}
-	
+  #pageAnchors li { float:left; display:inline-block; margin:0 20px 0 0; }
+  #pageAnchors a {text-decoration:none}
+
+  a.gridImage {display:block;width:262px;float:left;margin:0 1px 2px 1px;background:#ccc}
+  a.gridImage img {display:block;margin:auto;}
+
   #sidebar h3 {margin-top:10px;}
   #sidebar .ajaxful-rating-wrapper {width:125px;}
 
-	
   /* show */
   a#editBtn {
     text-decoration:none;

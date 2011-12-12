@@ -8,6 +8,7 @@ gem "rpm_contrib" # requires and loads newrelic_rpm
 
 gem 'json'
 gem 'jquery-rails'
+gem 'gon', '2.0.3'
 
 gem 'devise', "~> 1.4.5"
 gem "devise_invitable", "~> 0.5.4"
@@ -16,6 +17,7 @@ gem 'cancan'
 gem 'omniauth'
 
 gem 'redis', '2.2.2'
+gem "redis-objects", "~> 0.5.2"
 gem 'nokogiri'
 
 gem "paperclip", "~> 2.3"
@@ -31,7 +33,9 @@ gem "rabl"
 gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
 gem "rails-backbone", "~> 0.5.4"
 
+gem 'geoplanet'
 gem 'ancestry'
+gem 'carmen'
 
 # # Rails 3.1 - Asset Pipeline
 # gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.

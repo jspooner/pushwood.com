@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   # protect_from_forgery :except => [:update, :create]
   skip_before_filter :verify_authenticity_token
   
-  authorize_resource
+  authorize_resource :except => [:verify_marker]
   
   def countries
     @countries = Location.select("DISTINCT country").collect { |i| i.country }.compact!.sort
@@ -56,7 +56,7 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @location.revert_to(params[:version].to_i) if params[:version]
- 
+    gon.location_id = @location.id
     # @json = @location.bounding_box 
     # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @json['sw']['lat'], @json['ne']['lat'], @json['ne']['lng'], @json['sw']['lng'] ]
     # @tricks = Trick.all :conditions => ["lat >= ? AND lat <= ? AND lng <= ? AND lng >= ? ", @location.bounding_box['sw']['lat'], @location.bounding_box['ne']['lat'], @location.bounding_box['ne']['lng'], @location.bounding_box['sw']['lng'] ]
@@ -67,7 +67,7 @@ class LocationsController < ApplicationController
       format.json  { render :text => @location.to_json(:methods => [:google_map_url, :lat, :lng]) }
     end
   end
-
+  
   # GET /locations/new
   # GET /locations/new.xml
   def new
@@ -146,6 +146,15 @@ class LocationsController < ApplicationController
       else
         format.js { render "_rating" }
       end
+    end
+  end
+  
+  # POST
+  def verify_marker
+    @location = Location.find(params[:id])
+    response  = @location.verify_marker( params[:visible], (current_user) ? current_user.id : request.ip )
+    respond_to do |format|
+      format.json { render :text => response.to_json }
     end
   end
    

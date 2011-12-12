@@ -26,4 +26,10 @@ class AdminController < Admin::BaseController
   def skateparkcom
   end
   
+  def marker_verification
+    @recent_marker_votes = Location.recent_marker_votes
+    id_list = @recent_marker_votes.collect { |i| JSON.parse(i)["location_id"] }
+    @locations           = Location.find( id_list ).reorder_by(id_list, &:id)
+  end
+  
 end

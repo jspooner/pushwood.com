@@ -14,6 +14,7 @@
 //= require libs/json2
 //= require libs/underscore
 //= require libs/backbone
+//= require libs/underscore
 //
 //= require templates
 //
@@ -23,6 +24,7 @@
 //= require controllers/common
 //= require controllers/locations
 //= require controllers/admin
+//= require controllers/browse
 //
 //= require post_init
 //

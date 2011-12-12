@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201155510) do
+ActiveRecord::Schema.define(:version => 20111205034221) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -69,10 +69,14 @@ ActiveRecord::Schema.define(:version => 20111201155510) do
     t.string  "language"
     t.string  "place_type"
     t.string  "ancestry"
+    t.string  "bounding_box"
   end
 
   add_index "geoplanet_places", ["ancestry"], :name => "index_geoplanet_places_on_ancestry"
+  add_index "geoplanet_places", ["country_code"], :name => "index_geoplanet_places_on_country_code"
+  add_index "geoplanet_places", ["name"], :name => "index_geoplanet_places_on_name"
   add_index "geoplanet_places", ["parent_woeid"], :name => "index_geoplanet_places_on_parent_woeid"
+  add_index "geoplanet_places", ["place_type"], :name => "index_geoplanet_places_on_place_type"
   add_index "geoplanet_places", ["woeid"], :name => "index_geoplanet_places_on_woeid", :unique => true
 
   create_table "images", :force => true do |t|
@@ -96,20 +100,21 @@ ActiveRecord::Schema.define(:version => 20111201155510) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.decimal  "lat",                         :precision => 15, :scale => 8, :default => 0.0
-    t.decimal  "lng",                         :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lat",                          :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lng",                          :precision => 15, :scale => 8, :default => 0.0
     t.string   "phone"
-    t.integer  "has_lights",     :limit => 1,                                :default => 0
-    t.integer  "is_free",        :limit => 1,                                :default => 0
-    t.integer  "is_outdoors",    :limit => 1,                                :default => 0
-    t.integer  "pads_required",  :limit => 1,                                :default => 0
-    t.integer  "has_concrete",   :limit => 1,                                :default => 0
-    t.integer  "has_wood",       :limit => 1,                                :default => 0
+    t.integer  "has_lights",      :limit => 1,                                :default => 0
+    t.integer  "is_free",         :limit => 1,                                :default => 0
+    t.integer  "is_outdoors",     :limit => 1,                                :default => 0
+    t.integer  "pads_required",   :limit => 1,                                :default => 0
+    t.integer  "has_concrete",    :limit => 1,                                :default => 0
+    t.integer  "has_wood",        :limit => 1,                                :default => 0
     t.integer  "cd_page_id"
-    t.string   "hours",                                                      :default => ""
+    t.string   "hours",                                                       :default => ""
     t.text     "address"
     t.integer  "images_count"
-    t.decimal  "rating_average",              :precision => 6,  :scale => 2, :default => 0.0
+    t.decimal  "rating_average",               :precision => 6,  :scale => 2, :default => 0.0
+    t.boolean  "marker_verified"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

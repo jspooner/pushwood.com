@@ -30,25 +30,21 @@
   </div>
   <% end %>
   
+  <div id="map" class="cont"></div>
 
+  <div id="info" class="cont">
+    <p>
+      <strong>Address:</strong> <%= @location.address %><br>
+      <span style="display:none" id="geo" data-lat="<%= @location.lat %>" data-lng="<%= @location.lng %>"></span>
+      <strong>Has Lights:</strong> <%= (@location.has_lights?) ? "Yes" : "No" %><br>
+      <strong>Videos:</strong> <%= link_to "YouTube", "http://www.youtube.com/results?search_query=#{@location.name}&aq=f" %>
+    </p>
+    <p>
+      <strong>Description</strong><br>
+      <%= @location.description.html_safe %>
+    </p>
+  </div>
 
-	<div id="map" class="cont"></div>
-
-	<div id="info" class="cont">
-		<p>
-			<strong>Address:</strong> <%= @location.address %><br>
-			<span style="display:none" id="geo" lat="<%= @location.lat %>" lng="<%= @location.lng %>"></span>
-			<span style="display:none" id="lat"><%= @location.lat %></span>
-			<span style="display:none" id="lng"><%= @location.lng %></span>
-			<strong>Has Lights:</strong> <%= (@location.has_lights?) ? "Yes" : "No" %><br>
-			<strong>Videos:</strong> <%= link_to "YouTube", "http://www.youtube.com/results?search_query=#{@location.name}&aq=f" %>
-		</p>
-		<p>
-			<strong>Description</strong><br>
-			<%= @location.description.html_safe %>
-		</p>
-	</div>
-	
 	<% unless @location.images.empty? %>
 	<div id="photos" class="cont clearfix">
 		<h4>Photos</h4>
@@ -178,3 +174,15 @@
 </script>
 
 
+<script type="text/template" id="markerQATemplate" charset="utf-8">
+<div class="markerQA">
+  <div class="markerTitle">
+    Do you see a park here?
+  </div>
+  <div class="markerForm">
+    <%= form_tag "/locations/{{locationId}}/verify_marker.json", :remote => true, :id => "markerVoting" do %>
+      <%= image_submit_tag "marker/yes.png", :name => "visible", :value => "yes" %><%= image_submit_tag "marker/no.png", :name => "visible", :value => "no" %>
+    <% end %>
+  </div>
+</div>
+</script>

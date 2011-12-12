@@ -18,5 +18,9 @@ PW.controllers.common = {
       $("#search-form").submit();
     });
 
+    //
+    _.templateSettings = {
+      interpolate : /\{\{(.+?)\}\}/g
+    };
   }
 };
