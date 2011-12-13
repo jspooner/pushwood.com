@@ -7,7 +7,7 @@
         <div class="parkInfo">
           <h5><%= link_to location.name, location %> <%= location.rating_average %></h5>
           <p>
-            <%= "Verified!" if location.marker_verified? %> <%= location.city %>, <%= location.state %><br>
+            <%= location.city %>, <%= location.state %><br>
             Location accuracy 
             yes:<%= location.marker_yes %>
             no:<%= location.marker_no %>
