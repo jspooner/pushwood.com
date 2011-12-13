@@ -5,7 +5,8 @@ class BrowseController < ApplicationController
     @place     = GeoplanetPlace.find_by_woeid(woeid)
     gon.place  = @place
     # @parent  = GeoplanetPlace.find_by_woeid(@place.parent_woeid)
-    @locations = Location.in_bounds(@place.bounding_box).order("rating_average DESC")
+    @sub_places = GeoplanetPlace.where("parent_woeid = ? and (place_type = 'Country' or place_type = 'State' or place_type = 'County' or place_type = 'Town')", @place.woeid).order("name")
+    @locations = Location.in_bounds(@place.bounding_box).order("rating_average DESC").page(params[:page]||1)
     if @place.place_type == "State"
       code = Carmen::state_code(@place.name)
       state = Carmen::state_name(@place.name) || @place.name

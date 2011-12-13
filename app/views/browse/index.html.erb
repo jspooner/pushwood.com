@@ -1,4 +1,7 @@
-<h1><%= @place.name %> Skate Park Directory</h1>
+<% content_for(:title) do %>Top <%= @place.name %> skate parks<% end %>
+<% content_for(:description) do %>The best skate parks in <%= @place.name %> include <%= @locations.collect { |i| i.name }.join(", ")  %><% end %>
+<% content_for(:keywords) do %><%= @place.name %>, <%= @locations.collect { |i| i.name }.join(", ")  %><% end %>
+<h1>Top <%= @locations.total_entries %> skate parks in <%= @place.name %></h1>
 <div class="row">
   <div class="span10">
     <div id="parklist">
@@ -17,18 +20,21 @@
       </div>
       <% end %>
     </div>
+    <div class="pagination">
+      <%= will_paginate @locations, :container => false %>
+    </div>
   </div>
   <div class="span6">
-    <h3>Places in <%= @place.name %></h3>
-    <ol>
-    <% GeoplanetPlace.where("parent_woeid = ? and (place_type = 'Country' or place_type = 'State' or place_type = 'County')", @place.woeid).order("name").each do |state| %>
-      <li>
-        <%= link_to state.name, "/skateparks/#{state.id}-#{state.name.parameterize}" %>
-      </li>
+    <% unless @sub_places.empty? %>
+      <h3>Places in <%= @place.name %></h3>
+      <ol>
+      <% @sub_places.each do |state| %>
+        <li>
+          <%= link_to state.name, "/skateparks/#{state.id}-#{state.name.parameterize}" %>
+        </li>
+      <% end %>
+      </ol>
     <% end %>
-    </ol>
-    
-    </ol>
   </div>
 </div>
 

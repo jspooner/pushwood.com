@@ -5,7 +5,6 @@ gem 'rails', '~> 3.1.3'
 gem 'mysql2'
 gem "rpm_contrib" # requires and loads newrelic_rpm
 
-
 gem 'json'
 gem 'jquery-rails'
 gem 'gon', '2.0.3'
@@ -20,7 +19,6 @@ gem 'redis', '2.2.2'
 gem "redis-objects", "~> 0.5.2"
 gem 'nokogiri'
 
-gem "paperclip", "~> 2.3"
 gem 'hpricot'
 gem 'geocoder'
 gem 'vestal_versions', :git => 'https://github.com/jodosha/vestal_versions.git' # for rails 3.1
@@ -30,7 +28,7 @@ gem 'ajaxful_rating', :git => 'https://github.com/edgarjs/ajaxful-rating.git', :
 gem "paperclip", "~> 2.3"
 gem "paperclip-facecrop"
 gem "rabl"
-gem 'will_paginate', :git => "git://github.com/akitaonrails/will_paginate.git", :branch => "rails3.1"
+gem 'will_paginate', '~> 3.0.2'
 gem "rails-backbone", "~> 0.5.4"
 
 gem 'geoplanet'

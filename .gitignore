@@ -1,5 +1,6 @@
 .svn
 log/*
+data/*
 tmp/*
 tmp/**/*
 public/assets/*
