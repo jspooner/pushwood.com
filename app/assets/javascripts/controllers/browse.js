@@ -1,8 +1,7 @@
 PW.controllers.browse = {
   init: function() 
   {
-    
-    
+    this.location();
   },
   
   location: function()
@@ -31,19 +30,22 @@ PW.controllers.browse = {
       map.setCenter(bounds.getCenter());
       map.fitBounds(bounds);
       
-      // var rectangle = new google.maps.Rectangle();
-      // var rectOptions = {
-      //   strokeColor: "#FF0000",
-      //   strokeOpacity: 0.5,
-      //   strokeWeight: 2,
-      //   fillColor: "#FF0000",
-      //   fillOpacity: 0.15,
-      //   map: map,
-      //   bounds: bounds
-      // };
-      // rectangle.setOptions(rectOptions);
+      var rectangle = new google.maps.Rectangle();
+      var rectOptions = {
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.2,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.05,
+        map: map,
+        bounds: bounds
+      };
+      rectangle.setOptions(rectOptions);
+      
       var markerBounds = new google.maps.LatLngBounds();
+      var markerCount = 0;
       $("a.zoomBtn").each(function(x, item){
+        markerCount++
         var lat        = $(item).attr("data-lat");
         var lng        = $(item).attr("data-lng");
         var locationId = $(item).attr("data-locationId");
@@ -64,6 +66,7 @@ PW.controllers.browse = {
           }
         });
         markerBounds.extend(latLng)
+        bounds.extend(latLng)
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map,marker);
         });
@@ -72,7 +75,10 @@ PW.controllers.browse = {
         $(item).attr("data-marker-id",markers.length);
         markers.push(marker);
       });
-      map.fitBounds(markerBounds);
+      if(markerCount == 0)
+        map.fitBounds(bounds);
+      else
+        map.fitBounds(markerBounds);
       
       $("a.zoomBtn").click(function(e){
         var link = $(e.currentTarget);

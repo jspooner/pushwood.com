@@ -7,10 +7,10 @@
         <div class="parkInfo">
           <h5><%= link_to location.name, location %> <%= location.rating_average %></h5>
           <p>
-            <%= "Verified!" if location.marker_verified? %> <%= location.city %>, <%= location.state %> 
+            <%= "Verified!" if location.marker_verified? %> <%= location.city %>, <%= location.state %><br>
+            Location accuracy 
             yes:<%= location.marker_yes %>
-            no:<%= location.marker_no %><br>
-            marker_contributors:<%= location.marker_contributors %>
+            no:<%= location.marker_no %>
           </p>
         </div>
         <a href="#" class="zoomBtn btn" data-locationId="<%= location.id %>" data-lat="<%= location.lat %>" data-lng="<%= location.lng %>">preview</a>
@@ -19,12 +19,15 @@
     </div>
   </div>
   <div class="span6">
+    <h3>Places in <%= @place.name %></h3>
     <ol>
-    <% GeoplanetPlace.where("parent_woeid = ? and place_type = 'State'", @place.woeid).each do |state| %>
+    <% GeoplanetPlace.where("parent_woeid = ? and (place_type = 'Country' or place_type = 'State' or place_type = 'County')", @place.woeid).order("name").each do |state| %>
       <li>
-        <%= link_to state.name, "/skateparks/us/#{state.name}" %>
+        <%= link_to state.name, "/skateparks/#{state.id}-#{state.name.parameterize}" %>
       </li>
     <% end %>
+    </ol>
+    
     </ol>
   </div>
 </div>

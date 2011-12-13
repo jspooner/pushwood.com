@@ -85,7 +85,7 @@ class Location < ActiveRecord::Base
   # a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, 
   # where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
   def self.in_bounds(bounds)
-    _bounds = bounds.split(",")
+    _bounds = bounds.flatten
     lat_lo = _bounds[0].to_f
     lng_lo = _bounds[1].to_f
     lat_hi = _bounds[2].to_f

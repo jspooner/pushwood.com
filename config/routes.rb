@@ -57,8 +57,9 @@ Woodhack::Application.routes.draw do
   get "terms_of_service", :to => "welcome#terms_of_service"
   
   # skateparks/:country/:state/:location
-  get "skateparks/:country/:location", :to => "browse#location"
-  get "skateparks/:country", :to => "browse#country"
+  # get "skateparks/:country/:location", :to => "browse#location"
+  # get "skateparks/:country", :to => "browse#country"
+  get "skateparks/:woeid", :to => "browse#index"
   get "skateparks", :to => "browse#index"
 
   

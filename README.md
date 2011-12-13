@@ -26,3 +26,25 @@ scp -r deploy@ec2-107-20-242-3.compute-1.amazonaws.com:/data/pushwoodcom/shared/
 Yahoo ID
 https://developer.apps.yahoo.com/projects?
 Your application id is AYRIaDXV34EcmlPyjwU25nOqaHEkpS3Vewq4AePRUtdsnt_yM.TfVhPvA3pXDEco1vPZSjmZS7ahoVoPw458QZ9Hz7XYfwU-
+
+
+http://instagram.com/developer/manage/
+
+YOUR CLIENTS:
+
+Skatepark Locator
+Edit  
+CLIENT ID
+d89631fd94a746ddb426d37e0c41795b
+
+CLIENT SECRET
+f74d160f1fc54913b7d014946146e041
+
+CALLBACK URL
+http://pushwood.com/auth/instagram/callback
+
+WEBSITE
+http://pushwood.com
+
+DESCRIPTION
+I'd like to find and publish photos of skateparks.
