@@ -17,10 +17,10 @@ Woodhack::Application.routes.draw do
 
   match 'search' => 'search#index'
 
-  match 'archive/' => 'archive#index', :as => :archive
-  match 'archive/:country/' => 'archive#country', :as => :archive_country
-  match 'archive/:country/:state/' => 'archive#state', :as => :archive_state
-  match 'archive/:country/:state/:city' => 'archive#city', :as => :archive_city
+  # match 'archive/' => 'archive#index', :as => :archive
+  # match 'archive/:country/' => 'archive#country', :as => :archive_country
+  # match 'archive/:country/:state/' => 'archive#state', :as => :archive_state
+  # match 'archive/:country/:state/:city' => 'archive#city', :as => :archive_city
 
   
   namespace :api do
