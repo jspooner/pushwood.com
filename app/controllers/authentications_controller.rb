@@ -6,7 +6,6 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth       = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-
     if authentication
       flash[:notice] = "Signed in successfully."
       sign_in_and_redirect(:user, authentication.user)
@@ -20,12 +19,18 @@ class AuthenticationsController < ApplicationController
       # TODO: fix twitter and openID
       email = ""
       if omniauth['provider'] == "facebook"
-        email = omniauth['extra']['user_hash']['email']
+        email      = omniauth['extra']['user_hash']['email']
+        gender     = omniauth['extra']['user_hash']['gender']
+        first_name = omniauth['extra']['user_hash']['first_name']
+        last_name  = omniauth['extra']['user_hash']['last_name']
       elsif omniauth['provider'] == "google"
         email = omniauth['user_info']['email']
       end
       
       user = User.find_by_email(email) || User.new
+      user.gender     = gender unless gender.nil?
+      user.first_name = first_name unless first_name.nil?
+      user.last_name  = last_name unless last_name.nil?
       user.apply_omniauth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
