@@ -1,7 +1,7 @@
 
-	#popularPlaces {background:#636363;padding:10px 10px 10px 0}
-	#popularPlaces p {text-align:right;;display:block}
-	#popularPlaces a {font-size:16px;font-weight:bold;color:#fff;}
+#popularPlaces {background:#636363;padding:10px 10px 10px 0}
+#popularPlaces p {text-align:right;;display:block}
+#popularPlaces a {font-size:16px;font-weight:bold;color:#fff;}
 
 
 
@@ -59,9 +59,12 @@ body[data-controller=locations] {
   /* new edit */
   form.new_location, form.edit_location {
     textarea#location_description {
-      width:500px;height:200px;
+      width:100%;
+      height:200px;
     }
   }
+  #updateAddress {float:right}
+  #updateMarker {float:left}
   
   li.field {list-style:none}
   #diagram_fields {
@@ -82,7 +85,7 @@ body[data-controller=locations] {
     text-align:center;
   }
   
-  #exactLocationMap {width:525px;height:500px;background:#e0e0e0;display:inline-block;}
+  #exactLocationMap {width:525px;height:500px;margin-top:10px;background:#e0e0e0;display:inline-block;}
 }
 
 

@@ -18,7 +18,20 @@ PW.maps = {
         fn(null);
       };
     });
-    
+  },
+  /**
+  * Convert lat/lng into an address
+  * PW.maps.geocode({'address':'10181 Telis ct'}, function(results) { console.log(PW.maps.google.toUSAAddress(results[1])); });
+  */
+  geocode: function(geocoder_request,fn) {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(geocoder_request, function(results, status){
+      if (status == google.maps.GeocoderStatus.OK) {
+        fn(results);
+      } else {
+        fn(null);
+      };
+    });
   }
   
   

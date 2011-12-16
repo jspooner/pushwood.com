@@ -5,7 +5,8 @@ task "wood:inspect" => :environment do
     $redis.keys("anemone:pages:http://skatepark.com/skateparks/*").each do |key|
       puts "#{key}"
       skatepark = Pushwood::Skateparkcom.new( $redis.hget(key, "body") )
-      csv << [key, skatepark.full_address, $redis.hget(key, "lat"), $redis.hget(key, "lng")]
+      # csv << [key, skatepark.full_address, $redis.hget(key, "lat"), $redis.hget(key, "lng")]
+      csv << [key, skatepark.full_address, skatepark.lat, skatepark.lng]
       # if skatepark.full_address
       #   $redis.hset(key, "lat", skatepark.lat)
       #   $redis.hset(key, "lng", skatepark.lng)

@@ -60,7 +60,7 @@ group :development do
   gem 'capistrano', :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
   gem 'capistrano-ext'
   gem 'capistrano_colors'
-  gem 'rails-footnotes', '>= 3.7'
+  gem "letter_opener"
 end
 group :test do
   gem 'rails3-generators' #mainly for factory_girl
