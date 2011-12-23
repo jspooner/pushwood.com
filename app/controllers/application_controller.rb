@@ -7,7 +7,12 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      request.env['omniauth.origin'] || root_url
+      # If it's an iPhone and the REFERER is blank the request came from the app
+      if request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/] and request.env["HTTP_REFERER"].blank?
+        "skateparks://?user_id=#{resource.id}&authentication_token=#{resource.authentication_token}"
+      else
+        request.env['omniauth.origin'] || root_url
+      end
     else
       super
     end
