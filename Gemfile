@@ -12,7 +12,7 @@ gem 'gon', '2.0.3'
 gem 'devise', "~> 1.4.5"
 gem "devise_invitable", "~> 0.5.4"
 
-gem 'cancan'
+gem "cancan", "1.6.7"
 gem 'omniauth'
 
 gem 'redis', '2.2.2'

@@ -348,7 +348,7 @@ DEPENDENCIES
   ajaxful_rating!
   ancestry
   brewdler
-  cancan
+  cancan (= 1.6.7)
   capistrano!
   capistrano-ext
   capistrano_colors

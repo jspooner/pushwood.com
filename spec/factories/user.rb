@@ -8,11 +8,14 @@ FactoryGirl.define do
   end
   
   
+  factory :user_photo, :parent => :user do |user|
+    after_create { |u| u.roles << FactoryGirl.single_instance(:role_photo) }
+  end
   #
   # Administrators
   #
-  factory :admin_user, :parent => :user do |user|
-    sequence(:email) {|n| "admin.#{n}@active.com" }
+  factory :user_admin, :parent => :user do |user|
+    sequence(:email) {|n| "admin.#{n}@gmail.com" }
     after_create { |u| u.roles << FactoryGirl.single_instance(:role_admin) }
   end
   

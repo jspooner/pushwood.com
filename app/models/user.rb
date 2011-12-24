@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications
   has_many :rates
+  has_many :images
   has_and_belongs_to_many :roles
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

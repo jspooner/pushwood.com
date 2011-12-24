@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+  belongs_to :user
   belongs_to :location, :counter_cache => true 
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
