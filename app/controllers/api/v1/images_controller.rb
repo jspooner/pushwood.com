@@ -1,5 +1,7 @@
 class Api::V1::ImagesController < ApplicationController
   
+  respond_to :json
+  
   def index
     if params[:location_id]
       @images = Location.find(params[:location_id]).images
@@ -22,9 +24,9 @@ class Api::V1::ImagesController < ApplicationController
     
     @image = Image.new(params[:image])
     if @image.save
-      render :json => @image.to_json
+      # render :json => @image.to_json
     else
-      render :json => {:errors => @image.errors}, :status => 401
+      # render :json => {:errors => @image.errors}, :status => 401
     end
   end
   
