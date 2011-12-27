@@ -15,6 +15,8 @@ Woodhack::Application.routes.draw do
   get "admin/skateparkcom"
   get "admin/marker_verification"
 
+  get "iphone/feed"
+
   match 'search' => 'search#index'
 
   # match 'archive/' => 'archive#index', :as => :archive

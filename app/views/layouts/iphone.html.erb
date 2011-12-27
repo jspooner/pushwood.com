@@ -1,0 +1,36 @@
+<!doctype html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Pushwood" %></title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <%= include_gon(:camel_case => true, :namespace => 'rails') %>
+    <%= stylesheet_link_tag :application %>
+    <%= stylesheet_link_tag :iphone %>
+
+    <%= javascript_include_tag 'bootstrap/application' %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body lang="en" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+  
+  <div>
+    <%= yield %>
+  </div>
+
+
+  <%= javascript_include_tag :application %>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23487589-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  </body>
+</html>

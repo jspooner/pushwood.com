@@ -1,0 +1,11 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+.feedImageHolder {
+  margin:0 0 10px 5px;
+  font-weight:bold;
+  .userInfo {height:25px;}
+}
+.userName {float:left;}
+.uploadTime {float:right}
