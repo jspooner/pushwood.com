@@ -17,7 +17,15 @@
 <h2>Count by US State</h2>
 <ul>
   <% @count_by_state.sort {|x,y| y["count(state)"] <=> x["count(state)"]}.each do |i| %>
-    <li><%= i["state"] %> <%= i["count(state)"] %></li>
+    <li>
+      <%= i["state"] %>
+      <ul>
+        <li>Total: <%= i["count(state)"] %></li>
+        <li>Verified : <%= @count_verified_by_state.detect { |j| j["state"] == i["state"] }.try(:[], "count(state)") || 0 %></li>
+      </ul>
+      
+      
+    </li>
   <% end %>
 </ul>
 
