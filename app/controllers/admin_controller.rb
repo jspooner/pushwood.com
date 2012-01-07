@@ -30,7 +30,7 @@ class AdminController < Admin::BaseController
   
   def marker_verification
     @recent_marker_votes = Location.recent_marker_votes
-    id_list = @recent_marker_votes.collect { |i| JSON.parse(i)["location_id"] }
+    id_list = @recent_marker_votes.collect { |i| JSON.parse(i)["location_id"] }.uniq
     @locations           = Location.find(:all, id_list ).reorder_by(id_list, &:id).compact
   end
   
