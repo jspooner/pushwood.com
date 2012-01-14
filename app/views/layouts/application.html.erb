@@ -46,6 +46,12 @@
               <ul class="dropdown-menu">
                 <li><%= link_to 'Invite Friends', new_user_invitation_path %></li>
                 <li class="divider"></li>
+                <% if current_user.role? :admin %>
+                <li><%= link_to "Users", admin_users_path %></li>
+                <li><%= link_to "Roles", admin_roles_path %></li>
+                <li><%= link_to "Locations", admin_locations_path %></li>
+                <li><%= link_to "Marker Verification", admin_marker_verification_path %></li>
+                <% end %>
                 <li><%= link_to 'Logout', destroy_user_session_path %></li>
               </ul>
             </li>
