@@ -4,9 +4,9 @@ class Api::V1::ImagesController < ApplicationController
   
   def index
     if params[:location_id]
-      @images = Location.find(params[:location_id]).images
+      @images = Location.find(params[:location_id]).images.approved
     else
-      @images = Image.all
+      @images = []
     end
   end
 

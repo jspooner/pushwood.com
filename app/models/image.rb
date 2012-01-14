@@ -1,11 +1,20 @@
 class Image < ActiveRecord::Base
+  # SERIALIZED ATTRIBUTES 
+  # CONSTANTS 
+  # SCOPES
+  scope :approved, where("approved = 1")
+  scope :unapproved, where("approved = 0")
+  # RELATIONSHIPS 
   belongs_to :user
   belongs_to :location, :counter_cache => true 
+  # ATTRIBUTE ACCESSORS 
+  # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
                     :styles => { 
                       # v1 api for detail view on location
-                      :iosThumbnail => ["320x240", :jpg],
+                      # :iosThumbnail => ["320x240", :jpg],
+                      :iosThumbnail => ["640x480", :jpg],
                       # v1 api, large view for iphone
                       :iosLarge => ["1280x1920", :jpg],
                       # :iosMedium => ["640x960", :jpg],
@@ -21,4 +30,10 @@ class Image < ActiveRecord::Base
                       # edit locations
                       :tiny => ["100x75>",:jpg]
                     }
+  # VALIDATIONS AND CALLBACKS 
+  # CLASS METHODS 
+  # INSTANCE METHODS 
+  # PROTECTED/PRIVATE METHODS 
+
 end
+

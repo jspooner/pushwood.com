@@ -12,11 +12,11 @@
 class Location < ActiveRecord::Base
   # SERIALIZED ATTRIBUTES 
   # CONSTANTS 
-  # SCOPES 
+  # SCOPES
   # scope :recent_verified_markers, where("marker_verified = true").order("updated_at")
   # RELATIONSHIPS 
   belongs_to :cd_page  
-  has_many :images, :dependent => :destroy#, :order => "position"
+  has_many :images, :dependent => :destroy
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:img].blank? }, :allow_destroy => true
   # ATTRIBUTE ACCESSORS 
   # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
