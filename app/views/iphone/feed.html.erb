@@ -1,11 +1,9 @@
 <% @images.each do |image| %>
 <div class="feedImageHolder">
   <div class="userInfo">
-    <div class="userName"><%= image.user.try(:full_name) %></div>
-    <div class="uploadTime"><%= time_ago_in_words image.updated_at %></div>
+    <div class="locationName"><%= image.location.name %></div>
+    <div class="uploadTime"><%= image.user.try(:full_name) %> <%= time_ago_in_words image.updated_at %></div>
   </div>
-  <%= image.location.name %><br>
-
   <%= image_tag(image.img.url(:iosThumbnail)) %>
 </div>
 <% end %>

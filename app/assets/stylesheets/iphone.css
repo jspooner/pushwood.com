@@ -3,9 +3,11 @@
   They will automatically be included in application.css.
 */
 .feedImageHolder {
-  margin:0 0 10px 5px;
+  margin:0 5px 10px 5px;
   font-weight:bold;
   .userInfo {height:25px;}
 }
-.userName {float:left;}
-.uploadTime {float:right}
+.userInfo {height:25px;}
+
+.locationName {float:left;}
+.uploadTime {float:right;font-weight:normal;color:#ccc}
