@@ -48,7 +48,7 @@
   <% unless @location.images.approved.empty? %>
     <div id="photos" class="cont clearfix">
       <h4>Photos</h4>
-      <% @location.images.each do |image| %>
+      <% @location.images.approved.each do |image| %>
         <a href="<%= image.img.url(:xlarge) %>" rel="imageGroup" class="gridImage"><%= image_tag image.img.url(:large_sq), %></a>
       <% end %>
     </div>
