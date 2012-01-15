@@ -25,7 +25,6 @@
 //= require controllers/admin
 //= require controllers/admin_images
 //= require controllers/browse
-//= require controllers/iphone
 //
 //= require post_init
 //
