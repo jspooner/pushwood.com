@@ -8,7 +8,7 @@ PW.controllers.admin_images = {
   {
     // controller-wide code
     $('form').live('ajax:success', function(event, elements) {
-      $(this).parent(".imageHolder").remove();
+      $(this).parents(".imageHolder").remove();
     });
   }
 
