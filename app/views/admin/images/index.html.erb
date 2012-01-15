@@ -1,0 +1,21 @@
+<style type="text/css" media="screen">
+  .imageButtons {width:480px}
+  .imageButtons form {float:left}
+  .imageButtons a {float:right}
+</style>
+<h1>Image Approval</h1>
+
+<% @unapproved.each do |image| %>
+<div class="imageHolder">
+  <%= image_tag(image.img.url(:iosThumbnail), :alt => image.location.name) %><br>
+  <p><%= (image.user) ? link_to(image.user.try(:full_name), [:admin,image.user]) : "unknown" %> uploaded a picture of <%= link_to image.location.name, image.location %> <%= time_ago_in_words image.updated_at %> ago.</p>
+  <div class="imageButtons clearfix">
+    <%= form_for [:admin,image], :remote => true, :format => :json do |f| %>
+      <%= f.hidden_field :approved, :value => 1 %>
+      <%= f.submit "Approve", :class => "btn primary" %>
+    <% end %>
+    <%= link_to "Delete", admin_image_path(image), confirm: 'Are you sure you want to permanently delete this image?', method: :delete, :class => "btn danger" %>
+  </div>
+</div>
+<% end %>
+

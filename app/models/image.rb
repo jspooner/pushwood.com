@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
   # SCOPES
   scope :approved, where("approved = 1")
   scope :unapproved, where("approved = 0")
+  default_scope order('created_at desc')
   # RELATIONSHIPS 
   belongs_to :user
   belongs_to :location, :counter_cache => true 

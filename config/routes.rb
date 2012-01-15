@@ -4,6 +4,7 @@ Woodhack::Application.routes.draw do
   namespace :admin do
     resources :users
     resources :roles
+    resources :images
   end
   
   get "admin/index"

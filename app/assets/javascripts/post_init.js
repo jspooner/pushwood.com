@@ -8,6 +8,8 @@ UTIL = {
       console.group('UTIL.init: ACTIVE.controllers.%s.%s()', controller, action);
       ns[controller][action]();
       console.groupEnd();
+    } else {
+      console.log('UTIL.init: ACTIVE.controllers.%s.%s() NOT FOUND', controller, action);
     }
   },
 

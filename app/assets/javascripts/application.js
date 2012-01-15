@@ -23,6 +23,7 @@
 //= require controllers/common
 //= require controllers/locations
 //= require controllers/admin
+//= require controllers/admin_images
 //= require controllers/browse
 //= require controllers/iphone
 //

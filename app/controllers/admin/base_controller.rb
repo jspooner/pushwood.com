@@ -3,6 +3,7 @@ module Admin
   # Provide authoriztion method for all admin controllers.
   #
   class BaseController < ApplicationController
+    layout 'admin'
     before_filter :verify_admin
     
     def current_ability
