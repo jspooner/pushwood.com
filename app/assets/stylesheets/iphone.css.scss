@@ -1,0 +1,13 @@
+body[data-controller=iphone] {
+  padding-top: 10px;
+  
+  .feedImageHolder {
+    margin:0 5px 10px 5px;
+    font-weight:bold;
+    .userInfo {height:25px;}
+  }
+  .userInfo {height:25px;}
+
+  .locationName {float:left;color:#111}
+  .uploadTime {float:right;font-weight:normal;color:#111}
+}

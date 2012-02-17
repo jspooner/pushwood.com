@@ -17,6 +17,7 @@ Woodhack::Application.routes.draw do
   get "admin/marker_verification"
 
   get "iphone/feed"
+  get "iphone/your_images"
 
   match 'search' => 'search#index'
 
