@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111042000) do
+ActiveRecord::Schema.define(:version => 20120219180246) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20120111042000) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "approved",         :default => false
+    t.string   "caption"
   end
 
   create_table "locations", :force => true do |t|
@@ -119,19 +120,6 @@ ActiveRecord::Schema.define(:version => 20120111042000) do
     t.boolean  "marker_verified"
   end
 
-  create_table "rails_admin_histories", :force => true do |t|
-    t.string   "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
-
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -154,18 +142,6 @@ ActiveRecord::Schema.define(:version => 20120111042000) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
-  end
-
-  create_table "tricks", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "lat"
-    t.string   "lng"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -217,14 +193,5 @@ ActiveRecord::Schema.define(:version => 20120111042000) do
   add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
   add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
   add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
-
-  create_table "votes", :force => true do |t|
-    t.integer  "image_a_id"
-    t.integer  "image_b_id"
-    t.integer  "user_id"
-    t.integer  "winner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

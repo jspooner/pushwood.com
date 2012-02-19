@@ -27,7 +27,7 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
     # ADMIN
-    if user.email == "jspooner@gmail.com" or user.email == "chris.r.gonzales@gmail.com"
+    if user.email == "jspooner@gmail.com" or user.email == "andy@pushwood.com" or user.email == "andy@andymacdonald.com"
       can :revert, Location
       can :manage, Location
     end
@@ -35,11 +35,18 @@ class Ability
     # EVERYONE
     can :read, Location # user can read any object
     can :read, Rate     # user can read any object
+    can :read, Image     # user can read any object
     
     unless user.new_record?
       can :rate, Location
       can :update, Location
       can :create, Location
+    end
+    
+    if user.role? :photo
+      can :manage, Image do |image|
+        image.user == user
+      end
     end
 
 

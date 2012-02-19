@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # Redirect to iPhone app
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
       # If it's an iPhone and the REFERER is blank the request came from the app
