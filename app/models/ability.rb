@@ -30,6 +30,7 @@ class Ability
     if user.email == "jspooner@gmail.com" or user.email == "andy@pushwood.com" or user.email == "andy@andymacdonald.com"
       can :revert, Location
       can :manage, Location
+      can :manage, Image
     end
     # END ADMIN    
     # EVERYONE
@@ -44,11 +45,15 @@ class Ability
     end
     
     if user.role? :photo
+      can :create, Image
       can :manage, Image do |image|
         image.user == user
       end
     end
-
+    
+    if user.role? :admin
+      can :manage, Image
+    end
 
   end
 
