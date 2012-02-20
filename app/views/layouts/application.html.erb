@@ -61,7 +61,9 @@
               <ul class="dropdown-menu">
                 <li><%= link_to 'Invite Friends', new_user_invitation_path %></li>
                 <li class="divider"></li>
+                <%= link_to 'New Location', new_location_path %>
                 <% if current_user.role? :admin %>
+                <li class="divider"></li>
                 <li><%= link_to "Users", admin_users_path %></li>
                 <li><%= link_to "Roles", admin_roles_path %></li>
                 <li><%= link_to "Locations", admin_locations_path %></li>

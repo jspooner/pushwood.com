@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   
   before_save :ensure_authentication_token!
-  
+  after_create :add_default_roles
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :roles, :last_name, :first_name, :authentication_token, :remember_me, :role_ids
   
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
+  end
+  
+  def add_default_roles
+    self.roles << Role.find_by_name("photo") unless self.role?(:photo)
   end
   
 end
