@@ -8,12 +8,11 @@ code :description do |m|
   m.ios_description
 end
 
-
 code :thumbnail do |m|
-  if m.images.empty?
+  if m.images.approved.empty?
     "http://maps.google.com/maps/api/staticmap?center=#{m.lat},#{m.lng}&zoom=20&size=528x400&maptype=hybrid&markers=color:blue|label:A|#{m.lat},#{m.lng}&sensor=false"
   else
-    "http://#{request.env['HTTP_HOST']}" + m.images.last.img.url(:iosThumbnail)
+    "http://#{request.env['HTTP_HOST']}" + m.images.approved.first.img.url(:iosThumbnail)
   end
 end
 
@@ -24,4 +23,4 @@ code :rate_average do |m|
   m.rate_average
 end
 code(:distance) { |val| (val)? "1":"0" }
-code(:image_count) { |m| m.images.count }
+code(:image_count) { |m| m.images.approved.count }
