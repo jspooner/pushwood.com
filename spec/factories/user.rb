@@ -7,13 +7,12 @@ FactoryGirl.define do
     password_confirmation '111111'
   end
   
-  
   factory :user_photo, :parent => :user do |user|
     after_create { |u| u.roles << FactoryGirl.single_instance(:role_photo) }
   end
-  #
-  # Administrators
-  #
+  factory :user_no_photo, :parent => :user do |user|
+    after_create { |u| u.roles.delete_if { |r| role.name == "photo" } }
+  end
   factory :user_admin, :parent => :user do |user|
     sequence(:email) {|n| "admin.#{n}@gmail.com" }
     after_create { |u| u.roles << FactoryGirl.single_instance(:role_admin) }

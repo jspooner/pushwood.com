@@ -5,8 +5,8 @@ describe Api::V1::ImagesController do
   let(:valid_attributes) { Factory.attributes_for(:image)  }
   
   before(:each) do
-    @user = Factory(:user_photo)
-    # sign_in @user
+    @user = Factory(:user)
+    sign_in @user
   end
   
   describe "GET 'index'" do
@@ -37,7 +37,7 @@ describe Api::V1::ImagesController do
     end
     
     it "should give an error response if auth_token is incorrect" do
-      @user     = Factory(:user_photo)
+      @user     = Factory(:user)
       location = Factory(:location)
       va = valid_attributes.merge( { :location_id => location.id, :user_id => @user.id } )
       expect {

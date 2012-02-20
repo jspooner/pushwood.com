@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
   
   def add_default_roles
-    self.roles << Role.find_by_name("photo") unless self.role?(:photo)
+    self.roles << Role.find_or_create_by_name("photo") unless self.role?(:photo)
   end
   
 end

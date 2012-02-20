@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   
   # Handle authorization exceptions
   rescue_from CanCan::AccessDenied do |exception|
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     if request.xhr?
       if signed_in?
         render json: {:status => :error, :message => "You don't have permission to #{exception.action} #{exception.subject.class.to_s.pluralize}"}, :status => 403
