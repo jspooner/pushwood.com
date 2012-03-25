@@ -20,14 +20,13 @@ describe Api::V1::ImagesController do
     
     it "should save an image" do
       location = Factory(:location)
-      va = valid_attributes.merge( { :location_id => location.id, :user_id => @user.id } )
+      va = valid_attributes.merge( { :location_id => location.id, :user_id => @user.id, :share_on_fb => true } )
       expect {
         post :create, :image => va, :auth_token => @user.authentication_token
       }.to change(Image, :count).by(1)
     end
     
     it "should give an error response if no auth_token is provided" do
-      
       location = Factory(:location)
       va = valid_attributes.merge( { :location_id => location.id, :user_id => @user.id } )
       expect {
@@ -37,7 +36,7 @@ describe Api::V1::ImagesController do
     end
     
     it "should give an error response if auth_token is incorrect" do
-      @user     = Factory(:user)
+      @user    = Factory(:user)
       location = Factory(:location)
       va = valid_attributes.merge( { :location_id => location.id, :user_id => @user.id } )
       expect {

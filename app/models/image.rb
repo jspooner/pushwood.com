@@ -9,6 +9,7 @@ class Image < ActiveRecord::Base
   belongs_to :user
   belongs_to :location, :counter_cache => true 
   # ATTRIBUTE ACCESSORS 
+  attr_accessor :share_on_fb
   # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
@@ -33,7 +34,7 @@ class Image < ActiveRecord::Base
                     }
   # VALIDATIONS AND CALLBACKS 
   # CLASS METHODS 
-  # INSTANCE METHODS 
+  # INSTANCE METHODS
   # PROTECTED/PRIVATE METHODS 
 
 end
