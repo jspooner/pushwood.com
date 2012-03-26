@@ -11,6 +11,7 @@ class Image < ActiveRecord::Base
   # ATTRIBUTE ACCESSORS 
   attr_accessor :share_on_fb
   # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
+  after_update :post_to_facebook
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
                     :styles => { 
@@ -35,7 +36,13 @@ class Image < ActiveRecord::Base
   # VALIDATIONS AND CALLBACKS 
   # CLASS METHODS 
   # INSTANCE METHODS
-  # PROTECTED/PRIVATE METHODS 
+  # PROTECTED/PRIVATE METHODS
+  private
+    def post_to_facebook
+      # curl -F 'access_token=AAADx0vSoUqABALBZCledU6HGxKZAWnOems1r1nhRs7O5K5gxkpg0pqEwGVR6ZASSjem3u3OuAZCSaEkAWzzZAyquTJR8ZAzgFDZCqYgZAGVXxwZDZD' \
+      #      -F 'skate_park=http://samples.ogp.me/375294155824165' \
+      #         'https://graph.facebook.com/me/pushwooddev:photograph'
+    end
 
 end
 
