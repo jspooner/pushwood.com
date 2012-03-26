@@ -2,11 +2,10 @@
 <%= @location.name %> - <%= @location.address %> - Skatepark Locator App
 <% end %>
 <% content_for :head do %>
-<meta property="fb:app_id"      content="202979059717647" /> 
 <meta property="og:type"        content="pushwood:skate_park" />
 <meta property="og:url"         content="<%= location_url @location %>" /> 
 <meta property="og:title"       content="<%= @location.name %>" /> 
-<meta property="og:description" content="<%= @location.description %>" /> 
+<meta property="og:description" content="<%= @location.ios_description %>" /> 
 <meta property="og:image"       content="<%= @location.googlemapurl %>" />
 <% end %>
 <% content_for :description do %>
