@@ -2,7 +2,7 @@ require 'net/https'
 require 'uri'
 class Image < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  Rails.application.routes.default_url_options[:host] = 'http://pushwood.com/'
+  # Rails.application.routes.default_url_options[:host] = 'http://pushwood.com/'
   # SERIALIZED ATTRIBUTES 
   # CONSTANTS 
   # SCOPES
