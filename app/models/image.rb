@@ -2,7 +2,6 @@ require 'net/https'
 require 'uri'
 class Image < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   # SERIALIZED ATTRIBUTES 
   # CONSTANTS 
   # SCOPES
