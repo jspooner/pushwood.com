@@ -2,7 +2,7 @@ require 'net/https'
 require 'uri'
 class Image < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  Rails.configuration.action_mailer.default_url_options[:host] = "http://pushwood.com"
+  Rails.application.routes.default_url_options[:host] = 'pushwood.com'
   # SERIALIZED ATTRIBUTES 
   # CONSTANTS 
   # SCOPES
@@ -53,7 +53,7 @@ class Image < ActiveRecord::Base
     me = FbGraph::User.me(user.facebook_access_token)
     me.feed!(
       :message => "I posted a photo of #{location.name}",
-      :picture => "#{Rails.configuration.action_mailer.default_url_options[:host]}#{img.url(:thumb)}",
+      :picture => "http://#{Rails.application.routes.default_url_options[:host]}#{img.url(:thumb)}",
       :link => location_url(location),
       :name => location.name,
       :description => location.ios_description
