@@ -47,7 +47,7 @@ class Image < ActiveRecord::Base
 
   def post_to_facebook
     logger.info { "post_to_facebook-------------------------- #{share_on_fb}" }
-    return if share_on_fb == "false" and (!user.nil? or !user.facebook_access_token.nil? or !location.nil?)
+    return if share_on_fb != "true" and (!user.nil? or !user.facebook_access_token.nil? or !location.nil?)
 
     logger.info { "POSTING... post_to_facebook--------------------------" }
     me = FbGraph::User.me(user.facebook_access_token)
