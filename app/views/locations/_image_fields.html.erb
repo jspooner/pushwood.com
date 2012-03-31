@@ -10,6 +10,7 @@
     <label for="fileInput">Image</label>
     <div class="input">
       <%= f.file_field :img %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
     </div>
   </div>
 <% end %>		

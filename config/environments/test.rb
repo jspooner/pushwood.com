@@ -38,5 +38,6 @@ Woodhack::Application.configure do
   # Facbook app for Pushwood.dev
   config.facebook_id      = '265888350098080'
   config.facebook_seceret = '05b1f2177225121513e54a9021875959'
+  config.facebook_prefix  = 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# pushwood: http://ogp.me/ns/fb/pushwood#'
   
 end

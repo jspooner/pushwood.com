@@ -106,6 +106,12 @@ class LocationsController < ApplicationController
   # PUT /locations/1.xml
   def update
     @location = Location.find(params[:id])
+logger.info {  "----------------------------------------------------------" } 
+params["location"]["images_attributes"].each do |something|
+  logger.info { something } 
+  logger.info {  "----------------------------------------------------------" } 
+end
+
     #
     # TODO tag the version edit with the current_user.id
     # @location.tag_version(current_user.id)

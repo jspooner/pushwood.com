@@ -24,11 +24,13 @@ Woodhack::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   
   # Facbook app for Pushwood.dev
   config.facebook_id      = '265888350098080'
   config.facebook_seceret = '05b1f2177225121513e54a9021875959'
-  
+  config.facebook_prefix  = 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# pushwooddev: http://ogp.me/ns/fb/pushwooddev#'
+
   # Test mailers
   config.action_mailer.delivery_method = :letter_opener
 

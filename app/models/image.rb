@@ -1,4 +1,8 @@
+require 'net/https'
+require 'uri'
 class Image < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   # SERIALIZED ATTRIBUTES 
   # CONSTANTS 
   # SCOPES
@@ -11,7 +15,7 @@ class Image < ActiveRecord::Base
   # ATTRIBUTE ACCESSORS 
   attr_accessor :share_on_fb
   # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
-  after_update :post_to_facebook
+  after_save :post_to_facebook
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
                     :styles => { 
@@ -36,13 +40,31 @@ class Image < ActiveRecord::Base
   # VALIDATIONS AND CALLBACKS 
   # CLASS METHODS 
   # INSTANCE METHODS
+  def curl_photograph
+    "- F access_token=#{user.facebook_access_token} -F skate_park=#{location_url(location)} https://graph.facebook.com/me/pushwood:photograph"
+  end
+
+  def post_to_facebook
+    return if user.nil? or user.facebook_access_token.nil? or location.nil?
+    logger.info { "post_to_facebook--------------------------" }
+    # curl -F 'access_token=AAAC4m77AVg8BAAvKse9MQ00jYmaeslpYbTYgZBDcG8jn4elTrTgZAeZCF2sKZBIa2wgixqwwy34B5fCRX22WJk2wf9yrCeUZD' \
+    #      -F 'skate_park=http://pushwood.com/locations/3255-homage-brooklyn' \
+    #         'https://graph.facebook.com/me/pushwood:photograph'
+    
+    # pem = File.read("/Users/jonathanspooner/cacert.pem")
+    uri              = URI.parse('https://graph.facebook.com/me/pushwood:photograph')
+    http             = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl     = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    http.ca_file = File.join("/Users/jonathanspooner/", "cacert.pem") 
+    puts http.post('https://graph.facebook.com/me/pushwood:photograph', "access_token=#{user.facebook_access_token}&skate_park=#{location_url(location)}")
+
+
+    # res = http.post_form(uri, 'access_token' => user.facebook_access_token, 'skate_park' => location_url(location))
+    # logger.info { "post_to_facebook--------------------------  #{res.body}" }
+  end
   # PROTECTED/PRIVATE METHODS
   private
-    def post_to_facebook
-      # curl -F 'access_token=AAADx0vSoUqABALBZCledU6HGxKZAWnOems1r1nhRs7O5K5gxkpg0pqEwGVR6ZASSjem3u3OuAZCSaEkAWzzZAyquTJR8ZAzgFDZCqYgZAGVXxwZDZD' \
-      #      -F 'skate_park=http://samples.ogp.me/375294155824165' \
-      #         'https://graph.facebook.com/me/pushwooddev:photograph'
-    end
 
 end
 
