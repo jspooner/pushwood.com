@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
     self.roles << Role.find_or_create_by_name("photo") unless self.role?(:photo)
   end
   
+  def facebook_access_token
+    authentications.find_by_provider('facebook').try(:token)
+  end
+  
 end

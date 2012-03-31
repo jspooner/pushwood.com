@@ -4,7 +4,7 @@
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# pushwood: http://ogp.me/ns/fb/pushwood#">
+<head prefix="<%= Woodhack::Application.config.facebook_prefix %>">
   <title><%= content_for?(:title) ? yield(:title) : "Pushwood" %></title>
    <meta charset="utf-8">
    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
@@ -15,7 +15,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pushwood skatepark locator and iPhone app." %>"> 
     <meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "Skateboard, skateboarding, skatespot, skate, skatepark, skate park, halfpipe, miniramp, street course, iPhone, iPhone App" %>">
     <meta property="fb:admins" content="the.real.jonathan.spooner" />
-    <meta property="fb:app_id" content="202979059717647" />
+    <meta property="fb:app_id" content="<%= Woodhack::Application.config.facebook_id %>" />
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

@@ -39,4 +39,18 @@ describe User do
     end
     
   end
+  describe "Facebook" do
+    it "should have a token" do
+      @user = Factory(:user)
+      @user.authentications.create!(:provider => 'facebook', :uid => '444', :token => "AAA666")
+      @user.authentications.first.token.should eql("AAA666")
+      @user.facebook_access_token.should eql("AAA666")
+    end
+    it "should not have a token" do
+      @user = Factory(:user)
+      @user.authentications.create!(:provider => 'google', :uid => '444')
+      @user.authentications.first.token.should be_nil
+      @user.facebook_access_token.should be_nil
+    end
+  end
 end

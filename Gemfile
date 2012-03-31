@@ -34,6 +34,7 @@ gem "rails-backbone", "~> 0.5.4"
 gem 'geoplanet'
 gem 'ancestry'
 gem 'carmen'
+gem 'fb_graph'
 
 # # Rails 3.1 - Asset Pipeline
 # gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.
