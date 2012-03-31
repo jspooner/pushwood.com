@@ -56,7 +56,7 @@ Woodhack::Application.configure do
   config.active_support.deprecation = :notify
   
   config.action_mailer.default_url_options = { :host => 'pushwood.com' }
-  
+
   config.assets.js_compressor  = :uglifier
   
   # Facebook app Pushwood.com
