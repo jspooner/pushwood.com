@@ -15,7 +15,8 @@ class Image < ActiveRecord::Base
   # ATTRIBUTE ACCESSORS 
   attr_accessor :share_on_fb
   # GEM CONFIGURATIONS E.G., ACTS_AS_AUTHENTIC 
-  after_save :post_to_facebook
+  after_update :post_to_facebook
+  
   has_attached_file :img,
                     :url => "/system/uploads/images/:id/:style.:extension",
                     :styles => { 
@@ -45,19 +46,30 @@ class Image < ActiveRecord::Base
   end
 
   def post_to_facebook
-    return if user.nil? or user.facebook_access_token.nil? or location.nil?
-    logger.info { "post_to_facebook--------------------------" }
+    logger.info { "post_to_facebook-------------------------- #{share_on_fb}" }
+    return if share_on_fb == "false" and (!user.nil? or !user.facebook_access_token.nil? or !location.nil?)
+
+    logger.info { "POSTING... post_to_facebook--------------------------" }
+    me = FbGraph::User.me(user.facebook_access_token)
+    me.feed!(
+      :message => "I posted a photo of #{location.name}",
+      :picture => "http://#{Rails.application.routes.default_url_options[:host]}#{img.url(:thumb)}",
+      :link => location_url(location),
+      :name => location.name,
+      :description => location.ios_description
+    )
+    
     # curl -F 'access_token=AAAC4m77AVg8BAAvKse9MQ00jYmaeslpYbTYgZBDcG8jn4elTrTgZAeZCF2sKZBIa2wgixqwwy34B5fCRX22WJk2wf9yrCeUZD' \
     #      -F 'skate_park=http://pushwood.com/locations/3255-homage-brooklyn' \
     #         'https://graph.facebook.com/me/pushwood:photograph'
     
-    # pem = File.read("/Users/jonathanspooner/cacert.pem")
-    uri              = URI.parse('https://graph.facebook.com/me/pushwood:photograph')
-    http             = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl     = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http.ca_file = File.join("/Users/jonathanspooner/", "cacert.pem") 
-    puts http.post('https://graph.facebook.com/me/pushwood:photograph', "access_token=#{user.facebook_access_token}&skate_park=#{location_url(location)}")
+
+    # uri              = URI.parse('https://graph.facebook.com/me/pushwood:photograph')
+    # http             = Net::HTTP.new(uri.host, uri.port)
+    # http.use_ssl     = true
+    # http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    # http.ca_file = File.join("/Users/jonathanspooner/", "cacert.pem") 
+    # puts http.post('https://graph.facebook.com/me/pushwood:photograph', "access_token=#{user.facebook_access_token}&skate_park=#{location_url(location)}")
 
 
     # res = http.post_form(uri, 'access_token' => user.facebook_access_token, 'skate_park' => location_url(location))
