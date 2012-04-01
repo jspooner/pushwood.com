@@ -50,7 +50,7 @@ class Image < ActiveRecord::Base
     return if share_on_fb != "true" and (!user.nil? or !user.facebook_access_token.nil? or !location.nil?)
     post = {
       :message => "I posted a photo of #{location.name}",
-      :picture => "#{Rails.application.routes.default_url_options[:host]}#{img.url(:thumb)}",
+      :picture => "#{Rails.configuration.action_mailer['default_url_options'][:host]}#{img.url(:thumb)}",
       :link => location_url(location, :host => Rails.configuration.action_mailer['default_url_options'][:host]),
       :name => location.name,
       :description => location.ios_description
