@@ -51,7 +51,7 @@ class Image < ActiveRecord::Base
     post = {
       :message => "I posted a photo of #{location.name}",
       :picture => "#{Rails.application.routes.default_url_options[:host]}#{img.url(:thumb)}",
-      :link => location_url(location),
+      :link => location_url(location, :host => Rails.configuration.action_mailer['default_url_options'][:host]),
       :name => location.name,
       :description => location.ios_description
     }
