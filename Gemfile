@@ -37,7 +37,7 @@ gem 'carmen'
 gem 'fb_graph'
 
 group :production do
-  gem 'unicorn'
+  
 end
 
 # # Rails 3.1 - Asset Pipeline

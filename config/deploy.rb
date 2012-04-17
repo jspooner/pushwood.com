@@ -1,75 +1,51 @@
-# Stage
-# small
+require "bundler/capistrano"
 
-# ssh -i ~/.ssh/coachfuel.pem ec2-user@ec2-50-19-197-222.compute-1.amazonaws.com
+server "ec2-107-22-4-193.compute-1.amazonaws.com", :web, :app, :db, primary: true
 
-
-# scp -r -i ~/.ssh/coachfuel.pem ec2-user@ec2-75-101-211-185.compute-1.amazonaws.com:webapps/coachfuel/shared/system/ .
-require 'bundler/capistrano'
-
-$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
-require "rvm/capistrano"                  # Load RVM's capistrano plugin.
-set :rvm_ruby_string, '1.9.2'        # Or whatever env you want it to run in.
-set :rvm_type, :user
-
-ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/coachfuel.pem"]
 set :application, "pushwood"
-set :domain, "ec2-50-19-197-222.compute-1.amazonaws.com"
-set :user, "ec2-user"
+set :user, "deployer"
+set :deploy_to, "/home/#{user}/#{application}"
+set :deploy_via, :remote_cache
 set :use_sudo, false
-set :scm_username, "deploy"
-set :scm_password, "g0Skat3!"
-set :repository, "http://labs.jonathanspooner.com/woodsvn/web/trunk/"
-set :deploy_to,   "/home/ec2-user/webapps/#{application}"
 
-role :app, domain
-role :web, domain
-role :db,  domain, :primary => true
+set :scm, "git"
+set :repository, "git@github.com:jspooner/pushwood.com.git"
+set :branch, "unicorn"
+
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
-  
-  task :start, :roles => :app do
-    run "touch #{current_release}/tmp/restart.txt"
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, roles: :app, except: {no_release: true} do
+      run "/etc/init.d/unicorn_#{application} #{command}"
+    end
   end
 
-  task :stop, :roles => :app do
-    # Do nothing.
+  task :setup_config, roles: :app do
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    run "mkdir -p #{shared_path}/config"
+    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
+    puts "Now edit the config files in #{shared_path}."
   end
+  after "deploy:setup", "deploy:setup_config"
 
-  desc "Restart Application"
-  task :restart, :roles => :app do
-    run "touch #{current_release}/tmp/restart.txt"
+  task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
-  
-  desc "create symlink for shared stuff"
-  task :create_symlink, :roles => :app do 
-    run "ln -fns #{deploy_to}/#{shared_dir}/system #{current_release}/public/system" 
-  end
+  after "deploy:finalize_update", "deploy:symlink_config"
 
-
-  desc "installs Bundler if it is not already installed"
-  task :install_bundler, :roles => :app do
-    run "sh -c 'if [ -z `which bundle` ]; then echo Installing Bundler; gem install bundler; fi'"
+  desc "Make sure local git is in sync with remote."
+  task :check_revision, roles: :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
   end
-  
-  desc "run 'bundle install' to install Bundler's packaged gems for the current deploy"
-  task :bundle_install, :roles => :app do
-    run "cd #{release_path} && bundle install"
-  end
-  
+  before "deploy", "deploy:check_revision"
 end
-
-before "deploy:bundle_install", "deploy:install_bundler"
-after "deploy:update_code", "deploy:bundle_install"
-
-
-# after 'deploy:update_code', 'bundler:bundle_new_release'
-desc "tail production log files" 
-task :tail, :roles => :app do
-  run "tail -f #{shared_path}/log/stage.log" do |channel, stream, data|
-    puts  # for an extra line break before the host name
-    puts "#{channel[:host]}: #{data}" 
-    break if stream == :err    
-  end
-end
-
