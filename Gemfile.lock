@@ -1,16 +1,4 @@
 GIT
-  remote: git://github.com/capistrano/capistrano.git
-  revision: aa2302061a9cc568bda4c67e64adfe22eb19fcee
-  tag: 2.5.21
-  specs:
-    capistrano (2.5.21)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.0.0)
-
-GIT
   remote: https://github.com/edgarjs/ajaxful-rating.git
   revision: 98452cea5145824d528a6fd21024097741fe7b26
   branch: rails3
@@ -69,6 +57,12 @@ GEM
       commander
     builder (3.0.0)
     cancan (1.6.7)
+    capistrano (2.12.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
     capistrano_colors (0.5.5)
@@ -169,7 +163,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.2.1)
+    net-ssh (2.3.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.3.0)
@@ -368,7 +362,7 @@ DEPENDENCIES
   ancestry
   brewdler
   cancan (= 1.6.7)
-  capistrano!
+  capistrano
   capistrano-ext
   capistrano_colors
   capybara (>= 1.0.0)

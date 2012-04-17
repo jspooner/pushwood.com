@@ -37,7 +37,7 @@ gem 'carmen'
 gem 'fb_graph'
 
 group :production do
-  
+  gem 'unicorn'
 end
 
 # # Rails 3.1 - Asset Pipeline
@@ -62,7 +62,7 @@ group :development do
   gem 'brewdler'
   gem 'syntax'
   gem 'spork', '=0.9.0.rc9'
-  gem 'capistrano', :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
+  gem 'capistrano'#, :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
   gem 'capistrano-ext'
   gem 'capistrano_colors'
   gem "letter_opener"
