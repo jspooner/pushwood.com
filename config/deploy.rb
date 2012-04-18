@@ -1,5 +1,6 @@
 require "bundler/capistrano"
-
+require "capistrano_colors"
+load 'deploy/assets'
 server "ec2-174-129-71-117.compute-1.amazonaws.com", :web, :app, :db, primary: true
 
 set :application, "pushwood"
