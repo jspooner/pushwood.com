@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "ec2-107-22-4-193.compute-1.amazonaws.com", :web, :app, :db, primary: true
+server "ec2-174-129-71-117.compute-1.amazonaws.com", :web, :app, :db, primary: true
 
 set :application, "pushwood"
 set :user, "ubuntu"
