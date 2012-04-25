@@ -48,3 +48,21 @@ http://pushwood.com
 
 DESCRIPTION
 I'd like to find and publish photos of skateparks.
+
+
+Transfter to AWS
+================
+
+MySQL
+=====
+rsync -i ~/.ssh/pushwood-aws.pem ~/Downloads/pushwoodcom.2012-04-18T01-10-02.gz  ubuntu@ec2-174-129-71-117.compute-1.amazonaws.com
+
+Redis
+=====
+/db/redis/redis_state.rdb
+
+
+
+
+
+
