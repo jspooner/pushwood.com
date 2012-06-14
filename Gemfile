@@ -83,3 +83,5 @@ group :test, :development do
   gem "rspec-rails", ">= 2.6.1" # Needs to be in Dev group for rake tasks
   # gem "ruby-prof"
 end
+gem 'rubber'
+gem 'open4'
