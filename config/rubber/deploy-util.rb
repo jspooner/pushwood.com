@@ -86,6 +86,17 @@ namespace :rubber do
       end
       send task_name
     end    
-
+    
+    desc <<-DESC
+      push local files
+    DESC
+    task :push_local_files do
+      upload "/Users/jonathanspooner/Downloads/pushwoodcom.2012-07-01T01-10-04.gz", "/home/ubuntu/pushwoodcom.2012-07-01T01-10-04.gz"
+      run "gunzip /home/ubuntu/pushwoodcom.2012-07-01T01-10-04.gz"
+      rsudo "mysql -h 127.0.0.1 -u pushwood -p pushwood_production < ./pushwoodcom.2012-07-01T01-10-04"
+      
+      upload "/Users/jonathanspooner/Downloads/redis_state.rdb", "/home/ubuntu/redis_state.rdb"
+    end
+    
   end
 end
