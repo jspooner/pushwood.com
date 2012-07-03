@@ -55,7 +55,7 @@ Transfer to AWS
 
 TODO
 
-1. Finish Redis
+1. monit test / conf
 2. elastic search
 
 SSH
