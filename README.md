@@ -53,6 +53,11 @@ I'd like to find and publish photos of skateparks.
 Transfer to AWS
 ================
 
+TODO
+
+1. Finish Redis
+2. elastic search
+
 SSH
 ===
 
