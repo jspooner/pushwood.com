@@ -199,6 +199,9 @@ stop_on_error_cmd: "function error_exit { exit 99; }; trap error_exit ERR"
 #           static IP
 #
 # use_static_ip: true
+roles:
+    web:
+        use_static_ip: true
 
 # OPTIONAL: Specifies an instance to be created in the given availability zone
 #           Availability zones are sepcified by amazon to be somewhat isolated

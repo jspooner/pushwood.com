@@ -52,12 +52,14 @@
   - pushwood_production_mysql_master
   - pushwood_production_collectd
   - pushwood_production_monit
-  external_host: ec2-23-22-169-12.compute-1.amazonaws.com
-  external_ip: 23.22.169.12
+  external_host: ec2-23-23-84-249.compute-1.amazonaws.com
+  external_ip: 23.23.84.249
   internal_host: domU-12-31-39-0B-0D-B0.compute-1.internal
   internal_ip: 10.214.18.94
   zone: us-east-1c
   platform: linux
   root_device_type: instance-store
+  static_ip: 23.23.84.249
 - volumes: {}
-  static_ips: {}
+  static_ips:
+    web01: 23.23.84.249
