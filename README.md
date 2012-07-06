@@ -60,7 +60,7 @@ TODO
 
 SSH
 ===
-
+➜  ~  ssh -i ~/.ec2/gsg-keypair ubuntu@23.23.84.249
 ssh -i ~/.ec2/gsg-keypair ubuntu@web01.pushwood.com
 
 MySQL
