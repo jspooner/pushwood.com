@@ -220,13 +220,13 @@ roles:
 # it, the volume will only get remounted thereby preserving your data
 #
 hosts:
-  data01:
+  db01:
     availability_zone: us-east-1a
     volumes:
       - size: 100 # size of vol in GBs
         zone: us-east-1a # zone to create volume in, needs to match host's zone
         device: /dev/sdh # OS device to attach volume to
-        mount: /mnt # The directory to mount this volume to
+        mount: /mnt/mysql # The directory to mount this volume to
         filesystem: ext3 # the filesystem to create on volume
         
 # hosts:
