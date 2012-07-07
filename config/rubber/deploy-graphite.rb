@@ -151,7 +151,7 @@ namespace :rubber do
         if exists.strip.size == 0
           rubber.update_code_for_bootstrap
 
-          rubber.run_config(:file => "role/graphite_server", :force => true, :deploy_path => release_path)
+          rubber.run_config(:file => "role/graphite_server/", :force => true, :deploy_path => release_path)
 
           restart
         end
