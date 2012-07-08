@@ -220,7 +220,7 @@ roles:
 # it, the volume will only get remounted thereby preserving your data
 #
 hosts:
-  db01:
+  web01:
     availability_zone: us-east-1a
     volumes:
       - size: 10 # size of vol in GBs
