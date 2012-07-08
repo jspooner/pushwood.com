@@ -221,7 +221,7 @@ roles:
 #
 hosts:
   web01:
-    availability_zone: us-east-1a
+    availability_zone: us-east-1
     volumes:
       - size: 10 # size of vol in GBs
         zone: us-east-1a # zone to create volume in, needs to match host's zone
