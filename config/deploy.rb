@@ -10,7 +10,7 @@ on :load do
   set :application, rubber_env.app_name
   set :runner,      rubber_env.app_user
   set :deploy_to,   "/mnt/#{application}-#{Rubber.env}"
-  set :copy_exclude, [".git/*", ".bundle/*", "log/*", ".rvmrc", "public/system/*", "doc/*", "log/*", "tmp/*", "system/*", "data/*"]
+  set :copy_exclude, [".*", ".git/*", ".bundle/*", "log/*", ".rvmrc", "public/system/*", "doc/*", "log/*", "tmp/*", "system/*", "data/*"]
 end
 
 # Use a simple directory tree copy here to make demo easier.
