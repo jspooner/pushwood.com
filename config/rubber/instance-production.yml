@@ -60,6 +60,8 @@
   platform: linux
   root_device_type: instance-store
   static_ip: 23.23.84.249
-  static_ips:
-    web01: 23.23.84.249
   static_ips: {}
+- volumes:
+    web01_/dev/sdh: vol-56519937
+  static_ips:
+    web01: 23.23.92.7
