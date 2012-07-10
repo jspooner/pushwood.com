@@ -46,7 +46,7 @@ cloud_providers:
     # ap-southeast-1
     # ap-southeast-2
     #
-    region: us-east-1c
+    region: us-east-1
     
     # REQUIRED The amazon keys and account ID (digits only, no dashes) used to access the AWS API
     #
@@ -190,7 +190,7 @@ stop_on_error_cmd: "function error_exit { exit 99; }; trap error_exit ERR"
 # excluding slave roles, but this is not always desired for staging, so you can
 # specify a different set here
 #
-# staging_roles: "web,app,db:primary=true"
+staging_roles: "web,app,db:primary=true"
 
 
 # OPTIONAL: Lets one assign amazon elastic IPs (static IPs) to your instances

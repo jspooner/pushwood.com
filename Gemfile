@@ -36,9 +36,9 @@ gem 'ancestry'
 gem 'carmen'
 gem 'fb_graph'
 
-group :production do
-  gem 'unicorn'
-end
+# group :production do
+#   gem 'unicorn'
+# end
 
 # # Rails 3.1 - Asset Pipeline
 # gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.
