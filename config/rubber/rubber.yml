@@ -228,7 +228,7 @@ hosts:
         device: /dev/sdh # OS device to attach volume to
         mount: /mnt/mysql # The directory to mount this volume to
         filesystem: ext3 # the filesystem to create on volume
-
+        
         
         
 # hosts:
