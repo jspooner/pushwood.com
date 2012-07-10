@@ -46,7 +46,7 @@ cloud_providers:
     # ap-southeast-1
     # ap-southeast-2
     #
-    region: us-east-1
+    region: us-east-1c
     
     # REQUIRED The amazon keys and account ID (digits only, no dashes) used to access the AWS API
     #
@@ -227,6 +227,16 @@ hosts:
         zone: us-east-1c # zone to create volume in, needs to match host's zone
         device: /dev/sdh # OS device to attach volume to
         mount: /mnt/mysql # The directory to mount this volume to
+        filesystem: ext3 # the filesystem to create on volume
+      - size: 50 # size of vol in GBs
+        zone: us-east-1c # zone to create volume in, needs to match host's zone
+        device: /dev/sdh # OS device to attach volume to
+        mount: /mnt/pushwood-production # The directory to mount this volume to
+        filesystem: ext3 # the filesystem to create on volume
+      - size: 1 # size of vol in GBs
+        zone: us-east-1c # zone to create volume in, needs to match host's zone
+        device: /dev/sdh # OS device to attach volume to
+        mount: /mnt/redid # The directory to mount this volume to
         filesystem: ext3 # the filesystem to create on volume
         
         
