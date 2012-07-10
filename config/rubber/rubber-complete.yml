@@ -1,6 +1,6 @@
 role_dependencies:
   web: [haproxy]
-  app: [passenger_nginx]
+  app: [passenger_nginx, redis]
   web_tools: [passenger_nginx]
 
 web_port: 80
