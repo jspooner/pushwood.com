@@ -14,7 +14,7 @@ admin_email: "jspooner@gmail.com"
 # web_tools_password: sekret
 
 # REQUIRED: The timezone the server should be in
-timezone: US/Eastern
+timezone: US/Pacific
 
 # REQUIRED: the domain all the instances should be associated with
 #
@@ -46,7 +46,7 @@ cloud_providers:
     # ap-southeast-1
     # ap-southeast-2
     #
-    region: us-east-1
+    region: us-west-1
     
     # REQUIRED The amazon keys and account ID (digits only, no dashes) used to access the AWS API
     #
@@ -221,7 +221,7 @@ roles:
 #
 hosts:
   web01:
-    availability_zone: us-east-1c
+    availability_zone: us-west-1
     volumes:
       - size: 10 # size of vol in GBs
         zone: us-east-1c # zone to create volume in, needs to match host's zone
