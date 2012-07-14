@@ -8,7 +8,7 @@
   # Backup db every 3 hours to secondary db if available, else primary db
   backup_redis_host = rubber_instances.for_role('redis_slave').first rescue nil
   backup_redis_host ||= rubber_instances.for_role('redis_master').first
-  if backup_redis_host.name == rubber_env.host
+  if backup_redis_host && backup_redis_host.name == rubber_env.host
 %>
 
 # Backup redis DBs every hour.

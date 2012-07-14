@@ -27,7 +27,7 @@ namespace :rubber do
       
       # Conditionaly bootstrap for each node/role only if that node has not
       # been boostrapped for that role before
-      
+
       master_instances = rubber_instances.for_role("mysql_master") & rubber_instances.filtered  
       master_instances.each do |ic|
         task_name = "_bootstrap_mysql_master_#{ic.full_name}".to_sym()
@@ -36,15 +36,16 @@ namespace :rubber do
           exists = capture("echo $(ls #{env.db_data_dir}/ 2> /dev/null)")
           if exists.strip.size == 0
             common_bootstrap("mysql_master")
-            
+
             pass = "identified by '#{env.db_pass}'" if env.db_pass
             rubber.sudo_script "create_master_db", <<-ENDSCRIPT
               mysql -u root -e "create database #{env.db_name};"
-              mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '#{env.db_user}'@'%' IDENTIFIED BY '#{env.db_pass}' WITH GRANT OPTION;"
+              mysql -u root -e "GRANT ALL PRIVILEGES ON #{env.db_name}.* TO '#{env.db_user}'@'#{ic.full_name}' IDENTIFIED BY '#{env.db_pass}';"
               mysql -u root -e "grant select on *.* to '#{env.db_slave_user}'@'%' #{pass};"
               mysql -u root -e "grant replication slave on *.* to '#{env.db_replicator_user}'@'%' #{pass};"
               mysql -u root -e "flush privileges;"
             ENDSCRIPT
+            # mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '#{env.db_user}'@'%' IDENTIFIED BY '#{env.db_pass}' WITH GRANT OPTION;"
           end
         end
         send task_name

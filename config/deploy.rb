@@ -10,14 +10,20 @@ on :load do
   set :application, rubber_env.app_name
   set :runner,      rubber_env.app_user
   set :deploy_to,   "/mnt/#{application}-#{Rubber.env}"
-  set :copy_exclude, ["**/._*", ".git/*", ".bundle/*", "log/*", ".rvmrc", "public/system/*", "doc/*", "log/*", "tmp/*", "system/*", "data/*"]
+  # set :copy_exclude, ["**._*", ".git/*", ".bundle/*", "log/*", ".rvmrc", "public/system/*", "doc/*", "log/*", "tmp/*", "system/*", "data/*"]
 end
 
 # Use a simple directory tree copy here to make demo easier.
 # You probably want to use your own repository for a real app
-set :scm, :none
-set :repository, "."
-set :deploy_via, :copy
+# set :scm, :none
+# set :repository, "."
+# set :deploy_via, :copy
+
+ssh_options[:forward_agent] = true
+set :scm, :git
+set :repository, "git@github.com:jspooner/pushwood.com.git"
+set :branch, "rubber2"
+set :deploy_via, :remote_cache
 
 # Easier to do system level config as root - probably should do it through
 # sudo in the future.  We use ssh keys for access, so no passwd needed

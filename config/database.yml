@@ -25,7 +25,7 @@ cucumber:
 production:
   adapter: mysql2
   encoding: utf8
-  host: localhost
+  host: web01.pushwood.com
   database: pushwood_production
   username: root
   password: 
