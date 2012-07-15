@@ -115,3 +115,14 @@ if Rubber::Util.has_asset_pipeline?
   before "deploy:assets:precompile", "deploy:assets:symlink"
   after "rubber:config", "deploy:assets:precompile"
 end
+
+# task :chown_shared do
+#   116  mke2fs -F -j /dev/sdh
+#   117  sudo mkfs -t ext3 /dev/xvdh 
+#   118  sudo mount '/mnt/pushwood-production/shared/system'
+#   rsudo "chown app /mnt/pushwood-production/shared/system"
+# end
+
+
+
+

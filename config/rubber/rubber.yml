@@ -79,8 +79,8 @@ cloud_providers:
     #
     # m1.small or m1.large or m1.xlarge
     image_type: m1.small
-    image_id: ami-82fa58eb # EBS
-    # image_id: ami-3c994355 # root
+    # image_id: ami-82fa58eb # EBS
+    image_id: ami-3c994355 # root
 
     # OPTIONAL: EC2 spot instance request support.
     #
@@ -170,7 +170,7 @@ prompt_for_security_group_sync: true
 # OPTIONAL: The packages to install on all instances
 # You can install a specific version of a package by using a sub-array of pkg, version
 # For example, packages: [[rake, 0.7.1], irb]
-packages: [postfix, build-essential, git-core, ec2-ami-tools, libxslt-dev, ntp]
+packages: [postfix, build-essential, git-core, ec2-ami-tools, libxslt-dev, ntp, libmagickwand-dev, imagemagick]
 
 # OPTIONAL: gem sources to setup for rubygems
 # gemsources: ["http://rubygems.org", "http://gems.github.com"]

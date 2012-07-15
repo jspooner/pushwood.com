@@ -8,7 +8,7 @@ namespace :rubber do
         push local mysql files
       DESC
       task :push_local_mysql do
-        sql_filename = "pushwoodcom.2012-07-14T01-10-02"
+        sql_filename = "pushwoodcom.2012-07-15T01-10-03"
         upload "/Users/jonathanspooner/Downloads/#{sql_filename}.gz", "/home/ubuntu/#{sql_filename}.gz"
         run "gunzip /home/ubuntu/#{sql_filename}.gz"
         env = rubber_cfg.environment.bind("mysql_master", "web01")
@@ -19,6 +19,7 @@ namespace :rubber do
         push local redis files
       DESC
       task :pull_redis do
+        `rm db/redis_state.rdb`
         system("scp -r deploy@ec2-107-20-242-3.compute-1.amazonaws.com:/db/redis/redis_state.rdb db/redis_state.rdb")
       end
 
