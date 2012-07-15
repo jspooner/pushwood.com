@@ -9,8 +9,8 @@ namespace :rubber do
       DESC
       task :push_local_mysql do
         sql_filename = "pushwoodcom.2012-07-15T01-10-03"
-        # upload "/Users/jonathanspooner/Downloads/#{sql_filename}.gz", "/home/ubuntu/#{sql_filename}.gz"
-        # run "gunzip /home/ubuntu/#{sql_filename}.gz"
+        upload "/Users/jonathanspooner/Downloads/#{sql_filename}.gz", "/home/ubuntu/#{sql_filename}.gz"
+        run "gunzip /home/ubuntu/#{sql_filename}.gz"
         env = rubber_cfg.environment.bind("mysql_master", "web01")
         rsudo "mysql --host=web01.pushwood.com --user=pushwood --password=#{env.db_pass} pushwood_production < /home/ubuntu/#{sql_filename}"
       end

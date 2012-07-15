@@ -84,9 +84,9 @@ namespace :rvm do
   task :trust_rvmrc do
     run "rvm rvmrc trust #{current_release}"
   end
-  desc "Trus all rvmrc files"
+  desc "add rvm_trust_rvmrcs_flag=1 to /etc/rvmrc"
   task :trust_all_rvmrc do
-    # /etc/rvmrc rvm_trust_rvmrcs_flag=1
+    rsudo 'echo "rvm_trust_rvmrcs_flag=1" >> /etc/rvmrc'
   end
 end
 after "deploy:update_code", "rvm:trust_rvmrc"
