@@ -84,8 +84,13 @@ namespace :rvm do
   task :trust_rvmrc do
     run "rvm rvmrc trust #{current_release}"
   end
+  desc "Trus all rvmrc files"
+  task :trust_all_rvmrc do
+    # /etc/rvmrc rvm_trust_rvmrcs_flag=1
+  end
 end
 after "deploy:update_code", "rvm:trust_rvmrc"
+before "deploy:update_code", "rvm:trust_all_rvmrc"
 
 # load in the deploy scripts installed by vulcanize for each rubber module
 Dir["#{File.dirname(__FILE__)}/rubber/deploy-*.rb"].each do |deploy_file|
@@ -114,6 +119,13 @@ if Rubber::Util.has_asset_pipeline?
   callbacks[:before].delete_if {|c| c.source == "deploy:assets:symlink"}
   before "deploy:assets:precompile", "deploy:assets:symlink"
   after "rubber:config", "deploy:assets:precompile"
+end
+
+task :fix_ebs_device do
+  rsudo "mkfs -t ext3 /dev/xvdh"
+  rsudo "mkdir -p /mnt/pushwood-production/shared/system"
+  rsudo "mount '/mnt/pushwood-production/shared/system'"
+  rsudo "chown app /mnt/pushwood-production/shared/system"
 end
 
 # task :chown_shared do

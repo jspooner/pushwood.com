@@ -1,3 +1,66 @@
 ---
-- volumes: {}
-  static_ips: {}
+- !ruby/object:Rubber::Configuration::InstanceItem
+  name: web01
+  domain: pushwood.com
+  roles:
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: web
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: haproxy
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: app
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: passenger_nginx
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: db
+    options:
+      primary: true
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: mysql
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: mysql_master
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: redis
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: collectd
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: monit
+    options: {}
+  instance_id: i-70355a08
+  image_type: m1.small
+  image_id: ami-3c994355
+  security_groups:
+  - pushwood_production_default
+  - pushwood_production_web
+  - pushwood_production_web01
+  - pushwood_production_haproxy
+  - pushwood_production_app
+  - pushwood_production_passenger_nginx
+  - pushwood_production_db
+  - pushwood_production_mysql
+  - pushwood_production_mysql_master
+  - pushwood_production_redis
+  - pushwood_production_collectd
+  - pushwood_production_monit
+  external_host: ec2-23-21-158-34.compute-1.amazonaws.com
+  external_ip: 23.21.158.34
+  internal_host: domU-12-31-39-0B-D6-A4.compute-1.internal
+  internal_ip: 10.214.217.78
+  zone: us-east-1c
+  platform: linux
+  root_device_type: instance-store
+  static_ip: 23.21.158.34
+  volumes:
+  - vol-a8d662c9
+- volumes:
+    web01_/dev/sdh: vol-a8d662c9
+  static_ips:
+    web01: 23.21.158.34
