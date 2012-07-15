@@ -58,6 +58,9 @@
   platform: linux
   root_device_type: ebs
   static_ip: 23.21.158.34
-- volumes: {}
+  volumes:
+  - vol-6213a603
+- volumes:
+    web01_/dev/sdh: vol-6213a603
   static_ips:
     web01: 23.21.158.34

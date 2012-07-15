@@ -220,15 +220,15 @@ roles:
 # attached _and_ formatted, but if your host disapears and you recreate
 # it, the volume will only get remounted thereby preserving your data
 #
-# hosts:
-#   web01:
-#     availability_zone: us-east-1c
-#     volumes:
-#       - size: 15 # size of vol in GBs
-#         zone: us-east-1c # zone to create volume in, needs to match host's zone
-#         device: /dev/sdh # OS device to attach volume to
-#         mount: /data # The directory to mount this volume to
-#         filesystem: ext3 # the filesystem to create on volume
+hosts:
+  web01:
+    availability_zone: us-east-1c
+    volumes:
+      - size: 50 # size of vol in GBs
+        zone: us-east-1c # zone to create volume in, needs to match host's zone
+        device: /dev/sdh # OS device to attach volume to
+        mount: /mnt/pushwood-production/shared/system # The directory to mount this volume to
+        filesystem: ext3 # the filesystem to create on volume
 #       - size: 50 # size of vol in GBs
 #         zone: us-east-1c # zone to create volume in, needs to match host's zone
 #         device: /dev/sdi # OS device to attach volume to
