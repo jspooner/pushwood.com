@@ -78,7 +78,7 @@ cloud_providers:
     # Ubuntu 12.04 Precise instance-store 64-bit: ami-3c994355
     #
     # m1.small or m1.large or m1.xlarge
-    image_type: m1.small
+    image_type: m1.medium
     # image_id: ami-82fa58eb # EBS
     image_id: ami-3c994355 # root
 
