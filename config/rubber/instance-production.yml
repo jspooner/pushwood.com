@@ -37,6 +37,9 @@
   - !ruby/object:Rubber::Configuration::RoleItem
     name: monit
     options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: redis_master
+    options: {}
   instance_id: i-043c527c
   image_type: m1.medium
   image_id: ami-3c994355

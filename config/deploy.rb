@@ -122,7 +122,7 @@ if Rubber::Util.has_asset_pipeline?
 end
 
 task :fix_ebs_device do
-  rsudo "mkfs -t ext3 /dev/xvdh"
+  # rsudo "mkfs -t ext3 /dev/xvdh"  # this wipes out the freaking drive
   rsudo "mkdir -p /mnt/pushwood-production/shared/system"
   rsudo "mount '/mnt/pushwood-production/shared/system'"
   rsudo "chown app /mnt/pushwood-production/shared/system"

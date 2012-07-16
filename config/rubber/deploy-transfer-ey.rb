@@ -34,8 +34,8 @@ namespace :rubber do
       task :push_local_images do
         system("tar cvzf ./public/system.tar.gz ./public/system")
         upload "./public/system.tar.gz", "#{shared_path}/system/uploads.tar.gz"
-        rsudo "tar xvzf #{shared_path}/system/uploads.tar.gz uploads/"
-        rsudo "rm tarbar.tar.gz"
+        rsudo "tar xvzf #{shared_path}/system/uploads.tar.gz #{shared_path}/system/uploads"
+        rsudo "rm #{shared_path}/system/uploads.tar.gz"
       end
       
       task :pulldown_images do
