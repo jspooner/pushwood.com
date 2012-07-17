@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth       = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-logger.info { "================================         #{omniauth["credentials"]["token"]}" }
+    logger.info { "================================         #{omniauth["credentials"]["token"]}" }
     if authentication
       flash[:notice] = "Signed in successfully."
       authentication.update_attribute( :token, omniauth["credentials"]["token"]) if authentication.token.nil?
