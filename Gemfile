@@ -36,6 +36,10 @@ gem 'ancestry'
 gem 'carmen'
 gem 'fb_graph'
 
+# group :production do
+#   gem 'unicorn'
+# end
+
 # # Rails 3.1 - Asset Pipeline
 # gem "sass-rails", "~> 3.1.2" # This should be within the :assets group but activeadmin breaks if it's not.
 # group :assets do
@@ -58,7 +62,7 @@ group :development do
   gem 'brewdler'
   gem 'syntax'
   gem 'spork', '=0.9.0.rc9'
-  gem 'capistrano', :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
+  gem 'capistrano'#, :git => "git://github.com/capistrano/capistrano.git", :tag => "2.5.21"
   gem 'capistrano-ext'
   gem 'capistrano_colors'
   gem "letter_opener"
@@ -79,3 +83,5 @@ group :test, :development do
   gem "rspec-rails", ">= 2.6.1" # Needs to be in Dev group for rake tasks
   # gem "ruby-prof"
 end
+gem 'rubber'
+gem 'open4'

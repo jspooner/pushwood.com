@@ -104,22 +104,35 @@ ActiveRecord::Schema.define(:version => 20120326013752) do
     t.string   "state"
     t.string   "country"
     t.text     "description"
-    t.decimal  "lat",                          :precision => 15, :scale => 8, :default => 0.0
-    t.decimal  "lng",                          :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lat",             :precision => 15, :scale => 8, :default => 0.0
+    t.decimal  "lng",             :precision => 15, :scale => 8, :default => 0.0
     t.string   "phone"
-    t.integer  "has_lights",      :limit => 1,                                :default => 0
-    t.integer  "is_free",         :limit => 1,                                :default => 0
-    t.integer  "is_outdoors",     :limit => 1,                                :default => 0
-    t.integer  "pads_required",   :limit => 1,                                :default => 0
-    t.integer  "has_concrete",    :limit => 1,                                :default => 0
-    t.integer  "has_wood",        :limit => 1,                                :default => 0
+    t.boolean  "has_lights",                                     :default => false
+    t.boolean  "is_free",                                        :default => false
+    t.boolean  "is_outdoors",                                    :default => false
+    t.boolean  "pads_required",                                  :default => false
+    t.boolean  "has_concrete",                                   :default => false
+    t.boolean  "has_wood",                                       :default => false
     t.integer  "cd_page_id"
-    t.string   "hours",                                                       :default => ""
+    t.string   "hours"
     t.text     "address"
     t.integer  "images_count"
-    t.decimal  "rating_average",               :precision => 6,  :scale => 2, :default => 0.0
+    t.decimal  "rating_average",  :precision => 6,  :scale => 2, :default => 0.0
     t.boolean  "marker_verified"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
@@ -145,32 +158,34 @@ ActiveRecord::Schema.define(:version => 20120326013752) do
     t.integer "user_id"
   end
 
-  create_table "searches", :force => true do |t|
-    t.text     "query"
+  create_table "tricks", :force => true do |t|
     t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "lat"
+    t.string   "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                              :default => "", :null => false
-    t.string   "encrypted_password",                 :default => ""
-    t.string   "password_salt",                      :default => ""
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      :default => 0
+    t.integer  "sign_in_count",                       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "failed_attempts",                    :default => 0
+    t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "invitation_token",     :limit => 20
-    t.datetime "invitation_sent_at"
     t.string   "authentication_token"
     t.string   "first_name"
     t.string   "last_name"
@@ -178,7 +193,6 @@ ActiveRecord::Schema.define(:version => 20120326013752) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "versions", :force => true do |t|

@@ -25,12 +25,12 @@ cucumber:
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: true
-  host: sql.jonathanspooner.com
+  host: web01.pushwood.com
   database: pushwood_production
-  pool: 5
-  username: jonathanspooner
-  password: newyork
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+  timeout: 50000
 
 # production:
 #   adapter: mysql

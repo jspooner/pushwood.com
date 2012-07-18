@@ -48,3 +48,47 @@ http://pushwood.com
 
 DESCRIPTION
 I'd like to find and publish photos of skateparks.
+
+
+Transfer to AWS
+================
+
+TODO
+
+1. monit test / conf
+2. elastic search
+
+SSH
+===
+➜  ~  ssh -i ~/.ec2/gsg-keypair ubuntu@23.23.84.249
+ssh -i ~/.ec2/gsg-keypair ubuntu@web01.pushwood.com
+
+MySQL
+=====
+rsync -i ~/.ec2/gsg-keypair ~/Downloads/pushwoodcom.2012-06-26T01-10-04.gz  ubuntu@web01.pushwood.com:/home/ubuntu/
+rsync -i ~/.ec2/gsg-keypair ubuntu@web01.pushwood.com:/home/ubuntu/ ~/Downloads/pushwoodcom.2012-06-26T01-10-04.gz
+
+
+Uploaded Files
+=====
+scp -r deploy@ec2-107-20-242-3.compute-1.amazonaws.com:/data/pushwoodcom/shared/system/ .
+
+Redis
+=====
+scp -r deploy@ec2-107-20-242-3.compute-1.amazonaws.com:/db/redis/redis_state.rdb ~/Downloads/redis_state.rdb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
