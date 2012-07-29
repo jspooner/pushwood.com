@@ -7,7 +7,7 @@ class IphoneController < ApplicationController
   end
   
   def your_images
-    @images = current_user.images.limit(10)
+    @images = current_user.images.limit(10) rescue []
   end
 
 end
