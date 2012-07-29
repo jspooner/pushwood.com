@@ -68,8 +68,8 @@ class Api::V1::LocationsController < ApplicationController
 
     if params[:point] # use the geo gem that doesn't support AReL ;(
       points = params[:point].split(",").map { |i| i.to_i }
-      @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
-      # @locations = Location.near(points, radius, { :limit => limit, :include => [:ratings] })
+      # @locations = Location.near(params[:point], radius, { :limit => limit, :include => [:ratings] })
+      @locations = Location.near(points, radius, { :limit => limit, :include => [:ratings] })
     else
       @locations = Location.scoped
       @locations = @locations.limit(limit)
