@@ -1,5 +1,6 @@
 require "bundler/capistrano"
 require "capistrano_colors"
+require 'new_relic/recipes'
 
 load 'deploy/assets'
 # This is a sample Capistrano config file for rubber
@@ -135,6 +136,6 @@ end
 #   rsudo "chown app /mnt/pushwood-production/shared/system"
 # end
 
-
+after "deploy:update", "newrelic:notice_deployment"
 
 
