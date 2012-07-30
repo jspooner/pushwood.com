@@ -23,7 +23,7 @@ end
 ssh_options[:forward_agent] = true
 set :scm, :git
 set :repository, "git@github.com:jspooner/pushwood.com.git"
-#set :branch, "rubber2"
+set :branch, "esapi"
 set :deploy_via, :remote_cache
 
 # Easier to do system level config as root - probably should do it through
