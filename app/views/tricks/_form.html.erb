@@ -1,0 +1,26 @@
+
+<%= form_for(@trick, :html => { :multipart => true }) do |f| %>
+  <% if @trick.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trick.errors.count, "error") %> prohibited this trick from being saved:</h2>
+
+      <ul>
+      <% @trick.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+		<%= f.file_field :image %>
+  </div>
+	<div id="map_canvas"></div>
+	
+  <%= f.hidden_field :lat %>
+  <%= f.hidden_field :lng %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

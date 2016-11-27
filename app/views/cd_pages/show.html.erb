@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= link_to @cd_page.url, @cd_page.url %>
+</p>
+
+<p>
+  <b>Guid:</b>
+  <%= @cd_page.guid %>
+</p>
+
+
+<%= link_to 'Edit', edit_cd_page_path(@cd_page) %> |
+<%= link_to 'Back', cd_pages_path %>

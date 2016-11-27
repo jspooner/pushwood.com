@@ -1,0 +1,20 @@
+<style type="text/css" media="screen">
+  #admin_map {width:100%;height:450px;position:fixed;left:0;top:0px}
+  .container.main-content {margin-top:450px}
+</style>
+
+<h1>Skatepark.com</h1>
+
+<ol id="parklist">
+<% $redis.keys("anemone:pages:http://skatepark.com/skateparks/*").each do |key| %>
+  <% lat =  $redis.hget(key, "lat") %>
+  <% lng =  $redis.hget(key, "lng") %>
+  <% if lat and lng %>
+    <li data-lat="<%= lat %>" data-lng="<%= lng %>">
+      <%= key %><br>
+      <%= lat %>,
+      <%= lng %>
+    </li>
+  <% end %>
+<% end %>
+</ol>

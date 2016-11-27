@@ -1,0 +1,18 @@
+<div class="span6" id="photo-gallery">
+  <div id="photo-buttons" class="row">
+    <div class="span6">
+      <%= will_paginate @images, next_label: "next", previous_label: "previous",  renderer: PreviousNextListLinkRenderer %>
+    </div>
+  </div>
+  <%= image_tag @images.first.img.url(:xlarge), :class => "img-rounded addthis_shareable", :'addthis:url' => request.url %>
+  <% if @location.images.first.user %>
+  <div id="photo-credits" class="row">
+    <div class="span3 pull-left">
+      <%# debug me = FbGraph::User.me(@location.images.first.user.facebook_access_token) %>
+      <%# <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/48814_541557649_4904335_q.jpg">  %>
+      By <%= @location.images.first.user.full_name %>
+    </div>
+    <div class="date span3"><%= l @location.images.first.created_at, :format => :long %></div>
+  </div>
+  <% end %>
+</div>

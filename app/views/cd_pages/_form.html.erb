@@ -1,0 +1,25 @@
+<%= form_for(@cd_page) do |f| %>
+  <% if @cd_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cd_page.errors.count, "error") %> prohibited this cd_page from being saved:</h2>
+
+      <ul>
+      <% @cd_page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :guid %><br />
+    <%= f.text_field :guid %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+@import "shared.css.less";
+
+body[data-controller=locations][data-action=show] {
+  .interative_header_map;
+}
+body[data-controller=locations] {
+  
+  .modal {
+    ul, form {margin:0;padding:0;}
+    ul li { list-style:none; margin:0 0 10px 0; }
+    input[type=file] {line-height:1}
+    label[for=fileInput] { display:none; }
+  }
+  
+  #exactLocationMap {height:500px}
+  
+  li { list-style:none; }
+  
+  #static-map-container {margin-top:-100px;}
+  #static-map-container .polaroid-border {
+    padding: 4px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  #tab-content {margin-top:16px}
+  #photo-buttons {margin-bottom:10px}
+  #photo-buttons {text-align:center}
+  #photo-credits {margin-top:16px}
+  #photo-credits img {width:20px}
+  #photo-credits .date {font-weight:italic;text-align:right}
+  
+  .nav-tabs > .active > a:focus {
+    background:none;
+  }
+  
+}

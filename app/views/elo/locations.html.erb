@@ -1,0 +1,57 @@
+<% content_for :title do %>
+Battle of the Skate Parks
+<% end %>
+<% content_for :head do %>
+<meta property="og:type"        content="pushwood:skate_park" />
+<meta property="og:title"       content="<%= @a.name %>" /> 
+<meta property="og:description" content="<%= @a.ios_description %>" /> 
+<meta property="og:image"       content="<%= @a.googlemapurl %>" />
+<% end %>
+<% content_for :description do %>
+ <%= @a.name %> vs. <%= @b.name %>
+<% end %>
+
+<div class="container">
+  <header>
+    <h1>Battle of the Skate Parks</h1>
+    <p class="lead">
+      Vote for the best skate park and see the winners <a href="/battles/top-skateparks">here</a>.
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    
+    <%= bootstrap_flash %>
+    <div id="battleTitle" class="row">
+      
+      <div class="span6 A">
+        <h3><%= @a.name.titleize %></h3>
+      </div>
+      <div class="span6 B">
+        <h3><span>vs.</span> <%= @b.name.titleize %></h3>
+      </div>
+    </div>
+
+    <div id="battle" class="row">
+      <div class="span6 competitor competitorA">
+        <p><%= image_tag @a.google_staticmap, id: @a.id %></p>
+        <p><%= link_to "#", id: @a.id, class: "btn btn-danger btn-vote" do %><i class="icon-thumbs-up"></i> Vote<% end %></p>
+      </div>
+      <div class="span6 competitor competitorB">
+        <p><%= image_tag @b.google_staticmap, id: @b.id %></p>
+        <p><%= link_to "#", id: @b.id, class: "btn btn-danger btn-vote" do %><i class="icon-thumbs-up"></i> Vote<% end %></p>
+      </div>
+      <div id="nopark" class="span12" id=""><a href="#" id="elo_draw" class="btn btn-small">Neither photo has a park</a></div>
+    </div>
+
+    <%= form_tag('/elo/vote', method: 'POST', id: 'elo') do %>
+      <%= hidden_field_tag 'a_image_id', @a.id %>
+      <%= hidden_field_tag 'b_image_id', @b.id %>
+      <%= hidden_field_tag 'winner_id' %>
+      <%= hidden_field_tag 'loser_id' %>
+      <%= hidden_field_tag 'draw', 'false' %>
+    <% end %>
+  </div>
+</div>

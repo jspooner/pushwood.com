@@ -1,0 +1,29 @@
+<% content_for :title do %>
+Marker Verification
+<% end %>
+
+<div class="container">
+  <header>
+    <h1>Marker Verification</h1>
+    <p>
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="span12">
+      <ol>
+      <% @locations.each_with_index do |location, index| %>
+        <li>
+          <%= link_to location.name, location %><br>
+          <%= l JSON.parse(@recent_marker_votes[index])['verified_at'].to_datetime %><br>
+          YES: <%= location.marker_yes %>,
+          NO: <%= location.marker_no %><br>
+          <%= location.marker_contributors.collect { |i| "#{JSON.parse(i)['user']}-#{JSON.parse(i)['vote']}" }.join(", ") %>
+        </li>
+      <% end %>
+      </ol>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<p><i><%= number_with_delimiter @locations.total_entries %> results found in <%= (@city || @state || @country || "the world").titleize.downcase %></i></p>
+<div class="clearfix">
+    <% if @locations.empty? %>
+    <% end %>
+    <% @locations.each_with_index do |location, index| %>
+    <% if index == 2 %>
+    <div class="clearfix search-result ad">
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-6987587183408883";
+      /* Search Results */
+      google_ad_slot = "7582455490";
+      google_ad_width = 468;
+      google_ad_height = 15;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+    <% end %>
+    <div class="clearfix search-result">
+      <a class="pull-left" href="#">
+        <%= image_tag location.google_staticmap, :width => 100, :class => "media-object" %>
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><%= link_to location.name, location %></h4>
+        <p>
+          <%= "<span itemprop=\"telephone\">#{location.phone}</span> <br>".html_safe unless location.phone.blank? %>
+          <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress"><%= location.street %></span>
+            <span itemprop="addressLocality"><%= location.city %></span>,
+            <span itemprop="addressRegion"><%= location.state %></span>
+          </span><br>
+          <%= location.feature_tags.map(&:titleize).collect {|i| "<span class=\"label\">#{i}</span>"}.join(" ").html_safe %>
+        </p>
+        <div class="geo">GEO: 
+         <span class="latitude"><%= location.lat %></span>, 
+         <span class="longitude"><%= location.lng %></span>
+        </div>
+      </div>
+      
+    </div>
+    <% end %>
+    <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-6987587183408883";
+    /* Search Results Bottom */
+    google_ad_slot = "7779101899";
+    google_ad_width = 468;
+    google_ad_height = 15;
+    //-->
+    </script>
+    <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+</div>
+<%= will_paginate @locations, :renderer => "BootstrapPaginationHelper::LinkRenderer", :class => "pagination pagination-mini", :previous_label => "«", :next_label => "»" %>

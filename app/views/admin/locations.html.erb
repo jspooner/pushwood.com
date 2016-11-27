@@ -1,0 +1,42 @@
+<h1>Locations</h1>
+<p>
+  Locations with ratings <strong><%= (@locations_with_ratings * 100.0 / @locations_total).round(2) %>%</strong> 
+  <%= @locations_with_ratings %> / <%= @locations_total %>
+</p>
+
+<p>
+  Locations that have images <strong><%= (@locations_with_images * 100.0 / @locations_total).round(2) %>%</strong>
+  <%= @locations_with_images %> / <%= @locations_total %>
+</p>
+
+<p>
+  Locations with descriptions <strong><%= (@locations_with_descriptions * 100.0 / @locations_total).round(2) %>%</strong>
+  <%= @locations_with_descriptions %> / <%= @locations_total %>
+</p>
+
+<p>
+  Verified Locations <strong><%= (@locations_verified * 100.0 / @locations_total).round(2) %>%</strong>
+  <%= @locations_verified %> / <%= @locations_total %>
+</p>
+
+<h2>Count by US State</h2>
+<ul>
+  <% @count_by_state.sort {|x,y| y["count(state)"] <=> x["count(state)"]}.each do |i| %>
+    <li>
+      <%= i["state"] %>
+      <ul>
+        <li>Total: <%= i["count(state)"] %></li>
+        <li>Verified : <%= @count_verified_by_state.detect { |j| j["state"] == i["state"] }.try(:[], "count(state)") || 0 %></li>
+      </ul>
+      
+      
+    </li>
+  <% end %>
+</ul>
+
+<h2>Count by Country</h2>
+<ul>
+  <% @count_by_country.sort {|x,y| y["count(country)"] <=> x["count(country)"]}.each do |i| %>
+    <li><%= i["country"] %> <%= i["count(country)"] %></li>
+  <% end %>
+</ul>

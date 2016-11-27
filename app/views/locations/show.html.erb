@@ -1,0 +1,155 @@
+<% content_for :title do %>
+<%= @location.name %> - <%= @location.address %> - Skatepark Locator App
+<% end %>
+<% content_for :head do %>
+<meta property="og:type"        content="pushwood:skate_park" />
+<meta property="og:url"         content="<%= location_url @location %>" /> 
+<meta property="og:title"       content="<%= @location.name %>" /> 
+<meta property="og:description" content="<%= @location.ios_description %>" /> 
+<meta property="og:image"       content="<%= @location.google_staticmap %>" />
+<% end %>
+<% content_for :description do %>
+<%= @location.ios_description %>
+<% end %>
+
+<div id="content" class="pageit container">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <h1><%= @location.name.titleize %></h1>
+        <%= bootstrap_flash %>
+        <p><%= [@location.city, @location.state].compact.join(", ") %></p>
+        <% unless @location.marker_verified %>
+        <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Oh snap!</strong> The location of this skate park has not been verified.
+        </div>
+        <% end %>
+        <div class="row">
+          <div class="span4">
+            <p><strong>Phone:</strong> <span itemprop="telephone"><%= @location.phone %></span></p>
+          </div>
+          <div class="span4">
+            <p><strong>Hours:</strong> <span><meta itemprop="openingHours" content="<%= @location.hours %>"><%= @location.hours %></span></p>
+          </div>
+        </div>
+        <p><%= @location.description.try(:html_safe) %></p>
+      </div>
+      <div id="static-map-container" class="span4">
+        <div class="polaroid-border">
+          <%# image_tag @location.google_staticmap, :width => "767" %>
+          <img src="http://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7Clabel:%7C<%= @location.lat %>, <%= @location.lng %>&center=<%= @location.lat %>,<%= @location.lng %>&zoom=14&size=767x580&sensor=false">
+          <p>
+            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+              <span itemprop="streetAddress"><%= @location.street %></span><br>
+              <span itemprop="addressLocality"><%= @location.city %></span>,
+              <span itemprop="addressRegion"><%= @location.state %></span>
+            </div>
+            <%= link_to "Google Maps", "https://maps.google.com/?q=#{@location.address}" %>
+          </p>
+          <div itemscope itemtype="http://schema.org/Place">
+            <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+              <meta itemprop="latitude" content="<%= @location.lat %>" />
+              <meta itemprop="longitude" content="<%= @location.lng %>" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-content" class="row">
+      <div class="span12">
+        <ul id="myTabs" class="nav nav-tabs">
+          <li class="active">
+            <a href="#photos">Photos</a>
+          </li>
+          <li><a href="#near">Near by</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-content">
+  
+      <div class="tab-pane active" id="photos">
+        <div class="row">
+          <%= render (@images.empty?) ? 'no_photo' : 'photo' %>
+          <div class="span2">
+            <h4>Share</h4>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_counter_style" style="width:50px;">
+            <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
+            <a class="addthis_button_tweet" tw:count="vertical"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
+            <a class="addthis_counter"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = { data_track_addressbar:true,  services_overlay:'facebook,twitter,more' };</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5042505e49116d9b"></script>
+            <!-- AddThis Button END -->
+          </div>
+          <div class="span4">
+            <% if current_user and current_user.role? :admin %>
+              <%= link_to "Edit", edit_location_path(@location), class: "btn btn-block" %>
+              <%= link_to "Delete", @location, method: :delete, confirm: "Are you sure?", class: "btn btn-block btn-danger" %>
+            <% end %>
+            <% if current_user %>
+            <a href="#myModal" role="button" class="btn btn-large btn-block btn-inverse" data-toggle="modal">Upload a Photo</a>
+            <% else %>
+            <%= link_to "Upload a Photo", "/auth/facebook", :class => "btn btn-large btn-block btn-inverse" %>
+            <% end %>
+            <br>
+            <%= render 'layouts/ad_300x250' %>
+          </div>
+        </div>
+        <!-- end photos tab -->
+      </div>
+      <div class="tab-pane" id="near">
+        <ul class="thumbnails">
+          <% for location in @location.nearbys(20).sort { |a,b| a.distance.round(2) <=> b.distance.round(2)  } %>
+          <li class="span4">
+            <div class="thumbnail">
+              <%= link_to image_tag(location.google_staticmap), location %>
+              <h6><%= link_to location.name, location %> <span class="muted" title="Distance from <%= @location.name %>"><%= location.distance.round(2) %> mi</span></h6>
+              <p><%= location.distance.round(2) %> miles away</p>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12">
+        <h3>Comments</h3>
+    
+        <div class="fb-comments" data-href="http://pushwood.com<%= request.path %>" data-num-posts="2" data-width="470"></div>
+      </div>
+    </div>
+
+    <div style="display:none" class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <% if current_user %>
+      <%= form_for(@location, :html => { :multipart => true }) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Upload Photos</h3>
+      </div>
+      <div class="modal-body">
+          <ul id="newImgList">
+            <li>
+              <%= f.fields_for :images, Image.new do |images_builder| %>
+              <%= images_builder.file_field :img %>
+              <%= images_builder.hidden_field :user_id, :value => current_user.id %>
+              <% end %>
+            </li>
+          </ul>
+          <p><%= link_to_add_fields("Add More", f, :images) %></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <%= f.submit "Upload", :class => "btn btn-primary" %>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+    

@@ -1,0 +1,23 @@
+<div class="container">
+  <header>
+    <h1><%= @locations.length %> New Locations</h1>
+    <p class="lead">
+    </p>
+  </header>
+</div>
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="span9">
+        <% @locations.each do |location| %>
+          <h2><%= link_to location.name, location %></h2>
+          <% if location.user %>
+          <small><%= location.user.full_name %></small>
+          <% else %>
+          <small>unknown</small>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

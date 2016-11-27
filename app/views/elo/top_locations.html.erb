@@ -1,0 +1,37 @@
+<% content_for :title do %>
+Battle of the Skate Parks
+<% end %>
+<% content_for :head do %>
+<meta property="og:type"        content="pushwood:skate_park" />
+<meta property="og:title"       content="Top Skate Parks" /> 
+<meta property="og:description" content="Skate Park Battle Results" /> 
+<meta property="og:image"       content="<%= @locations.first.google_staticmap rescue "" %>" />
+<% end %>
+<% content_for :description do %>
+ Top skate parks.
+<% end %>
+
+<div class="container">
+  <header>
+    <h1>Battle of the Skate Parks</h1>
+    <p class="lead">
+      Top 100 battle proven skate parks.  Take part in the battle <%= link_to "here", battles_skateparks_path %>.
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <ul class="thumbnails">
+      <% @locations.each_with_index do |location, index| %>
+      <li class="span4">
+        <div class="thumbnail">
+          <%= link_to image_tag(location.google_staticmap), location %>
+          <h6><span class="badge"><%= index +1 %></span> <%= link_to location.name, location %></h6>
+          <p><%= location.city %>, <%= location.state %></p>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

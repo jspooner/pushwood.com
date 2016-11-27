@@ -1,0 +1,77 @@
+<div class="container">
+  <header>
+    <h1>Found <%= @locations.total %> Skateboard Parks</h1>
+    <p class="lead">
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="span3">
+        <%= form_tag('/search', :id => "advancedSearch") do %>
+          <div id="topquery" class="input-append">
+            <%= text_field_tag 'query', params[:query], :placeholder => 'Search', :class => "span2" %>
+            <button type="submit" class="btn"><%= glyph :search %></button>
+          </div>
+          <ul class="facetList" id="locationList">
+            <li>
+              <% 
+                if params.has_key? :lat_lon or params.has_key? :location_tags or params.has_key? :facet_locations
+                  all_location_checked = false
+                else
+                  all_location_checked = true
+                end
+               %>
+              <%= check_box_tag 'facet_locations', 'all', all_location_checked, {id: 'facet_location_all', class: 'onlyChild'} %>
+              All Locations
+            </li>
+            <li>
+              <% current_selected = params.has_key? 'lat_lon' %>
+              <%= check_box_tag 'facet_locations', 'facet_location_current', current_selected, id: 'facet_location_current', class: 'onlyChild' %>
+              Current Location
+            </li>
+          <% @locations.facets['global-locations']['terms'].each do |tag| %>
+            <li>
+              <% selected = params[:facet_locations].include?(tag['term']) rescue false %>
+              <%= check_box_tag 'facet_locations', tag['term'], selected, id: "facet_location_#{tag['term']}", class: "siblings" %>
+              <%=  tag['term'].titleize %>
+              <span class="badge"><%= number_with_delimiter tag['count'] %></span>
+            </li>
+          <% end %>
+          </ul>
+          <%# text_field_tag 'other_location', nil, :placeholder => 'Enter location name' %>
+
+          <ul class="facetList" id="featureList">
+            <li>
+              <%= check_box_tag 'facet_features', 'all', !(params.has_key?(:facet_features) and params[:facet_features] != 'all'), {id: 'facet_feature_all', class: 'onlyChild'} %>
+              All Features
+            </li>
+          <% @locations.facets['global-features']['terms'].each do |tag| %>
+            <li>
+              <% selected = params[:facet_features].include?(tag['term']) rescue false %>
+              <%= check_box_tag 'facet_features', tag['term'], selected, id: "facet_feature_#{tag['term']}", class: "siblings" %>
+              <%= tag['term'].titleize %>
+              <span class="badge"><%= number_with_delimiter tag['count'] %></span>
+            </li>
+          <% end %>
+          </ul>
+          <%# text_field_tag 'other_location', nil, :placeholder => 'Enter location name' %>
+
+        <% end %>
+      </div>
+      <div class="span9 locations">
+        <div class="row">
+          <div class="span5">
+            <%= render '/places/locations_list' %>
+          </div>
+          <div class="span4">
+            <%= render 'layouts/ad_300x250' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

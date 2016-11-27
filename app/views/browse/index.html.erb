@@ -1,0 +1,76 @@
+<% content_for(:title) do %>Top <%= @place.name %> skate parks<% end %>
+<% content_for(:description) do %>The best skate parks in <%= @place.name %> include <%= @locations.collect { |i| i.name }.join(", ")  %><% end %>
+<% content_for(:keywords) do %><%= @place.name %>, <%= @locations.collect { |i| i.name }.join(", ")  %><% end %>
+
+<div class="container">
+  <header>
+    <h1>Top <%= @locations.total_entries %> skate parks in <%= @place.name %></h1>
+    <p class="lead"></p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="span10">
+        <div id="parklist">
+          <% @locations.each do |location| %>
+          <div class="parkListing clearfix">
+            <div class="parkInfo">
+              <h5><%= link_to location.name, location %></h5>
+              <p>
+                <%= location.city %>, <%= location.state %><br>
+                Location accuracy 
+                yes:<%= location.marker_yes %>
+                no:<%= location.marker_no %>
+              </p>
+            </div>
+            <a href="#" class="zoomBtn btn" data-locationId="<%= location.id %>" data-lat="<%= location.lat %>" data-lng="<%= location.lng %>">preview</a>
+          </div>
+          <% end %>
+        </div>
+        <div class="pagination">
+          <%= will_paginate @locations, :container => false %>
+        </div>
+      </div>
+      <div class="span6">
+        <% unless @sub_places.empty? %>
+          <h3>Places in <%= @place.name %></h3>
+          <ol>
+          <% @sub_places.each do |state| %>
+            <li>
+              <%= link_to state.name, "/skateparks/#{state.id}-#{state.name.parameterize}" %>
+            </li>
+          <% end %>
+          </ol>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="markerQATemplate" charset="utf-8">
+<div class="markerQA">
+  <div class="markerTitle">
+    Do you see a park here?
+  </div>
+  <div class="markerForm">
+    <%= form_tag "/locations/{{locationId}}/verify_marker.json", :remote => true do %>
+      <%= image_submit_tag "marker/yes.png", :name => "visible", :value => "yes" %><%= image_submit_tag "marker/no.png", :name => "visible", :value => "no" %>
+    <% end %>
+  </div>
+</div>
+</script>
+
+
+
+<script type="text/template" id="parkTestTemplate" charset="utf-8">
+  <div id="parkTest" style="display:none" class="alert-message block-message warning clearfix">
+    <p><strong>Verify Skate Park:</strong> Can you see a skatepark in the map above?</p>
+    <div class="alert-actions">
+      <a class="btn small" href="#">YES</a> <a class="btn small" href="#">NO</a>
+    </div>
+  </div>
+</script>
+
+

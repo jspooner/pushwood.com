@@ -1,0 +1,129 @@
+<% content_for :title do %>
+Skatepark Locator App
+<% end %>
+<% content_for :head do %>
+<meta property="og:type"        content="pushwood:skate_park" />
+<meta property="og:url"         content="<%= root_url %>" /> 
+<meta property="og:title"       content="Pushwood Skate Parks" /> 
+<meta property="og:description" content="" /> 
+<meta property="og:image"       content="" />
+<% end %>
+<div class="container">
+  <header>
+    <h1>Welcome to Pushwood Skate Park Locator</h1><p>
+    Pushwood is your database of skateparks!  Our service is just about the facts. 
+    All of our data is curated by our administrators, so you can be sure that the information you get is accurate.
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="span8">
+        <div id="myCarousel" class="carousel slide">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <% @top_parks.each_with_index do |location, i| %>
+            <div class="<%= "active " if i == 0 %>item">
+              <%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{location.lat},#{location.lng}&zoom=20&size=640x350&scale=2&maptype=hybrid&sensor=false" %>
+              <div class="carousel-caption">
+                <h4><%= link_to location.name, location %></h4>
+                <p>
+                  <%= truncate location.description, length: 140 %>
+                </p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+        </div>
+        
+        <section>
+          
+          <h2>Add to Pushwood.com</h2>
+          <p>Pushwood.com is community powered! See something we are missing or do you have updates for your local skate park? You can add it and our staff will approve it.</p>
+    
+          <% if current_user %>
+            <%= link_to 'Add a Skate Park', new_location_path, class: "btn btn-inverse" %>
+          <% else %>
+            <%= link_to 'Add a Skate Park', "/auth/facebook", class: "btn btn-inverse" %>
+          <% end %>
+    
+          <h2>Recently Added or Updated Skate Parks</h2>
+          <div class="row">
+            <% @recent.each do |location| %>
+              <div class="span2">
+                <%= link_to image_tag(location.google_staticmap), location %>
+                <h5><%= location.name %></h5>
+              </div>
+            <% end %>
+          </div>
+    
+          <h2>Top Skate Parks</h2>
+          <p>Skate Park popularity is calculated in the <%= link_to "skate park battle", battles_skateparks_path %>.
+          <%= link_to "See All Top Parks", "/battles/top-skateparks", class: "" %></p>
+          <div class="row">
+            <% @top_parks.each do |location| %>
+              <div class="span2">
+                <%= link_to image_tag(location.google_staticmap), location %>
+                <h5><%= location.name %></h5>
+              </div>
+            <% end %>
+          </div>
+          
+          <h2>United States</h2>
+          <div class="row place-list">
+            <% @usa.each_slice(11).each do |states| %>
+              <div class="span2"><ul><% states.each do |state| %>
+                <li><%= link_to state['term'], "/places/united-states/#{state['term'].parameterize}" %> <span class="muted"><%= state['count'] %></span></li>
+              <% end %></ul></div>
+            <% end %>
+          </div>
+          
+          
+          <% @tire.results.facets['states']['terms'].each_with_index do |term,index| %>
+            <% next if index > 5 %>
+            <h2><%= term['term'] %> <small><%= link_to "see all", "/places/united-states/#{term['term'].downcase}", class: "muted" %></small></h2>
+            
+            <div class="row">
+              <% Location.verified.order(:elo_rank).limit(4).where("state = ?", term["term"]).each do |location| %>
+              <div class="span2">
+                <%= link_to image_tag(location.google_staticmap), location %>
+                <h5><%= location.name %></h5>
+              </div>
+              <% end %>
+            </div>
+          <% end %>
+          
+        </section>
+      </div>
+      <div class="span4">
+        <%= render 'layouts/ad_300x250' %>
+        
+        <h2>New Photos</h2>
+        <p>Photos are uploaded from pushwood.com or our free iPhone App in the available on the Apple Store.</p>
+        <% @recent_images.each do |image| %>
+          <div class="pull-left home-image">
+            <%= link_to image_tag(image.img.url(:iosSmall)), image.location, title: image.location.name %>
+          </div>
+        <% end %>
+        
+        <div>
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-6987587183408883";
+          /* Detail Page */
+          google_ad_slot = "7547026732";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>

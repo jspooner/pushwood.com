@@ -1,0 +1,42 @@
+<%= form_for([:admin, @user]) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="section error">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class="mb9">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="mb9">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="form-row rule-above">
+      <h3>Assign this User's Roles</h3>
+      <ul class="no-bullets">
+      <% for role in @roles %>
+        <li class="mt9 flno">
+          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+          <span class="bold"><%= role.name %></span> - Description of this role (tbd)
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <div class="actions form-row submit">
+      <%= f.submit :class => "btn yellow float-right" %>
+    </div>
+  </fieldset>
+<% end %>  
+

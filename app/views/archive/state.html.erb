@@ -1,0 +1,39 @@
+<h2>Skateparks in <%= state_full_name(@state).titleize %></h2>
+
+<div id="wideContent" class="clearfix">
+  <% @locations.each do |location| %>
+    <div class="location-item">
+      <div class="img_thumb">
+          <%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{location.lat},#{location.lng}&zoom=17&size=162x150&maptype=hybrid&markers=color:blue|label:A|#{location.lat},#{location.lng}&sensor=false" %>
+      </div>
+      <div class="location-desc">
+        <h4 class="location-title"><%= link_to location.name, location %></h4>
+        <%= ratings_for location, :static, :small => true %>
+        <div style="clear:both"></div>
+        <p>
+          Categories:
+          <%=  "concrete" if location.has_concrete? %>
+          <%=  "wood" if location.has_wood? %>
+          <%=  "outdoors" unless location.is_outdoors? %>
+          <%=  "indoors" if location.is_outdoors? %>
+          <%=  "pads required" if location.pads_required? %>
+          <%=  "free" if location.is_free? %>
+          <br>
+          <%= location.address %>
+        </p>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="skinnySidebar">
+  <h3>Cities</h3>
+  <ul>
+  <% @cities.each do |city| %>
+  <% unless city.empty? %>
+    <li><%= link_to(city, archive_city_path(:country => @country.parameterize, :state => @state.parameterize, :city => city.parameterize)) %></li>
+  <% end %>
+  <% end %>
+  </ul>  
+</div>

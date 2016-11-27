@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=0.0%2C0.0&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 25 Aug 2013 16:28:24 GMT
+      expires:
+      - Mon, 26 Aug 2013 16:28:24 GMT
+      cache-control:
+      - public, max-age=86400
+      access-control-allow-origin:
+      - ! '*'
+      server:
+      - mafe
+      x-xss-protection:
+      - 1; mode=block
+      x-frame-options:
+      - SAMEORIGIN
+      alternate-protocol:
+      - 80:quic
+      connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: ! "{\n   \"results\" : [],\n   \"status\" : \"ZERO_RESULTS\"\n}\n"
+    http_version: '1.1'
+  recorded_at: Sun, 25 Aug 2013 16:28:25 GMT
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=12+E+Mission+Hills+Ct%2C+San+Marcos%2C+California%2C+United+States&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 25 Aug 2013 16:28:24 GMT
+      expires:
+      - Mon, 26 Aug 2013 16:28:24 GMT
+      cache-control:
+      - public, max-age=86400
+      access-control-allow-origin:
+      - ! '*'
+      server:
+      - mafe
+      x-xss-protection:
+      - 1; mode=block
+      x-frame-options:
+      - SAMEORIGIN
+      alternate-protocol:
+      - 80:quic
+      connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: ! "{\n   \"results\" : [\n      {\n         \"address_components\" :
+        [\n            {\n               \"long_name\" : \"Mission Hills Court\",\n
+        \              \"short_name\" : \"Mission Hills Ct\",\n               \"types\"
+        : [ \"route\" ]\n            },\n            {\n               \"long_name\"
+        : \"San Marcos\",\n               \"short_name\" : \"San Marcos\",\n               \"types\"
+        : [ \"locality\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"San Diego\",\n               \"short_name\" : \"San Diego\",\n               \"types\"
+        : [ \"administrative_area_level_2\", \"political\" ]\n            },\n            {\n
+        \              \"long_name\" : \"California\",\n               \"short_name\"
+        : \"CA\",\n               \"types\" : [ \"administrative_area_level_1\", \"political\"
+        ]\n            },\n            {\n               \"long_name\" : \"United
+        States\",\n               \"short_name\" : \"US\",\n               \"types\"
+        : [ \"country\", \"political\" ]\n            },\n            {\n               \"long_name\"
+        : \"92069\",\n               \"short_name\" : \"92069\",\n               \"types\"
+        : [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"
+        : \"Mission Hills Court, San Marcos, CA 92069, USA\",\n         \"geometry\"
+        : {\n            \"bounds\" : {\n               \"northeast\" : {\n                  \"lat\"
+        : 33.148762,\n                  \"lng\" : -117.1427625\n               },\n
+        \              \"southwest\" : {\n                  \"lat\" : 33.1446644,\n
+        \                 \"lng\" : -117.146949\n               }\n            },\n
+        \           \"location\" : {\n               \"lat\" : 33.1464255,\n               \"lng\"
+        : -117.1456194\n            },\n            \"location_type\" : \"GEOMETRIC_CENTER\",\n
+        \           \"viewport\" : {\n               \"northeast\" : {\n                  \"lat\"
+        : 33.148762,\n                  \"lng\" : -117.1427625\n               },\n
+        \              \"southwest\" : {\n                  \"lat\" : 33.1446644,\n
+        \                 \"lng\" : -117.146949\n               }\n            }\n
+        \        },\n         \"partial_match\" : true,\n         \"types\" : [ \"route\"
+        ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"
+    http_version: '1.1'
+  recorded_at: Sun, 25 Aug 2013 16:28:25 GMT
+recorded_with: VCR 2.5.0

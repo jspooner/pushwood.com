@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @trick.image.url) %>
+
+<p>
+  <b>Lat:</b>
+  <%= @trick.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @trick.lng %>
+</p>
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?center=#{@trick.lat},#{@trick.lng}&zoom=14&size=512x512&maptype=roadmap&markers=color:blue|label:S|#{@trick.lat},#{@trick.lng}&sensor=false" %>
+
+<%= link_to 'Edit', edit_trick_path(@trick) %> |
+<%= link_to 'Back', tricks_path %>

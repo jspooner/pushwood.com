@@ -1,0 +1,9 @@
+var duration = 200;
+$('#photo-gallery img').fadeOut(duration, function() {
+  
+  var div = $('<%= escape_javascript( render 'photo') %>');
+  div.find("img").hide();
+  
+  $("#photo-gallery").replaceWith(div);
+  div.find("img").fadeIn(duration);
+});

@@ -1,0 +1,9 @@
+<h2><%= @country.titleize %></h2>
+
+<div style="float:left;margin-bottom:200px">
+  <ul>
+  <% @states.each do |state| %>
+    <li><%= link_to(state_full_name(state), archive_state_path(:country => @country.parameterize, :state => state.parameterize)) %></li>
+  <% end %>
+  </ul>  
+</div>

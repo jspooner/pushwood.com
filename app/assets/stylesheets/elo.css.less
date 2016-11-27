@@ -1,0 +1,42 @@
+body[data-controller=elo] {
+  
+  #battleTitle {
+    .A { text-align:right; }
+    .B h3 { margin-left: -26px; }
+    h3 { color:#999; }
+    h3 span { color:#333; font-size:75%; }
+  }
+  
+  #battle {
+    .competitor a {text-align:center;}
+    .competitorA p {text-align:right}
+    .competitorB {}
+    #nopark { margin-top:20px; }
+    img {width:100%;}
+  }
+  
+  #nopark { text-align:center }
+  
+  @media (min-width: 980px) and (max-width: 1199px) {
+    #battleTitle .B h3 { margin-left: -18px; }
+  }
+  /* Portrait tablet to landscape and desktop */
+  @media (min-width: 768px) and (max-width: 979px) {
+    #battleTitle .B h3 { margin-left: -18px; }
+  }
+
+  /* Landscape phone to portrait tablet */
+  @media (max-width: 767px) {
+    #battleTitle .B h3 { margin-left: 0px; }
+    #battleTitle { 
+      .A, .B {text-align:center; }
+    }
+    .competitorB p {text-align:right}
+  }
+
+  /* Landscape phones and down */
+  @media (max-width: 480px) {
+    #battleTitle .B h3 { margin-left: 0px; }
+  }
+  
+}

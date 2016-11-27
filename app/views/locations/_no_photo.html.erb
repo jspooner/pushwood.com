@@ -1,0 +1,8 @@
+<div class="span6" id="photo-gallery">
+  <% if current_user %>
+  <a href="#myModal" role="button" class="btn btn-large btn-danger" data-toggle="modal">Upload the first photo</a>
+  <% else %>
+  <%= link_to "Upload the first photo", "/auth/facebook", :class => "btn btn-large btn-danger" %>
+  <% end %>
+  
+</div>

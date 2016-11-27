@@ -1,0 +1,49 @@
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+/*@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf");*/
+
+// Font Awesome
+//@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+@linkColor: #4B8FB9;
+
+@logo: asset-path('Pushwood-Logo.png');
+@bkg: asset-path('Chris-Miller-Lien-Crossbone-Air.gif');
+
+
+body { background:#f9f9f9; background:url(@bkg);background-repeat: repeat-y;background-position: top; background-size: 100%; }
+.brand {background:url(@logo) no-repeat 10px 10px;text-indent:-100em;width:132px;height:21px;}
+#map-container {display:none;}
+.carousel {
+  a { color:#b2b2b2; }
+}
+.carousel-caption h4, .carousel-caption p {
+  color:#f8f8f8;
+}
+footer {margin:40px 0;}
+.modal {z-index:10005}
+.modal-backdrop {z-index:1000}
+div.geo {display:none}

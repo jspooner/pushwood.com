@@ -1,0 +1,13 @@
+
+<% if @images.empty? %>
+  <h1>You haven't uploaded any images yet</h1>
+<% end %>
+<% @images.each do |image| %>
+<div class="feedImageHolder">
+  <div class="userInfo">
+    <div class="locationName"><%= image.location.name %></div>
+    <div class="uploadTime"><%= time_ago_in_words image.updated_at %></div>
+  </div>
+  <%= image_tag(image.img.url(:large), :width => 310) %>
+</div>
+<% end %>

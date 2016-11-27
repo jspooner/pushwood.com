@@ -1,0 +1,20 @@
+<li class="field span2">
+<% if f.object.img.file? %>
+  <div class="thumbnail ">
+    <%= image_tag(f.object.img.url(:large_sq)) %>
+    <div class="caption">
+      <h3><%= f.object.approved ? "Approved" : "Pending" %></h3>
+      <p><%= link_to_remove_fields "remove", f, {:class => "remove btn btn-danger"} %></p>
+    </div>
+  </div>
+  <%# f.hidden_field :position %>
+<% else %>
+  <div class="clearfix">
+    <label for="fileInput">Image</label>
+    <div class="input">
+      <%= f.file_field :img %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+  </div>
+<% end %>
+</li>

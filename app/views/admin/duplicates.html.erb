@@ -1,0 +1,28 @@
+<% content_for :title do %>
+Duplicates
+<% end %>
+
+<div class="container">
+  <header>
+    <h1><%= @duplicates.flatten.uniq.count %> Possible Duplicates</h1>
+    <p>
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="span12">
+      <% @duplicates.each do |set| %>
+      <h4><%= link_to "#{set.first.lat}, #{set.first.lng}", locations_path(:lat => set.first.lat.to_s, :lng => set.first.lng.to_s), :target => "_blank"  %></h4>
+      <ul>
+        <% set.each do |location| %>
+          <li><%= link_to location.name, location %> <%= location.distance_to(set.first) %> </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

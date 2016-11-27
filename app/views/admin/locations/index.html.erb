@@ -1,0 +1,55 @@
+<style type="text/css" media="screen">
+  
+  div.main-content img {margin:4px;padding:1px;border:1px solid white;}
+  div.main-content img.verified {border:1px solid green;}
+  
+  div.main-content li {
+    -moz-user-select: none;   
+    float:left;
+    list-style:none;
+    padding:10px;
+  }
+  .selected {
+   background: yellow;
+  }
+</style>
+<div class="container">
+  <header>
+    <h1>Marker Verification</h1>
+    <p class="lead">
+    </p>
+  </header>
+</div>
+
+<div class="pageit container">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="span6">
+        select <%= link_to "all", "#", :id => 'selectAll' %> | <%= link_to " none", "#", :id => "selectNone" %>
+      </div>
+      <div class="span6">
+        Mark selected as <%= link_to "verified", "#", :class => "btn", :id => 'markVerified' %> | <%= link_to "not verified", "#", :class => "btn", :id => 'markNotVerified' %>
+      </div>
+    </div>
+    <%= will_paginate @locations %>
+    <div class="clearfix">
+      <ul id="multiList">
+        <% @locations.each do |location| %>
+          <%= content_tag :li, "data-location-id" => "#{location.id}", "class" => "thumbnail span2" do %>
+            <%= image_tag location.google_staticmap, :width => "200", :class => (location.marker_verified? ? "verified" : "") %>
+            <div>
+              <%= link_to location.name, location, :target => "_blank" %><br>
+              <%= location.is_outdoors ? "outdoors" : "indoors" %><br>
+              <%= "yes votes (#{location.marker_yes})" if location.marker_yes > 0 %><br>
+              <%= "no votes (#{location.marker_yes})" if location.marker_no > 0 %><br>
+            </div>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <%= will_paginate @locations %>
+  </div>
+</div>
+
+
+

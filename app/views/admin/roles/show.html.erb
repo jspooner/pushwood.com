@@ -1,0 +1,23 @@
+<h1>Role: <span class="bold"><%= @role.name %></span></h1>
+<div class="section tbl">
+  <h3>Users currently assigned the role of "<%= @role.name %>"</h3>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <% @role.users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %> <%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "Edit User's Roles", edit_admin_user_path(user) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="section">
+  <%= link_to 'Back', admin_roles_path %>
+</div>

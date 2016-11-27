@@ -1,0 +1,43 @@
+<% content_for :title do %>
+Skate Parks in <%= (@city || @state || @country || "on earth").titleize %>
+<% end %>
+<% content_for :description do %>
+Skate Parks <%= "located in " + params[:id].split("/").reverse.map(&:titleize).first rescue "" %></h1>
+<% end %>
+
+<div id="content" class="pageit container">
+  <div class="row">
+    <div class="span12">
+      <p>
+        <ul class="breadcrumb">
+          <li><a href="/places">skate parks</a> <span class="divider">/</span></li>
+          <% if @country %>
+          <li><a href="/places/<%= @country %>"><%= @country.titleize.downcase %></a> <span class="divider">/</span></li>
+          <% end %>
+          <% if @state %>
+          <li><a href="/places/<%= @country %>/<%= @state %>"><%= @state.titleize.downcase %></a> <span class="divider">/</span></li>
+          <% end %>
+          <% if @city %>
+          <li><a href="/places/<%= @country %>/<%= @state %>/<%= @city %>"><%= @city.titleize.downcase %></a> <span class="divider">/</span></li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <%= render 'places_nav' %>
+    </div>
+    <div class="span9 locations">
+      <div class="row">
+        <div class="span5">
+          <h1>Skate Parks <%= "in " + params[:id].split("/").reverse.map(&:titleize).first rescue "" %></h1>
+          <%= render 'locations_list' %>
+        </div>
+        <div class="span4">
+          <%= render 'layouts/ad_300x250' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

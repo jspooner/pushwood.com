@@ -1,0 +1,26 @@
+<h1>Users</h1>
+<ol>
+  <% @users.each do |user| %>
+    <li data-update-url="<%=  %>">
+      <%= user.email %><br>
+      roles: <%= user.roles.join(", ") %>
+    </li>
+  <% end %>
+</ol>
+<%= will_paginate @users %>
+<%= form_tag "/admin/users/update", :method => "get" do  %>
+  <%= text_field_tag "id", @users.first.id, :method => "post" %>
+  <ul>
+    <li>
+      <%= check_box_tag "user[role_ids][]", "photoadmin" %> photo admin
+    </li>
+    <li>
+    <%= check_box_tag "user[role_ids][]", "photo" %>
+    photo
+    </li>
+    <%= submit_tag "Updaate" %>
+  </ul>
+<% end %>
+<script type="text/template" id="form-template">
+  
+</script>
